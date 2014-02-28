@@ -34,29 +34,24 @@
 </div>
 <!-- End Header -->
 
+
 <!-- Container -->
 <div id="container">
+	<!-- Start Shell -->
 	<div class="shell">
 		<!-- Main -->
 		<div id="main">
-			<div class="cl">&nbsp;</div>
-			
-			<!-- Content -->
-					<div id="content">
+			<div class="box">					
+				<!-- Box Head -->
+				<div class="box-head">
+					<h2>PENDAFTARAN RAWAT JALAN</h2>
+				</div>
+				<!-- End Box Head-->
 				
-				<!-- Box -->
-				<div class="box">
-					
-					<!-- Box Head -->
-					<div class="box-head">
-						<h2>PENDAFTARAN RAWAT JALAN</h2>
-					</div>
-					<!-- End Box Head-->
-					
-					<div class="box-content">
-						<!-- Table -->
+				<div class="box-content" style="height:443px;">
+					<!-- Table -->
 					<div class="table">
-						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<table style="float:left" width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td>NO. RM</td>
 								<td><input type=text; name=nama;></td>
@@ -75,6 +70,8 @@
 								<td>KLINIK</td>
 								<td><input type=text; name=nama;></td>
 							</tr>
+						</table>
+						<table style="float:left">
 							<tr>
 								<td>JENIS KELAMIN</td>
 								<td><input type="radio" name="radioku" value=laki-laki> Laki-laki
@@ -113,20 +110,43 @@
 								<td> <input type="submit" name="submit" value=SIMPAN></td>
 								<td><input type="reset" name="batal" value=BATAL ></td>
 							</tr>
-						</table>				
-					</div>
+						</table>	
+						<div class="box" style="float:left;width: 49%;height:238px;margin-top:3%;margin-left:14%;">					
+							<!-- Box Head -->
+							<div class="box-head">
+								<h2>PENANGGUNG JAWAB</h2>
+							</div>
+							<!-- End Box Head-->
+							
+							<div class="box-content">
+								<!-- Table -->
+								<table>
+									<tr>
+										<td>Nama</td>
+										<td><input type=text; name=namapenanggungjawab;></td>
+									</tr>
+									<tr>
+										<td>Alamat</td>
+										<td><textarea name=alamatpenanggungjawab style="width: 181%;height: 80px;"> </textarea></td>
+									</tr>
+									<tr>
+										<td>No Telp.</td>
+										<td><input type=text; name=notelppenanggungjawab;></td>
+									</tr>
+								</table>				
+							</div>
+						</div>
 					</div>
 				</div>
-				<!-- End Box -->
-				
 			</div>
-					
-				</div>
-				<!-- End Box -->			
+			<!-- End Box -->	
 		</div>
-		<!-- Main -->
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+		<!-- End Main -->		
+	</div>
+	<!-- End Shell -->	
+</div>
 <!-- End Container -->
+
 
 <!-- Footer -->
 <div id="footer">
