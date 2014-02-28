@@ -23,7 +23,7 @@
 		<!-- Main Nav -->
 		<div id="navigation">
 			<ul>
-			    <li><a href="../master/master.php" ><span>MASTER DATA</span></a></li>
+			    <li><a href="../Master/master.php" ><span>MASTER DATA</span></a></li>
 				<li><a href="../transaksi/transaksi.php" class="active"><span>TRANSAKSI</span></a></li>
 			    <li><a href="../administrasi/administrasi.php"><span>ADMINISTRASI</span></a></li>
 			    <li><a href="../informasi/informasi.php"><span>INFORMASI</span></a></li>
