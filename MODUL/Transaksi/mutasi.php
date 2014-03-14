@@ -101,7 +101,6 @@
 								<td>DR. Hadi Setiadi</td>
 								<td><input type='text' name='' value=''/></td>
 								<td><input type='text' name='' value=''/></td>
-							<tr>
 								<td><input type="submit" name="submit" value=SIMPAN></td>
 								<td><input type="reset" name="batal" value=BATAL ></td>
 							</tr>

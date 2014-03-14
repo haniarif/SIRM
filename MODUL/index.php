@@ -4,6 +4,8 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../css/style.css" type="text/css" media="all" />
+	<script type ='text/javascript' src='config/jquery-min.js'></script>
+		<script type ='text/javascript' src='config/custom.js'></script>
 </head>
 <body>
 <!-- Header -->
@@ -23,10 +25,10 @@
 		<!-- Main Nav -->
 		<div id="navigation">
 			<ul>
-			    <li><a href="MASTER/master.php"><span>MASTER DATA</span></a></li>
-				<li><a href="Transaksi/transaksi.php"><span>TRANSAKSI</span></a></li>
-			    <li><a href="administrasi/administrasi.php"><span>ADMINISTRASI</span></a></li>
-			    <li><a href="informasi/informasi.php"><span>INFORMASI</span></a></li>
+			    <li><a href="Master/master.php" class='master'><span>MASTER DATA</span></a></li>
+				<li><a href="Transaksi/transaksi.php" class='transaksi'><span>TRANSAKSI</span></a></li>
+			    <li><a href="administrasi/administrasi.php" class='administrasi'><span>ADMINISTRASI</span></a></li>
+			    <li><a href="informasi/informasi.php" class='informasi'><span>INFORMASI</span></a></li>
 			</ul>
 		</div>
 		<!-- End Main Nav -->

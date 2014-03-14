@@ -56,9 +56,10 @@
 					<div class="box-content">
 						<a href="klinik.php" class="button"><span>KLINIK</span></a>
 						<a href="spesialisasi.php" class="button"><span>SPESIALISASI</span></a>
-						<a href="dokter.php" class="button"><span>DOKTER</span></a>
+						<a href="dokter.php"><span><img src="../../css/images/dokter.jpg">  </span></a> <!-- dokter--> 
 						<a href="layanan.php" class="button"><span>LAYANAN</span></a>
-						<a href="kamar.php" class="button"><span>KAMAR</span></a>
+						<a href="kamar.php"><span><img src="../../css/images/kamar.jpg"></span></a>
+						<a href="pegawai.php"><span><img src="../../css/images/pegawai.png"></span></a>
 						<a href="pasien.php" class="button"><span>PASIEN</span></a>
 						<a href="datarm.php" class="button"><span>REKAM MEDIK</span></a>
 						<a href="jenis_kasus.php" class="button"><span>JENIS KASUS</span></a>

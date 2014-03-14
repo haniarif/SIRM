@@ -54,10 +54,15 @@
 					<!-- End Box Head-->
 					
 					<div class="box-content">
-						<a href="#" class="button"><span>KLINIK</span></a>
-						<a href="#" class="button"><span>SPESIALISASI</span></a>
-						<a href="#" class="button"><span>DOKTER</span></a>
-						<a href="#" class="button"><span>LAYANAN</span></a>
+						<a href="info_pndftrn.php" ><span><img src="../../css/images/laporan.jpg"></span></a>
+						<a href="info_mutasi.php" class="button"><span>MUTASI RAWAT INAP</span></a>
+						<a href="info_rwyt.php" class="button"><span>RIWAYAT KUNJUNGAN</span></a>
+						<a href="#" class="button"><span>STATISTIK PASIEN</span></a><BR><BR>
+						<a href="#" class="button"><span>STATISTIK DIAGNOSA</span></a>
+						<a href="info_rmrj.php" class="button"><span>REKAM MEDIS RAWAT JALAN</span></a>
+						<a href="info_rmigd.php" class="button"><span>REKAM MEDIS RAWAT DARURAT</span></a><BR><BR>
+						<a href="info_rmri.php" class="button"><span>REKAM MEDIS RAWAT INAP</span></a>
+						<a href="info_resume_rmri.php" class="button"><span>RESUME REKAM MEDIS RAWAT INAP</span></a>
 					</div>
 				</div>
 				<!-- End Box -->

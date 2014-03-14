@@ -23,10 +23,10 @@
 		<!-- Main Nav -->
 		<div id="navigation">
 			<ul>
-			    <li><a href="master.php" class="active"><span>MASTER DATA</span></a></li>
+			    <li><a href="../MASTER/master.php"><span>MASTER DATA</span></a></li>
 				<li><a href="../transaksi/transaksi.php"><span>TRANSAKSI</span></a></li>
 			    <li><a href="../administrasi/administrasi.php"><span>ADMINISTRASI</span></a></li>
-			    <li><a href="../../informasi.php"><span>INFORMASI</span></a></li>
+			    <li><a href="informasi.php" class="active"><span>INFORMASI</span></a></li>
 			</ul>
 		</div>
 		<!-- End Main Nav -->
@@ -50,45 +50,49 @@
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left">MASTER DATA PASIEN</h2>
-						<div class="right">
-							<label>search PASIEN</label>
-							<input type="text" class="field small-field" />
-							<input type="submit" class="button" value="search" />
-						</div>
+						<h2 class="left">INFORMASI REKAM MEDIS RAWAT JALAN</h2>
 					</div>
 					<!-- End Box Head -->	
 
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH PASIEN</span></a><br>
+					<form action=# method=POST>
+						<table>
+							<tr>
+								<td> PERIODE </td>
+								<td><input type='text' name='' value=''/></td>
+								<td> &nbsp; S/D</td>
+								<td><input type='text' name='' value=''/></td>
+							</tr>
+							<tr>
+								<td> <input type="submit" name="submit" value=CARI></td>
+								<td><input type="reset" name="batal" value=BATAL ></td>
+							</tr>
+							<BR>
+						</table>
+					</FORM>
+					<BR><BR><BR>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
+								<th>NO.</th>
 								<th>NO. RM</th>
-								<th>NO. IDENTITAS</th>
 								<th>NAMA</th>
-								<th>ALAMAT</th>
-								<th>JENIS KELAMIN</th>
-								<th>TGL. LAHIR</th>
-								<th>GOL. DARAH</th>
-								<th>NO. TELP</th>
-								<th>AGAMA</th>
-								<th>PEKERJAAN</th>
-								<th>PERKAWINAN</th>
+								<th>WAKTU</th>
+								<th>KLINIK</th>
+								<th>JENIS KASUS</th>
+								<th>NAMA PETUGAS</th>
+								<th>DIAGNOSA</th>
 								<th>AKSI</th>
 							</tr>
 							<tr>
 								<td>1</td>
-								<td>1234456789065</td>
-								<td>HASAN ANAS ANSHORI </td>
-								<td>JL. GOWA MBANGSRI BALONG PANGGANG GRESIK </td>
-								<td>LAKI-LAKI </td>
-								<td>10/07/1998</td>
-								<td>O</td>
-								<td>0897654321 </td>
-								<td>ISLAM</td>
-								<td>WIRASWASTA </td>
-								<td>MENIKAH </td>
+								<td> 123456</td>
+								<td> PASIEN SIAPA SAJA</td>
+								<td>12-12-2014</td>
+								<td>POLIKLINIK UMUM </td>
+								<td>NON-BEDAH</td>
+								<td>HASAN ANAS ANSHOR</td>
+								<td>DIAGNOSA APA SAJA YANG KAU SUKA DECH</td>
 								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
 							</tr>
 						</table>				

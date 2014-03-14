@@ -4,6 +4,8 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type ='text/javascript' src='../config/jquery-min.js'></script>
+		<script type ='text/javascript' src='../config/custom.js'></script>
 </head>
 <body>
 <!-- Header -->
@@ -13,8 +15,6 @@
 		<div id="top">
 			<h1><a href="../index.php">SIRM</a></h1>
 			<div id="top-navigation">
-				Welcome <a href="#"><strong>Administrator</strong></a>
-				<span>|</span>
 				<a href="#">Ubah Password</a>
 				<span>|</span>
 				<a href="#">Log out</a>
@@ -25,9 +25,9 @@
 		<!-- Main Nav -->
 		<div id="navigation">
 			<ul>
-			    <li><a href="../master/master.php" ><span>MASTER DATA</span></a></li>
+			    <li><a href="master.php" class="active"><span>MASTER DATA</span></a></li>
 				<li><a href="../transaksi/transaksi.php"><span>TRANSAKSI</span></a></li>
-			    <li><a href="administrasi.php" class="active"><span>ADMINISTRASI</span></a></li>
+			    <li><a href="../administrasi/administrasi.php"><span>ADMINISTRASI</span></a></li>
 			    <li><a href="../informasi/informasi.php"><span>INFORMASI</span></a></li>
 			</ul>
 		</div>
@@ -51,21 +51,36 @@
 					
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2>ADMINISTRASI</h2>
+						<h2>MASTER DATA</h2>
 					</div>
 					<!-- End Box Head-->
 					
 					<div class="box-content">
-						<a href="rmrj.php" class="button"><span>REKAM MEDIS RAWAT JALAN</span></a>
-						<a href="rmigd.php" class="button"><span>REKAM MEDIS RAWAT DARURAT</span></a>
-						<a href="rmri.php" class="button"><span>REKAM MEDIS RAWAT INAP</span></a> 
-						<a href="resume_rmri.php" class="button"><span>RESUME REKAM MEDIS RAWAT INAP</span></a>
-						<a href="pengguna.php"><span><img src="../../css/images/user.png">  </span></a> <!-- pengguna--> 
-						<a href="role.php" class="button"><span>ROLE</span></a>
+						<a href='index.php?master=klinik' class='master' >Suplier</a>
+						<a href='index.php?master=klinik' class='master' class='button'><span>KLINIK</span></a>
+						<a href='index.php?master=spesialisasi' class='master' class="button"><span>SPESIALISASI</span></a>
+						<a href="dokter.php" class="button"><span>DOKTER</span></a>
+						<a href="layanan.php" class="button"><span>LAYANAN</span></a>
+						<a href="kamar.php" class="button"><span>KAMAR</span></a>
+						<a href="pasien.php" class="button"><span>PASIEN</span></a>
+						<a href="datarm.php" class="button"><span>REKAM MEDIK</span></a>
+						<a href="jenis_kasus.php" class="button"><span>JENIS KASUS</span></a>
+						<a href="icd9.php" class="button"><span>ICD9</span></a>
+						<a href="icd10.php" class="button"><span>ICD10</span></a>	
+						<?php 
+				if($_GET['master']=='klinik'){
+						include "klinik.php";
+					}elseif($_GET['master']=='spesialisasi'){
+						include "spesialisasi.php";
+					}{
+						echo "Selamat Datang ".$_SESSION['user'];
+					}
+			?>
 					</div>
 				</div>
 				<!-- End Box -->
 			</div>
+					
 				</div>
 				<!-- End Box -->			
 		</div>

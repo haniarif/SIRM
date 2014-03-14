@@ -24,8 +24,8 @@
 		<div id="navigation">
 			<ul>
 			    <li><a href="master.php" class="active"><span>MASTER DATA</span></a></li>
-				<li><a href="../transaksi/transaksi.php"><span>TRANSAKSI</span></a></li>
-			    <li><a href="../administrasi/administrasi.php"><span>ADMINISTRASI</span></a></li>
+				<li><a href="../../transaksi.php"><span>TRANSAKSI</span></a></li>
+			    <li><a href="../../administrasi.php"><span>ADMINISTRASI</span></a></li>
 			    <li><a href="../../informasi.php"><span>INFORMASI</span></a></li>
 			</ul>
 		</div>
@@ -50,9 +50,9 @@
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left">MASTER DATA PASIEN</h2>
+						<h2 class="left">MASTER DATA PEGAWAI</h2>
 						<div class="right">
-							<label>search PASIEN</label>
+							<label>search PEGAWAI</label>
 							<input type="text" class="field small-field" />
 							<input type="submit" class="button" value="search" />
 						</div>
@@ -61,34 +61,30 @@
 
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH PASIEN</span></a><br>
+					<a href="#" class="add-button"><span>TAMBAH PEGAWAI</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<th>NO. RM</th>
-								<th>NO. IDENTITAS</th>
+								<th>NIP</th>
 								<th>NAMA</th>
+								<th>LEVEL</th>
 								<th>ALAMAT</th>
-								<th>JENIS KELAMIN</th>
-								<th>TGL. LAHIR</th>
-								<th>GOL. DARAH</th>
-								<th>NO. TELP</th>
-								<th>AGAMA</th>
-								<th>PEKERJAAN</th>
-								<th>PERKAWINAN</th>
+								<th>JABATAN</th>
 								<th>AKSI</th>
 							</tr>
 							<tr>
-								<td>1</td>
-								<td>1234456789065</td>
-								<td>HASAN ANAS ANSHORI </td>
-								<td>JL. GOWA MBANGSRI BALONG PANGGANG GRESIK </td>
-								<td>LAKI-LAKI </td>
-								<td>10/07/1998</td>
-								<td>O</td>
-								<td>0897654321 </td>
-								<td>ISLAM</td>
-								<td>WIRASWASTA </td>
-								<td>MENIKAH </td>
+								<td>1234</td>
+								<td>HANI </td>
+								<td>BEDAH</td>
+								<td>JL. BIMOKURDO GK1/576 SAPEN GONDOKUSUMAN YOGYAKARTA</td>
+								<td>PEREMPUAN </td>
+								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+							</tr>
+							<tr>
+								<td>1234</td>
+								<td>HANI </td>
+								<td>BEDAH</td>
+								<td>JL. BIMOKURDO GK1/576 SAPEN GONDOKUSUMAN YOGYAKARTA</td>
+								<td>PEREMPUAN </td>
 								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
 							</tr>
 						</table>				
