@@ -51,9 +51,9 @@
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left">MASTER DATA PENGGUNA</h2>
+						<h2 class="left">ADMINISTRASI ROLE</h2>
 						<div class="right">
-							<label>search PENGGUNA</label>
+							<label>search ROLE</label>
 							<input type="text" class="field small-field" />
 							<input type="submit" class="button" value="search" />
 						</div>
@@ -62,27 +62,16 @@
 
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH PENGGUNA</span></a><br>
+					<a href="#" class="add-button"><span>TAMBAH ROLE</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<th>NO</th>
-								<th>NIP</th>
 								<th>NAMA</th>
-								<th>ROLE</th>
+								<th>PERMISSION</th>
 								<th>AKSI</th>
 							</tr>
 							<tr>
-								<td>1</td>
-								<td>1234567790</td>
-								<td>HANI </td>
-								<td>ADMINISTRASI</td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>1234567790</td>
-								<td>HANI </td>
-								<td>ADMINISTRASI</td>
+								<td>DOKTER</td>
+								<td>A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U</td>
 								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
 							</tr>
 						</table>				

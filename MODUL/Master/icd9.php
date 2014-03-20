@@ -61,7 +61,7 @@
 
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH ICD9</span></a><br>
+					<a href="tambahicd9.php" class="add-button"><span>TAMBAH ICD9</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<th>NO.</th>
@@ -69,12 +69,20 @@
 								<th>KODE</th>
 								<th>AKSI</th>
 							</tr>
+							<?php
+							include "../../koneksi.php";
+							$no=0;
+							$query = mysql_query("SELECT * FROM icd9");
+							while($data= mysql_fetch_array($query)){
+							$no++;
+							?>
 							<tr>
-								<td>1</td>
-								<td>HEPATYITIS</td>
-								<td>07.12</td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><?php echo $no;?></td>
+								<td><?php echo $data['nama_icd9'];?></td>
+								<td><?php echo $data['kode_icd9'];?></td>
+								<td><a href="hapusicd9.php" class="ico del">Delete</a><a href="editicd9.php" class="ico edit">Edit</a></td>
 							</tr>
+							<?php }?>
 						</table>				
 					</div>
 					<!-- Table -->

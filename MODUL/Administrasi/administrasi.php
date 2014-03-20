@@ -56,12 +56,12 @@
 					<!-- End Box Head-->
 					
 					<div class="box-content">
-						<a href="rmrj.php" class="button"><span>REKAM MEDIS RAWAT JALAN</span></a>
-						<a href="rmigd.php" class="button"><span>REKAM MEDIS RAWAT DARURAT</span></a>
-						<a href="rmri.php" class="button"><span>REKAM MEDIS RAWAT INAP</span></a> 
-						<a href="resume_rmri.php" class="button"><span>RESUME REKAM MEDIS RAWAT INAP</span></a>
-						<a href="pengguna.php"><span><img src="../../css/images/user.png">  </span></a> <!-- pengguna--> 
-						<a href="role.php" class="button"><span>ROLE</span></a>
+						<a href="rmrj.php" title="Rekam Medis Rawat Jalan"><span><img src="../../css/images/rmrj.jpg"></span></a>
+						<a href="rmigd.php" title="Rekam Medis Rawat Darurat"><span><img src="../../css/images/rmigd.jpg"></span></a>
+						<a href="rmri.php" title="Rekam Medis Rawat Inap"><span><img src="../../css/images/rmri.jpg"></span></a> 
+						<a href="resume_rmri.php" title="Resume Rekam Medis Rawat Inap"><span><img src="../../css/images/resumermri.jpg"></span></a>
+						<a href="pengguna.php" title="Pengguna"><span><img src="../../css/images/pengguna.jpg">  </span></a> <!-- pengguna--> 
+						<a href="role.php" title="Role"><span><img src="../../css/images/role.jpg"></span></a>
 					</div>
 				</div>
 				<!-- End Box -->

@@ -54,8 +54,8 @@
 					<!-- End Box Head-->
 					
 					<div class="box-content">
-						<a href="pendaftranrj.php" class="button"><span>PENDAFTARAN RAWAT JALAN</span></a>
-						<a href="mutasi.php" class="button"><span>MUTASI RAWAT INAP</span></a>
+						<a href="pendaftranrj.php" title="Pendaftaran Rawat Jalan"><span><img src="../../css/images/pendaftrnrj.jpg"></span></a>
+						<a href="mutasi.php" title="Mutasi Rawat Inap"><span><img src="../../css/images/mutasi.jpg"></span></a>
 					</div>
 				</div>
 				<!-- End Box -->

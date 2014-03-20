@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
 </head>
 <body>
+
 <!-- Header -->
 <div id="header">
 	<div class="shell">
@@ -50,42 +51,54 @@
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left">MASTER DATA KAMAR</h2>
+						<h2 class="left">MASTER DATA ICD10</h2>
 						<div class="right">
-							<label>search KAMAR</label>
+							<label>search ICD10</label>
 							<input type="text" class="field small-field" />
 							<input type="submit" class="button" value="search" />
 						</div>
 					</div>
 					<!-- End Box Head -->	
-
+					
 					<!-- Table -->
 					<div class="table">
-					<a href="tambahkamar.php" class="add-button"><span>TAMBAH KAMAR</span></a><br>
+					<form method="post" action="tambahicd10.php" class="form">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td>Nama </td>
+									<td colspan="3">: <input type="text" name="nama_icd10" size="50" placeholder="require"></td>
+								</tr>
+								<tr>
+									<td>Kode</td>
+									<td colspan="3">: <input type="text" name="kode_icd10" size="50" placeholder="require"></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input type="submit" name="submit" value="Simpan"> 
+									<input type="reset" name="reset" value="Set ulang"></td>
+									<td colspan="2"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="table">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<th>NO.</th>
-								<th>NO. KAMAR</th>
-								<th>KELAS</th>
-								<th>KLINIK</th>
-								<th>JENIS</th>
-								<th>STATUS</th>
+								<th>NAMA</th>
+								<th>KODE</th>
 								<th>AKSI</th>
 							</tr>
 							<?php
-								include "../../koneksi.php";
-								$no=0;
-								$query = mysql_query("SELECT * FROM kamar");
-								while($data= mysql_fetch_array($query)){
-								$no++;
+							include "../../koneksi.php";
+							$no=0;
+							$query = mysql_query("SELECT * FROM icd10");
+							while($data= mysql_fetch_array($query)){
+							$no++;
 							?>
 							<tr>
 								<td><?php echo $no;?></td>
-								<td><?php echo $data['nama_kamar'];?> </td>
-								<td><?php echo $data['kelas'];?> </td>
-								<td><?php echo $data['nama_kamar'];?></td>
-								<td><?php echo $data['id_klinik'];?> </td>
-								<td><?php echo $data['status'];?> </td>
+								<td><?php echo $data['nama_icd10'];?></td>
+								<td><?php echo $data['kode_icd10'];?></td>
 								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
 							</tr>
 							<?php }?>
@@ -114,3 +127,15 @@
 	
 </body>
 </html>
+
+
+<?php
+
+// simpan icd10
+if (isset($_POST['submit'])){
+include "../../koneksi.php";
+	mysql_query("insert into icd10 (id_icd10, nama_icd10,kode_icd10) 
+			values ('','$_POST[nama_icd10]','$_POST[kode_icd10]')");
+	echo "<meta http-equiv='refresh' content='0; url=icd10.php'>";
+}
+?>

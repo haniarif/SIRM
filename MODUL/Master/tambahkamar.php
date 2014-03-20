@@ -4,8 +4,10 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script language="JavaScript" type="text/javascript" src="../../config/auto.js"></script>
 </head>
 <body>
+
 <!-- Header -->
 <div id="header">
 	<div class="shell">
@@ -57,11 +59,43 @@
 							<input type="submit" class="button" value="search" />
 						</div>
 					</div>
-					<!-- End Box Head -->	
-
+					<!-- End Box Head -->	 
+					
 					<!-- Table -->
 					<div class="table">
-					<a href="tambahkamar.php" class="add-button"><span>TAMBAH KAMAR</span></a><br>
+					<form method="post" action="tambahkamar.php" class="form">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td>Nama </td>
+									<td colspan="3">: <input type="text" name="nama_kamar" size="50" placeholder="require"></td>
+								</tr>
+								<tr>
+									<td>Kelas </td>
+									<td colspan="3">: <input type="text" name="kelas" size="50" placeholder="require"></td>
+								</tr>
+							
+								<tr>
+									<td>Klinik </td>
+									<form id="proses_auto">
+									<td colspan="3">: <input type="text" name="id_klinik" size="50" placeholder="require" id="dbTxt" alt="Search Criteria" onKeyUp="proses_auto();" autocomplete="off"/>
+									<div id="layer1"></div>
+									</form>
+									</td>
+								</tr>
+							</form>
+								<tr>
+									<td>Jenis </td>
+									<td colspan="3">: <input type="text" name="jenis" size="50" placeholder="require"></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input type="submit" name="submit" value="Simpan"> 
+									<input type="reset" name="reset" value="Set ulang"></td>
+									<td colspan="2"></td>
+								</tr>
+							</table>
+					</div>
+					<div class="table">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<th>NO.</th>
@@ -83,14 +117,16 @@
 								<td><?php echo $no;?></td>
 								<td><?php echo $data['nama_kamar'];?> </td>
 								<td><?php echo $data['kelas'];?> </td>
-								<td><?php echo $data['nama_kamar'];?></td>
 								<td><?php echo $data['id_klinik'];?> </td>
-								<td><?php echo $data['status'];?> </td>
+								<td><?php echo $data['jenis'];?></td>
+								<td><?php echo $data['status'];?></td>
 								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
 							</tr>
 							<?php }?>
 						</table>				
 					</div>
+								
+				</div>
 					<!-- Table -->
 				</div>
 				<!-- End Box -->
@@ -114,3 +150,15 @@
 	
 </body>
 </html>
+
+
+<?php
+
+// simpan kamar
+if (isset($_POST['submit'])){
+include "../../koneksi.php";
+	mysql_query("insert into kamar (id_kamar, nama_kamar, id_klinik, kelas, jenis) 
+			values ('','$_POST[nama_kamar]', '$_POST[id_klinik]', '$_POST[kelas]', '$_POST[status]')");
+	echo "<meta http-equiv='refresh' content='0; url=kamar.php'>";
+}
+?>

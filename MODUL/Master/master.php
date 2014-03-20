@@ -54,17 +54,17 @@
 					<!-- End Box Head-->
 					
 					<div class="box-content">
-						<a href="klinik.php" class="button"><span>KLINIK</span></a>
-						<a href="spesialisasi.php" class="button"><span>SPESIALISASI</span></a>
-						<a href="dokter.php"><span><img src="../../css/images/dokter.jpg">  </span></a> <!-- dokter--> 
-						<a href="layanan.php" class="button"><span>LAYANAN</span></a>
-						<a href="kamar.php"><span><img src="../../css/images/kamar.jpg"></span></a>
-						<a href="pegawai.php"><span><img src="../../css/images/pegawai.png"></span></a>
-						<a href="pasien.php" class="button"><span>PASIEN</span></a>
-						<a href="datarm.php" class="button"><span>REKAM MEDIK</span></a>
-						<a href="jenis_kasus.php" class="button"><span>JENIS KASUS</span></a>
-						<a href="icd9.php" class="button"><span>ICD9</span></a>
-						<a href="icd10.php" class="button"><span>ICD10</span></a>	
+						<a href="klinik.php" title="Klinik"><span><img src="../../css/images/klinik.jpg"></span></a>
+						<a href="spesialisasi.php" title="Spesialisasi"><span><img src="../../css/images/spesialisasi.jpg"></span></a>
+						<a href="dokter.php" title="Dokter"><span><img src="../../css/images/dokter.jpg">  </span></a> <!-- dokter--> 
+						<a href="layanan.php" title="Layanan"><span><img src="../../css/images/layanan.jpg"></span></a>
+						<a href="kamar.php" title="Kamar"><span><img src="../../css/images/kamar.jpg"></span></a>
+						<a href="pegawai.php" title="Pegawai"><span><img src="../../css/images/pegawai.jpg"></span></a>
+						<a href="pasien.php" title="Pasien"><span><img src="../../css/images/pasien.jpg"></span></a>
+						<a href="datarm.php" title="Rekam Medik"><span><img src="../../css/images/rekam_medik.jpg"></span></a>
+						<a href="jenis_kasus.php" title="Jenis Kasus"><span><img src="../../css/images/jenis_kasus.jpg"></span></a>
+						<a href="icd9.php" title="ICD9"><span><img src="../../css/images/icd9.jpg"></span></a>
+						<a href="icd10.php" title="ICD10"><span><img src="../../css/images/icd10.jpg"></span></a>	
 					</div>
 				</div>
 				<!-- End Box -->

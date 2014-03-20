@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
 </head>
 <body>
+
 <!-- Header -->
 <div id="header">
 	<div class="shell">
@@ -58,10 +59,10 @@
 						</div>
 					</div>
 					<!-- End Box Head -->	
-
+					
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH ICD10</span></a><br>
+					<a href="tambahicd10.php" class="add-button"><span>TAMBAH ICD10</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<th>NO.</th>
@@ -69,12 +70,20 @@
 								<th>KODE</th>
 								<th>AKSI</th>
 							</tr>
+							<?php
+							include "../../koneksi.php";
+							$no=0;
+							$query = mysql_query("SELECT * FROM icd10");
+							while($data= mysql_fetch_array($query)){
+							$no++;
+							?>
 							<tr>
-								<td>1</td>
-								<td>HEPATYITIS</td>
-								<td>07.12</td>
+								<td><?php echo $no;?></td>
+								<td><?php echo $data['nama_icd10'];?></td>
+								<td><?php echo $data['kode_icd10'];?></td>
 								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
 							</tr>
+							<?php }?>
 						</table>				
 					</div>
 					<!-- Table -->
@@ -100,3 +109,4 @@
 	
 </body>
 </html>
+
