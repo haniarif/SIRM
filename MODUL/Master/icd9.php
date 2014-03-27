@@ -4,6 +4,11 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript">
+		function konfirmasi(nama){
+			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+		}
+	</script>
 </head>
 <body>
 <!-- Header -->
@@ -80,7 +85,7 @@
 								<td><?php echo $no;?></td>
 								<td><?php echo $data['nama_icd9'];?></td>
 								<td><?php echo $data['kode_icd9'];?></td>
-								<td><a href="hapusicd9.php" class="ico del">Delete</a><a href="editicd9.php" class="ico edit">Edit</a></td>
+								<td><a href="hapusicd9.php?id_icd9=<?=$data['id_icd9']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['kode_icd9'].' - '.$data['nama_icd9'];?>')">Delete</a><a href="editicd9.php?id_icd9=<?=$data['id_icd9']?>" class="ico edit">Edit</a></td>
 							</tr>
 							<?php }?>
 						</table>				
@@ -95,7 +100,6 @@
 		</div>
 		<!-- Main -->
 	</div>
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
 <!-- End Container -->
 
 <!-- Footer -->

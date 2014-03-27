@@ -73,13 +73,13 @@
 									<td>Kelas </td>
 									<td colspan="3">: <input type="text" name="kelas" size="50" placeholder="require"></td>
 								</tr>
-							
 								<tr>
 									<td>Klinik </td>
-									<form id="proses_auto">
+									
 									<td colspan="3">: <input type="text" name="id_klinik" size="50" placeholder="require" id="dbTxt" alt="Search Criteria" onKeyUp="proses_auto();" autocomplete="off"/>
+									
 									<div id="layer1"></div>
-									</form>
+									
 									</td>
 								</tr>
 							</form>
@@ -158,7 +158,7 @@
 if (isset($_POST['submit'])){
 include "../../koneksi.php";
 	mysql_query("insert into kamar (id_kamar, nama_kamar, id_klinik, kelas, jenis) 
-			values ('','$_POST[nama_kamar]', '$_POST[id_klinik]', '$_POST[kelas]', '$_POST[status]')");
+			values ('','$_POST[nama_kamar]', '$_POST[id_klinik]', '$_POST[jenis]','$_POST[kelas]')");
 	echo "<meta http-equiv='refresh' content='0; url=kamar.php'>";
 }
 ?>

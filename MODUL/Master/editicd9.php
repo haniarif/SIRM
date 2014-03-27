@@ -1,3 +1,11 @@
+<?php
+include "../../koneksi.php";
+if(isset($_GET['id_icd9'])){
+$id = $_GET['id_icd9'];
+$sql = mysql_query ("select * from icd9 where id_icd9 = '$id'") or die(mysql_error());
+$data = mysql_fetch_array($sql);
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -63,6 +71,10 @@
 					<form method="post" action="editicd9.php">
 							<table border="0" cellspacing="0" cellpadding="5" width="95%" class="form">
 								<tr>
+									<td> &nbsp; </td>
+									<td><input type='hidden' name='id_icd9' value='<?php echo $data['id_icd9'];?>'/></td>
+								</tr>
+								<tr>
 									<td width="150">Nama</td>
 									<td colspan="3">: <input type="text" name="nama_icd9" size="8" value="<?php echo $data['nama_icd9'];?>"></td>
 								</tr>
@@ -72,39 +84,12 @@
 								</tr>
 								<tr>
 									<td></td>
-									<td><input type="submit" name="submit" value="Ubah"> 
+									<td><input type="submit" name="ubah" value="Ubah"> 
 									<input type="reset" name="reset" value="Set ulang"></td>
 									<td colspan="2"></td>
 								</tr>
 							</table>
 					</form>
-
-					<div class="table">
-					<a href="tambahicd9.php" class="add-button"><span>TAMBAH ICD9</span></a><br>
-						<table width="100%" border="0" cellspacing="0" cellpadding="0">
-							<tr>
-								<th>NO.</th>
-								<th>NAMA</th>
-								<th>KODE</th>
-								<th>AKSI</th>
-							</tr>
-							<?php
-							include "../../koneksi.php";
-							$no=0;
-							$query = mysql_query("SELECT * FROM icd9");
-							while($data= mysql_fetch_array($query)){
-							$no++;
-							?>
-							<tr>
-								<td><?php echo $no;?></td>
-								<td><?php echo $data['nama_icd9'];?></td>
-								<td><?php echo $data['kode_icd9'];?></td>
-								<td><a href="hapusicd9.php" class="ico del">Delete</a><a href="editicd9.php" class="ico edit">Edit</a></td>
-							</tr>
-							<?php }?>
-						</table>				
-					</div>
-					<!-- Table -->
 				</div>
 				<!-- End Box -->
 			</div>
@@ -114,7 +99,7 @@
 		</div>
 		<!-- Main -->
 	</div>
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+
 <!-- End Container -->
 
 <!-- Footer -->
@@ -128,13 +113,18 @@
 </body>
 </html>
 
+
 <?php
-// simpan icd9
-if (isset($_POST['submit'])){
-include "../../koneksi.php";
-	mysql_query("update icd9 set 
-			nama_icd9 = '$_POST[nama_icd9]',
-			kode_icd9 = $_POST[kode_icd9], where id_icd9='$id'")
-			;
-}
+}else{
+	if(isset($_POST['ubah'])){
+	include "../../koneksi.php";
+	$id=$_POST['id_icd9'];
+	$nama_icd9=$_POST['nama_icd9'];
+	$kode_icd9=$_POST['kode_icd9'];
+	$query=mysql_query("update icd9 set nama_icd9 = '$nama_icd9',
+					kode_icd9 = '$kode_icd9'
+					where id_icd9 = '$id' ") or die(mysql_error());
+					echo "<meta http-equiv='refresh' content='0; url=icd9.php'>";
+	}
+}	
 ?>
