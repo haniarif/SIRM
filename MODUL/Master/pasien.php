@@ -4,6 +4,11 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript">
+		function konfirmasi(nama){
+			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+		}
+	</script>
 </head>
 <body>
 <!-- Header -->
@@ -61,9 +66,10 @@
 
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH PASIEN</span></a><br>
+					<a href="tambahpasien.php" class="add-button"><span>TAMBAH PASIEN</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
+								<th>NO.</th>
 								<th>NO. RM</th>
 								<th>NO. IDENTITAS</th>
 								<th>NAMA</th>
@@ -77,20 +83,29 @@
 								<th>PERKAWINAN</th>
 								<th>AKSI</th>
 							</tr>
+							<?php
+							include "../../koneksi.php";
+							$no=0;
+							$query = mysql_query("SELECT * FROM pasien");
+							while($data= mysql_fetch_array($query)){
+							$no++;
+							?>
 							<tr>
-								<td>1</td>
-								<td>1234456789065</td>
-								<td>HASAN ANAS ANSHORI </td>
-								<td>JL. GOWA MBANGSRI BALONG PANGGANG GRESIK </td>
-								<td>LAKI-LAKI </td>
-								<td>10/07/1998</td>
-								<td>O</td>
-								<td>0897654321 </td>
-								<td>ISLAM</td>
-								<td>WIRASWASTA </td>
-								<td>MENIKAH </td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><?php echo $no;?></td>
+								<td><?php echo $data['no_rm'];?></td>
+								<td><?php echo $data['no_id_pasien'];?></td>
+								<td><?php echo $data['nama_pasien'];?></td>
+								<td><?php echo $data['alamat_pasien'];?></td>
+								<td><?php echo $data['jk_pasien'];?></td>
+								<td><?php echo $data['tgl_lhr'];?></td>
+								<td><?php echo $data['gol_darah'];?></td>
+								<td><?php echo $data['no_telp'];?></td>
+								<td><?php echo $data['agama_pasien'];?></td>
+								<td><?php echo $data['pekerjaan'];?></td>
+								<td><?php echo $data['perkawinan'];?></td>
+								<td><a href="hapuspasien.php?id_pasien=<?=$data['id_pasien']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['no_rm'].' - '.$data['nama_pasien'];?>')">Delete</a><a href="#" class="ico edit">Edit</a></td>
 							</tr>
+							<?php }?>
 						</table>				
 					</div>
 					<!-- Table -->

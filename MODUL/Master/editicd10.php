@@ -1,17 +1,19 @@
+<?php
+include "../../koneksi.php";
+if(isset($_GET['id_icd10'])){
+$id = $_GET['id_icd10'];
+$sql = mysql_query ("select * from icd10 where id_icd10 = '$id'") or die(mysql_error());
+$data = mysql_fetch_array($sql);
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
-	<script type="text/javascript">
-		function konfirmasi(nama){
-			return confirm('Apakah anda yakin menghapus data '+nama+'?');
-		}
-	</script>
 </head>
 <body>
-
 <!-- Header -->
 <div id="header">
 	<div class="shell">
@@ -56,42 +58,38 @@
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left">MASTER DATA ICD10</h2>
+						<h2 class="left">MASTER DATA icd10</h2>
 						<div class="right">
-							<label>search ICD10</label>
+							<label>search icd10</label>
 							<input type="text" class="field small-field" />
 							<input type="submit" class="button" value="search" />
 						</div>
 					</div>
 					<!-- End Box Head -->	
-					
+
 					<!-- Table -->
-					<div class="table">
-					<a href="tambahicd10.php" class="add-button"><span>TAMBAH ICD10</span></a><br>
-						<table width="100%" border="0" cellspacing="0" cellpadding="0">
-							<tr>
-								<th>NO.</th>
-								<th>NAMA</th>
-								<th>KODE</th>
-								<th>AKSI</th>
-							</tr>
-							<?php
-							include "../../koneksi.php";
-							$no=0;
-							$query = mysql_query("SELECT * FROM icd10");
-							while($data= mysql_fetch_array($query)){
-							$no++;
-							?>
-							<tr>
-								<td><?php echo $no;?></td>
-								<td><?php echo $data['nama_icd10'];?></td>
-								<td><?php echo $data['kode_icd10'];?></td>
-								<td><a href="hapusicd10.php?id_icd10=<?=$data['id_icd10']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['kode_icd10'].' - '.$data['nama_icd10'];?>')">Delete</a><a href="editicd10.php?id_icd10=<?=$data['id_icd10']?>" class="ico edit">Edit</a></td>
-							</tr>
-							<?php }?>
-						</table>				
-					</div>
-					<!-- Table -->
+					<form method="post" action="editicd10.php">
+							<table border="0" cellspacing="0" cellpadding="5" width="95%" class="form">
+								<tr>
+									<td> &nbsp; </td>
+									<td><input type='hidden' name='id_icd10' value='<?php echo $data['id_icd10'];?>'/></td>
+								</tr>
+								<tr>
+									<td width="150">Nama</td>
+									<td colspan="3">: <input type="text" name="nama_icd10" size="8" value="<?php echo $data['nama_icd10'];?>"></td>
+								</tr>
+								<tr>
+									<td>Kode</td>
+									<td colspan="3">: <input type="text" name="kode_icd10" size="50" value="<?php echo $data['kode_icd10'];?>"></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input type="submit" name="ubah" value="Ubah"> 
+									<input type="reset" name="reset" value="Set ulang"></td>
+									<td colspan="2"></td>
+								</tr>
+							</table>
+					</form>
 				</div>
 				<!-- End Box -->
 			</div>
@@ -101,7 +99,7 @@
 		</div>
 		<!-- Main -->
 	</div>
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+
 <!-- End Container -->
 
 <!-- Footer -->
@@ -115,3 +113,18 @@
 </body>
 </html>
 
+
+<?php
+}else{
+	if(isset($_POST['ubah'])){
+	include "../../koneksi.php";
+	$id=$_POST['id_icd10'];
+	$nama_icd10=$_POST['nama_icd10'];
+	$kode_icd10=$_POST['kode_icd10'];
+	$query=mysql_query("update icd10 set nama_icd10 = '$nama_icd10',
+					kode_icd10 = '$kode_icd10'
+					where id_icd10 = '$id' ") or die(mysql_error());
+					echo "<meta http-equiv='refresh' content='0; url=icd10.php'>";
+	}
+}	
+?>
