@@ -57,10 +57,8 @@
 					
 					<div class="box-content">
 						<a href="rmrj.php" title="Rekam Medis Rawat Jalan"><span><img src="../../css/images/rmrj.jpg"></span></a>
-						<a href="rmigd.php" title="Rekam Medis Rawat Darurat"><span><img src="../../css/images/rmigd.jpg"></span></a>
 						<a href="rmri.php" title="Rekam Medis Rawat Inap"><span><img src="../../css/images/rmri.jpg"></span></a> 
-						<a href="resume_rmri.php" title="Resume Rekam Medis Rawat Inap"><span><img src="../../css/images/resumermri.jpg"></span></a>
-						<a href="pengguna.php" title="Pengguna"><span><img src="../../css/images/pengguna.jpg">  </span></a> <!-- pengguna--> 
+						<a href="pengguna.php" title="Pengguna"><span><img src="../../css/images/pengguna.jpg">  </span></a> 
 						<a href="role.php" title="Role"><span><img src="../../css/images/role.jpg"></span></a>
 					</div>
 				</div>

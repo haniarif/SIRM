@@ -4,6 +4,11 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript">
+		function konfirmasi(nama){
+			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+		}
+	</script>
 </head>
 <body>
 <!-- Header -->
@@ -50,7 +55,7 @@
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left">MASTER DATA SPESIALISASI</h2>
+						<h2 class="left"><a href="spesialisasi.php">MASTER DATA SPESIALISASI</a></h2>
 						<div class="right">
 							<label>search SPESIALISASI</label>
 							<input type="text" class="field small-field" />
@@ -61,18 +66,26 @@
 
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH SPESIALISASI</span></a><br>
+					<a href="tambahspesialisasi.php" class="add-button"><span>TAMBAH SPESIALISASI</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<th>NO</th>
 								<th>NAMA</th>
 								<th>AKSI</th>
 							</tr>
+							<?php
+							include "../../koneksi.php";
+							$no=0;
+							$query = mysql_query("SELECT * FROM spesialisasi");
+							while($data= mysql_fetch_array($query)){
+							$no++;
+							?>
 							<tr>
-								<td>1</td>
-								<td>BEDAH </td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><?php echo $no;?></td>
+								<td><?php echo $data['nama_spesialisasi'];?></td>
+								<td><a href="hapusspes.php?id_spesialisasi=<?=$data['id_spesialisasi']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_spesialisasi'];?>')">Delete</a><a href="editspesialisasi.php?id_spesialisasi=<?=$data['id_spesialisasi']?>" class="ico edit">Edit</a></td>
 							</tr>
+							<?php }?>
 						</table>				
 					</div>
 					<!-- Table -->

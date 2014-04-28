@@ -56,7 +56,7 @@
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left">MASTER DATA PASIEN</h2>
+						<h2 class="left"><a href="pasien.php">MASTER DATA PASIEN</a></h2>
 						<div class="right">
 							<label>search PASIEN</label>
 							<input type="text" class="field small-field" />
@@ -213,7 +213,7 @@
 								<td><?php echo $data['agama_pasien'];?></td>
 								<td><?php echo $data['pekerjaan'];?></td>
 								<td><?php echo $data['perkawinan'];?></td>
-								<td><a href="hapuspasien.php?id_pasien=<?=$data['id_pasien']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['no_rm'].' - '.$data['nama_pasien'];?>')">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><a href="hapuspasien.php?id_pasien=<?=$data['id_pasien']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['no_rm'].' - '.$data['nama_pasien'];?>')">Delete</a><a href="editpasien.php?id_pasien=<?=$data['id_pasien']?>" class="ico edit">Edit</a></td>
 							</tr>
 							<?php }?>
 						</table>				

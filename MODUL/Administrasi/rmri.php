@@ -45,10 +45,10 @@
 			<div class="box">					
 				<!-- Box Head -->
 				<div class="box-head">
-					<h2>REKAM MEDIS RAWAT DARURAT</h2>
+					<h2>REKAM MEDIS RAWAT INAP</h2>
 				</div>
 				<!-- End Box Head-->
-						<div class="box" style="float:left;width: 49%;height:238px;margin-top:1%;margin-left:1%;">					
+						<div class="box" style="float:left;width: 50%;height:238px;margin-top:1%;margin-left:1%;">					
 							<!-- Box Head -->
 							<div class="box-head"  style="height:25px; width: 68%;">
 								<h2>DATA PASIEN</h2>
@@ -86,30 +86,6 @@
 									<tr>
 										<td>AGAMA</td>
 										<td><input type=text; name=namapenanggungjawab;></textarea></td>
-									</tr>
-									<tr>
-										<td>TENSI</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
-									</tr>
-									<tr>
-										<td>NADI</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
-									</tr>
-									<tr>
-										<td>SUHU</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
-									</tr>
-									<tr>
-										<td>NAFAS</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
-									</tr>
-									<tr>
-										<td>TINGGI</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
-									</tr>
-									<tr>
-										<td>BERAT</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
 									</tr>
 								</table>				
 							</div>
@@ -151,7 +127,7 @@
 								</table>
 							</div>
 						</div>
-					<div class="box" style="float:rifght;width: 40%;height:65px;margin-top:1%;margin-left:57%;">				
+					<div class="box" style="float:rifght;width: 49%;height:65px;margin-top:1%;margin-left:57%;">				
 							<!-- Box Head -->
 							<div class="box-head" style="height:25px; width: 82%;">
 								<h2>TIBA DI RUMAH SAKIT</h2>
@@ -190,7 +166,7 @@
 								</table>
 							</div>
 						</div>		
-						<div class="box" style="float:rifght;width: 40%;height:65px;margin-top:1%;margin-left:57%;">				
+						<div class="box" style="float:left;width: 49%;height:100px;margin-top:-7%;margin-left:1%;">					
 							<!-- Box Head -->
 							<div class="box-head" style="height:25px; width: 82%;">
 								<h2>PENANGGUNG JAWAB</h2>
@@ -200,18 +176,100 @@
 								<!-- Table -->	
 								<table>
 									<tr>
-										<td>Nama</td>
+										<td>NAMA</td>
 										<td><input type=text; name=namapenanggungjawab;></td>
 									</tr>
 									<tr>
-										<td>Alamat</td>
-										<td><textarea name=alamatpenanggungjawab style="width: 150%;height: 80px;"> </textarea></td>
+										<td>POSISI</td>
+										<td><select width=50px><option value=pilihposisi>Pilih Posisi</option>
+											</select></td>
+									</tr>
+									<tr>
+										<td>TANGGAL LAHIR</td>
+										<td><input type=text; name=nama; size=13px> </td>
+									</tr>
+									<tr>
+										<td>UMUR :</td>
+										<td><input type=text; name=nama; size=1px>thn
+										<input type=text; name=nama; size=1px>bln
+										<input type=text; name=nama; size=1px>hr</td>
+									</tr>
+									<tr>
+										<td>PEKERJAAN</td>
+										<td><select width=50px><option value=pilihpekerjaan>Pilih Pekerjaan</option>
+											</select></td>
 									</tr>
 									<tr>
 										<td>No Telp.</td>
 										<td><input type=text; name=notelppenanggungjawab;></td>
 									</tr>
 								</table>	
+							</div>
+							<div class="box" style="float:left;width: 98%;height:100px;margin-top:1%;margin-left:1%;">					
+							<!-- Box Head -->
+							<div class="box-head" style="height:25px; width: 82%;">
+								<h2>RESUME</h2>
+							</div>
+							<!-- End Box Head-->
+							<div class="box-content">
+								<!-- Table -->	
+								<table>
+									<tr>
+										<td>Tanggal Keluar</td>
+										<td><input type=text; name=tgl_keluar;></td>
+									</tr>
+								</table>
+									<div class="box-content" style="float:left;width: 49%;height:100px;margin-top:-1%;margin-left:-5%;">
+								<!-- Table --><h2>DIAGNOSA UTAMA</h2>
+								<table border="1">
+									<tr>
+										<td> NO </td>
+										<td> DIAGNOSA</td>
+										<td> KODE ICD10</td>
+										<td> AKSI </td>
+									</tr>
+									<TR>
+										<td>1</td>
+										<td>DIAGNOASA APA SAJA KAN SUDAH GEDE</td>
+										<td>10.45</td>
+										<td><input type="reset" name="batal" value=HAPUS ></td>
+									</TR>
+								</table>				
+							</div>
+							<div class="box-content" style="float:left;width: 49%;height:100px;margin-top:3%;margin-left:-2%;">
+								<!-- Table --><h2>DIAGNOSA SEKUNDER</h2>
+								<table border="1">
+									<tr>
+										<td> NO </td>
+										<td> DIAGNOSA</td>
+										<td> KODE ICD10</td>
+										<td> AKSI </td>
+									</tr>
+									<TR>
+										<td>1</td>
+										<td>DIAGNOASA APA SAJA KAN SUDAH GEDE</td>
+										<td>10.45</td>
+										<td><input type="reset" name="batal" value=HAPUS ></td>
+									</TR>
+								</table>				
+							</div>
+							<div class="box-content" style="float:left;width: 49%;height:100px;margin-top:-1%;margin-left:-5%;">
+								<!-- Table --><h2>TINDAKAN / OPERASI </h2>
+								<table border="1">
+									<tr>
+										<td> NO </td>
+										<td> DIAGNOSA</td>
+										<td> KODE ICD10</td>
+										<td> AKSI </td>
+									</tr>
+									<TR>
+										<td>1</td>
+										<td>DIAGNOASA APA SAJA KAN SUDAH GEDE</td>
+										<td>10.45</td>
+										<td><input type="reset" name="batal" value=HAPUS ></td>
+									</TR>
+								</table>				
+							</div>
 							</div>
 						</div>
 				</div>

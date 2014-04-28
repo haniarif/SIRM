@@ -4,6 +4,11 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript">
+		function konfirmasi(nama){
+			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+		}
+	</script>
 </head>
 <body>
 <!-- Header -->
@@ -50,7 +55,7 @@
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left">MASTER DATA KLINIK</h2>
+						<h2 class="left"><a href="klinik.php">MASTER DATA KLINIK</a></h2>
 						<div class="right">
 							<label>search KLINIK</label>
 							<input type="text" class="field small-field" />
@@ -78,7 +83,7 @@
 							<tr>
 								<td><?php echo $no;?></td>
 								<td><?php echo $data['nama_klinik'];?> </td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><a href="hapusklinik.php?id_klinik=<?=$data['id_klinik']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_klinik'];?>')">Delete</a><a href="editklinik.php?id_klinik=<?=$data['id_klinik']?>" class="ico edit">Edit</a></td>
 							</tr>
 							<?php }?>
 						</table>				
@@ -93,7 +98,6 @@
 		</div>
 		<!-- Main -->
 	</div>
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
 <!-- End Container -->
 
 <!-- Footer -->

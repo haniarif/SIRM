@@ -4,7 +4,15 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript">
+		function konfirmasi(nama){
+			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+		}
+	</script>
 	<script language="JavaScript" type="text/javascript" src="../../config/auto.js"></script>
+	<script type="text/javascript" src="../../config/jquery.min.js"></script>
+    <script type="text/javascript" src="../../config/jquery.tokeninput.js"></script>
+	<link rel="stylesheet" href="../../css/token-input.css" type="text/css" />
 </head>
 <body>
 
@@ -67,25 +75,50 @@
 							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<tr>
 									<td>Nama </td>
-									<td colspan="3">: <input type="text" name="nama_kamar" size="50" placeholder="require"></td>
+									<td colspan="3"> <input type="text" name="nama_kamar" size="50" class="isi" placeholder="require"></td>
 								</tr>
 								<tr>
 									<td>Kelas </td>
-									<td colspan="3">: <input type="text" name="kelas" size="50" placeholder="require"></td>
+									<td colspan="3"> <input type="text" name="kelas" size="50" class="isi" placeholder="require"></td>
 								</tr>
 								<tr>
 									<td>Klinik </td>
+									<td colspan="3">
+									<?php
+
+									if(!empty($_POST['id_klinik'])){
+									 echo "insert into values ".print_r($_POST['id_klinik'])." kokoo "; }
+									 ?>
+									 <input type="text" name="id_klinik" id="input_data" size="50" placeholder="require">
 									
-									<td colspan="3">: <input type="text" name="id_klinik" size="50" placeholder="require" id="dbTxt" alt="Search Criteria" onKeyUp="proses_auto();" autocomplete="off"/>
-									
-									<div id="layer1"></div>
-									
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_klinik", {
+											preventDuplicates: true,
+											theme: "facebook"				
+										});
+									});
+									</script>
 									</td>
+									
 								</tr>
-							</form>
+							
 								<tr>
-									<td>Jenis </td>
-									<td colspan="3">: <input type="text" name="jenis" size="50" placeholder="require"></td>
+									<td>JENIS </td>
+									<td colspan="3">: 
+										
+										<?php
+										include "../../koneksi.php";
+										$sql = "select * from kategori_jk order by nama_kategori_jk";
+										$query = mysql_query($sql); ?>
+										<select name='id_kategori'>
+											<option value=''>-pilih jenis-</option>
+										<?php 
+										while ($r = mysql_fetch_array($query)){ ?>
+											<option value="<?php echo $r['id_kat_jk'];?>"><?php echo $r['nama_kategori_jk'];?></option>
+										<?php }	?>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<td></td>
@@ -96,10 +129,11 @@
 							</table>
 					</div>
 					<div class="table">
+					<a href="tambahkamar.php" class="add-button"><span>TAMBAH KAMAR</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<th>NO.</th>
-								<th>NO. KAMAR</th>
+								<th>Nama KAMAR</th>
 								<th>KELAS</th>
 								<th>KLINIK</th>
 								<th>JENIS</th>
@@ -109,7 +143,7 @@
 							<?php
 								include "../../koneksi.php";
 								$no=0;
-								$query = mysql_query("SELECT * FROM kamar");
+								$query = mysql_query("SELECT * FROM kamar a left join kategori_jk b on a.id_kat_jk = b.id_kat_jk");
 								while($data= mysql_fetch_array($query)){
 								$no++;
 							?>
@@ -117,10 +151,13 @@
 								<td><?php echo $no;?></td>
 								<td><?php echo $data['nama_kamar'];?> </td>
 								<td><?php echo $data['kelas'];?> </td>
-								<td><?php echo $data['id_klinik'];?> </td>
-								<td><?php echo $data['jenis'];?></td>
+								<td><?php 
+								$q=mysql_query("SELECT nama_klinik FROM klinik WHERE id_klinik='$data[id_klinik]'");
+								$data2=mysql_fetch_array($q);
+								echo $data2['nama_klinik'];?> </td>
+								<td><?php echo $data['nama_kategori_jk'];?></td>
 								<td><?php echo $data['status'];?></td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><a href="hapuskamar.php?id_kamar=<?=$data['id_kamar']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_kamar'].' - '.$data['nama_klinik'];?>')">Delete</a><a href="editkamar.php?id_kamar=<?=$data['id_kamar']?>" class="ico edit">Edit</a></td>
 							</tr>
 							<?php }?>
 						</table>				
@@ -156,9 +193,8 @@
 
 // simpan kamar
 if (isset($_POST['submit'])){
-include "../../koneksi.php";
-	mysql_query("insert into kamar (id_kamar, nama_kamar, id_klinik, kelas, jenis) 
-			values ('','$_POST[nama_kamar]', '$_POST[id_klinik]', '$_POST[jenis]','$_POST[kelas]')");
+	mysql_query("insert into kamar (id_kamar, nama_kamar, id_klinik, kelas, id_kat_jk) 
+			values ('','$_POST[nama_kamar]', '$_POST[id_klinik]', '$_POST[kelas]','$_POST[id_kat_jk]')");
 	echo "<meta http-equiv='refresh' content='0; url=kamar.php'>";
 }
 ?>

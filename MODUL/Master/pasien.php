@@ -55,7 +55,7 @@
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left">MASTER DATA PASIEN</h2>
+						<h2 class="left" ><a href="pasien.php">MASTER DATA PASIEN</a></h2>
 						<div class="right">
 							<label>search PASIEN</label>
 							<input type="text" class="field small-field" />
@@ -69,7 +69,7 @@
 					<a href="tambahpasien.php" class="add-button"><span>TAMBAH PASIEN</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<th>NO.</th>
+								
 								<th>NO. RM</th>
 								<th>NO. IDENTITAS</th>
 								<th>NAMA</th>
@@ -78,20 +78,19 @@
 								<th>TGL. LAHIR</th>
 								<th>GOL. DARAH</th>
 								<th>NO. TELP</th>
-								<th>AGAMA</th>
 								<th>PEKERJAAN</th>
 								<th>PERKAWINAN</th>
 								<th>AKSI</th>
 							</tr>
 							<?php
 							include "../../koneksi.php";
-							$no=0;
+							
 							$query = mysql_query("SELECT * FROM pasien");
 							while($data= mysql_fetch_array($query)){
-							$no++;
+							
 							?>
 							<tr>
-								<td><?php echo $no;?></td>
+								
 								<td><?php echo $data['no_rm'];?></td>
 								<td><?php echo $data['no_id_pasien'];?></td>
 								<td><?php echo $data['nama_pasien'];?></td>
@@ -99,11 +98,10 @@
 								<td><?php echo $data['jk_pasien'];?></td>
 								<td><?php echo $data['tgl_lhr'];?></td>
 								<td><?php echo $data['gol_darah'];?></td>
-								<td><?php echo $data['no_telp'];?></td>
-								<td><?php echo $data['agama_pasien'];?></td>
+								<td><?php echo $data['no_telp'];?></td>								
 								<td><?php echo $data['pekerjaan'];?></td>
 								<td><?php echo $data['perkawinan'];?></td>
-								<td><a href="hapuspasien.php?id_pasien=<?=$data['id_pasien']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['no_rm'].' - '.$data['nama_pasien'];?>')">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><a href="hapuspasien.php?id_pasien=<?=$data['id_pasien']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['no_rm'].' - '.$data['nama_pasien'];?>')"></a><a href="editpasien.php?id_pasien=<?=$data['id_pasien']?>" class="ico edit"></a></td>
 							</tr>
 							<?php }?>
 						</table>				

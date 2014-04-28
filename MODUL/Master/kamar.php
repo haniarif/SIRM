@@ -4,6 +4,11 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript">
+		function konfirmasi(nama){
+			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+		}
+	</script>
 </head>
 <body>
 <!-- Header -->
@@ -65,7 +70,7 @@
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<th>NO.</th>
-								<th>NO. KAMAR</th>
+								<th>Nama KAMAR</th>
 								<th>KELAS</th>
 								<th>KLINIK</th>
 								<th>JENIS</th>
@@ -75,18 +80,21 @@
 							<?php
 								include "../../koneksi.php";
 								$no=0;
-								$query = mysql_query("SELECT * FROM kamar");
-								while($data= mysql_fetch_array($query)){
+								$query = mysql_query("SELECT * FROM kamar a left join kategori_jk b on a.id_kat_jk = b.id_kat_jk");
+							    while($data= mysql_fetch_array($query)){
 								$no++;
 							?>
 							<tr>
 								<td><?php echo $no;?></td>
 								<td><?php echo $data['nama_kamar'];?> </td>
 								<td><?php echo $data['kelas'];?> </td>
-								<td><?php echo $data['nama_kamar'];?></td>
-								<td><?php echo $data['id_klinik'];?> </td>
-								<td><?php echo $data['status'];?> </td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><?php 
+								$q=mysql_query("SELECT nama_klinik FROM klinik WHERE id_klinik='$data[id_klinik]'");
+								$data2=mysql_fetch_array($q);
+								echo $data2['nama_klinik'];?> </td>
+								<td><?php echo $data['nama_kategori_jk'];?></td>
+								<td><?php echo $data['status'];?></td>
+								<td><a href="hapuskamar.php?id_kamar=<?=$data['id_kamar']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_kamar'].' - '.$data['nama_klinik'];?>')">Delete</a><a href="editkamar.php?id_kamar=<?=$data['id_kamar']?>" class="ico edit">Edit</a></td>
 							</tr>
 							<?php }?>
 						</table>				
@@ -100,8 +108,8 @@
 			<div class="cl">&nbsp; </div>			
 		</div>
 		<!-- Main -->
-	</div>
 <BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+	</div>
 <!-- End Container -->
 
 <!-- Footer -->

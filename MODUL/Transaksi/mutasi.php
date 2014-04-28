@@ -51,6 +51,7 @@
 					<div class="box-head">
 						<h2>MUTASI RAWAT INAP</h2>
 						<div class="right">
+							<input type="submit" class="button" value="PINDAH" />
 							<input type="submit" class="button" value="SELESAI" />
 						</div>
 					</div>
@@ -67,14 +68,14 @@
 							</tr>
 							<tr>
 								<td> NAMA </td>
-								<td><input type='text' name='tanggal_jual' value='$_POST[tanggal_jual]'/></td>
+								<td><input type='text' name='tanggal_jual' /></td>
 							</tr>
 							<tr>
 								<td> TANGGAL MASUK </td>
 								<td><input type='text' name='' value=''/></td>
 							</tr>
 							<tr>
-								<td> TANGGAL KELUAR </td>
+								<td> TANGGAL </td>
 								<td><input type='text' name='' value=''/></td>
 							</tr>
 							<tr>
@@ -88,6 +89,7 @@
 								<td> NO </td>
 								<td> LAYANAN</td>
 								<td> KAMAR </td>
+								<td> KELAS </td>
 								<td> FREKUENSI </td>
 								<td> PETUGAS</td>
 								<td> DOKTER1 </td>
@@ -96,8 +98,9 @@
 							<tr>
 								<td>1</td>
 								<td><input type='text' name='' value=''/></td>
-								<td><input type='text' name='' value=''/></td>
+								<td><input type='text' name='' value='' size='7px'/></td>
 								<td><input type='text' name='' value='' size='2px'/></td>
+								<td><input type='text' name='' value='' size='5px'/></td>
 								<td>DR. Hadi Setiadi</td>
 								<td><input type='text' name='' value=''/></td>
 								<td><input type='text' name='' value=''/></td>

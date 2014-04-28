@@ -4,6 +4,11 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript">
+		function konfirmasi(nama){
+			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+		}
+	</script>
 </head>
 <body>
 <!-- Header -->
@@ -61,9 +66,10 @@
 
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH DOKTER</span></a><br>
+					<a href="tambahdokter.php" class="add-button"><span>TAMBAH DOKTER</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
+								<th>NO.</th>
 								<th>NO. SIP</th>
 								<th>NAMA</th>
 								<th>SPESIALISASI</th>
@@ -71,22 +77,26 @@
 								<th>ALAMAT</th>
 								<th>AKSI</th>
 							</tr>
+							<?php
+								include "../../koneksi.php";
+								$no=0;
+								$query = mysql_query("SELECT * FROM dokter");
+								while($data= mysql_fetch_array($query)){
+								$no++;
+							?>
 							<tr>
-								<td>1234</td>
-								<td>HANI </td>
-								<td>BEDAH</td>
-								<td>PEREMPUAN </td>
-								<td>JL. BIMOKURDO GK1/576 SAPEN GONDOKUSUMAN YOGYAKARTA</td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><?php echo $no;?></td>
+								<td><?php echo $data['id_pegawai'];?> </td>
+								<td><?php echo $data['nama'];?> </td>
+								<td><?php 
+								$q=mysql_query("SELECT nama_spesialisasi FROM spesialisasi WHERE id_spesialisasi='$data[id_spesialisasi]'");
+								$data2=mysql_fetch_array($q);
+								echo $data2['nama_spesialisasi'];?> </td>
+								<td><?php echo $data['jk_dokter'];?> </td>
+								<td><?php echo $data['alamat'];?> </td>
+								<td><a href="hapuslayanan.php?id_layanan=<?=$data['id_layanan']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_layanan'];?>')">Delete</a><a href="editlayanan.php?id_layanan=<?=$data['id_layanan']?>" class="ico edit">Edit</a></td>
 							</tr>
-							<tr>
-								<td>1234</td>
-								<td>HANI </td>
-								<td>BEDAH</td>
-								<td>PEREMPUAN </td>
-								<td>JL. BIMOKURDO GK1/576 SAPEN GONDOKUSUMAN YOGYAKARTA</td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
-							</tr>
+							<?php }?>
 						</table>				
 					</div>
 					<!-- Table -->

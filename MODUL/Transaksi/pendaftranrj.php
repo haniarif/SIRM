@@ -4,6 +4,10 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript" src="../../config/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="../../config/auto.js"></script>
+    <script type="text/javascript" src="../../config/jquery.tokeninput.js"></script>
+	<link rel="stylesheet" href="../../css/token-input.css" type="text/css" />
 </head>
 <body>
 <!-- Header -->
@@ -47,43 +51,100 @@
 				</div>
 				<!-- End Box Head-->
 				
-				<div class="box-content" style="height:443px;">
+				<div class="box-content" style="height:620px; width:1200px" >
 					<!-- Table -->
 					<div class="table">
 						<table style="float:left" width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td>NO. RM</td>
-								<td><input type=text; name=nama;></td>
-								<td>Layanan</td>
-								<td><input type=text; name=nama;></td>
+								<td><input type="text" name="Id_pasien" id="input_data" placeholder="require">
+									
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_pasien", {
+											preventDuplicates: true,
+											theme: "facebook"				
+										});
+									});
+									</script></td>
+								<td>Rujukan</td>
+								<td><select width=80px><option value=pilihrujukan>Pilih Rujukan</option>
+									</select></td>
 							</tr>
 							<tr>
 								<td>NAMA</td>
-								<td><input type=text; name=nama;></td>
-								<td>DOKTER</td>
-								<td><input type=text; name=nama;></td>
+								<td><input type="text" name="id_pasien" id="input_data" placeholder="require">
+									
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_pasien", {
+											preventDuplicates: true,
+											theme: "facebook"				
+										});
+									});
+									</script>
+								</td>
+								<td>Layanan</td>
+								<td><input type="text" name="id_layanan" id="input_data" placeholder="require">
+									
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_layanan", {
+											preventDuplicates: true,
+											theme: "facebook"				
+										});
+									});
+									</script></td>
 							</tr>
 							<tr>
 								<td>ALAMAT</td>
-								<td><textarea> </textarea></td>
+								<td><input type=text; name=nama; class="isi"></td>
+								<td>DOKTER</td>
+								<td><input type=text; name=nama; class="isi"></td>
+							</tr>
+							<tr>
+								<td>KELURAHAN</td>
+								<td><input type="text" name="id_kelurahan" id="input_data" placeholder="require">
+									
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_kelurahan", {
+											preventDuplicates: true,
+											theme: "facebook"				
+										});
+									});
+									</script>
+								</td>
 								<td>KLINIK</td>
-								<td><input type=text; name=nama;></td>
+								<td><input type="text" name="id_klinik" id="input_data" placeholder="require">
+									
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_klinik", {
+											preventDuplicates: true,
+											theme: "facebook"				
+										});
+									});
+									</script></td>
 							</tr>
 						</table>
 						<table style="float:left">
 							<tr>
 								<td>JENIS KELAMIN</td>
-								<td><input type="radio" name="radioku" value=laki-laki> Laki-laki
-									<input type="radio" name="radioku" value=perempuan> Perempuan</td>
+									<td><input type="radio" name="radioku" value=laki-laki> Laki-laki
+										<input type="radio" name="radioku" value=perempuan> Perempuan</td>
+							</td>
+							<tr>
+								<td>TANGGAL LAHIR</td>
+								<td><input type=text; name=nama; size=13px > UMUR :
+								<input type=text; name=nama; size=1px>thn
+								<input type=text; name=nama; size=1px>bln
+								<input type=text; name=nama; size=1px>hr</td>
 							</tr>
 							<tr>
 								<td>GOL. DARAH</td>
-								<td><select width=50px><option value=pilihgol>Pilih Gol. Darah</option>
+								<td><select width=50px ><option value=pilihgol >Pilih Gol. Darah</option>
 									</select></td>
-							</tr>
-							<tr>
-								<td>TANGGAL LAHIR</td>
-								<td><input type=text; name=nama;></td>
 							</tr>
 							<tr>
 								<td>STATUS PERKAWINAN</td>
@@ -110,7 +171,7 @@
 								<td><input type="reset" name="batal" value=BATAL ></td>
 							</tr>
 						</table>	
-						<div class="box" style="float:left;width: 49%;height:238px;margin-top:3%;margin-left:14%;">					
+						<div class="box" style="float:right;width: 44%;height:238px;margin-top:-31%;margin-left:60%;">					
 							<!-- Box Head -->
 							<div class="box-head">
 								<h2>PENANGGUNG JAWAB</h2>
@@ -121,16 +182,32 @@
 								<!-- Table -->
 								<table>
 									<tr>
-										<td>Nama</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td>NAMA</td>
+										<td><input type=text; name=namapenanggungjawab; class="isi"></td>
 									</tr>
 									<tr>
-										<td>Alamat</td>
-										<td><textarea name=alamatpenanggungjawab style="width: 181%;height: 80px;"> </textarea></td>
+										<td>POSISI</td>
+										<td><select width=50px><option value=pilihposisi>Pilih Posisi</option>
+											</select></td>
+									</tr>
+									<tr>
+										<td>TANGGAL LAHIR</td>
+										<td><input type=text; name=nama; size=13px class="isi"> </td>
+									</tr>
+									<tr>
+										<td>UMUR :</td>
+										<td><input type=text; name=nama; size=1px>thn
+										<input type=text; name=nama; size=1px>bln
+										<input type=text; name=nama; size=1px>hr</td>
+									</tr>
+									<tr>
+										<td>PEKERJAAN</td>
+										<td><select width=50px><option value=pilihpekerjaan>Pilih Pekerjaan</option>
+											</select></td>
 									</tr>
 									<tr>
 										<td>No Telp.</td>
-										<td><input type=text; name=notelppenanggungjawab;></td>
+										<td><input type=text; name=notelppenanggungjawab; class="isi"></td>
 									</tr>
 								</table>				
 							</div>

@@ -55,6 +55,10 @@
 					
 					<div class="box-content">
 						<a href="klinik.php" title="Klinik"><span><img src="../../css/images/klinik.jpg"></span></a>
+						<a href="provinsi.php" title="Provinsi"><span><img src="../../css/images/provinsi.jpg"></span></a>
+						<a href="kabupaten.php" title="Kabupaten"><span><img src="../../css/images/kabupaten.jpg"></span></a>
+						<a href="kecamatan.php" title="Kecamatan"><span><img src="../../css/images/kecamatan.jpg"></span></a>
+						<a href="kelurahan.php" title="Kelurahan"><span><img src="../../css/images/kelurahan.jpg"></span></a>
 						<a href="spesialisasi.php" title="Spesialisasi"><span><img src="../../css/images/spesialisasi.jpg"></span></a>
 						<a href="dokter.php" title="Dokter"><span><img src="../../css/images/dokter.jpg">  </span></a> <!-- dokter--> 
 						<a href="layanan.php" title="Layanan"><span><img src="../../css/images/layanan.jpg"></span></a>

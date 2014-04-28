@@ -4,6 +4,11 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript">
+		function konfirmasi(nama){
+			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+		}
+	</script>
 </head>
 <body>
 <!-- Header -->
@@ -61,21 +66,32 @@
 
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH LAYANAN</span></a><br>
+					<a href="tambahlayanan.php" class="add-button"><span>TAMBAH LAYANAN</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<th>NO</th>
-								<th>NAMA</th>
-								<th>SPESIALISASI</th>
+								<th>NO.</th>
+								<th>Nama Layanan</th>
+								<th>Spesialisasi</th>
 								<th>AKSI</th>
 							</tr>
+							<?php
+								include "../../koneksi.php";
+								$no=0;
+								$query = mysql_query("SELECT * FROM layanan");
+								while($data= mysql_fetch_array($query)){
+								$no++;
+							?>
 							<tr>
-								<td>1</td>
-								<td>SUNTIKAN </td>
-								<td>BEDAH </td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><?php echo $no;?></td>
+								<td><?php echo $data['nama_layanan'];?> </td>
+								<td><?php 
+								$q=mysql_query("SELECT nama_spesialisasi FROM spesialisasi WHERE id_spesialisasi='$data[id_spesialisasi]'");
+								$data2=mysql_fetch_array($q);
+								echo $data2['nama_spesialisasi'];?> </td>
+								<td><a href="hapuslayanan.php?id_layanan=<?=$data['id_layanan']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_layanan'];?>')">Delete</a><a href="editlayanan.php?id_layanan=<?=$data['id_layanan']?>" class="ico edit">Edit</a></td>
 							</tr>
-						</table>				
+							<?php }?>
+						</table>						
 					</div>
 					<!-- Table -->
 				</div>
@@ -87,7 +103,6 @@
 		</div>
 		<!-- Main -->
 	</div>
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
 <!-- End Container -->
 
 <!-- Footer -->

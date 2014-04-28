@@ -4,6 +4,11 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript">
+		function konfirmasi(nama){
+			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+		}
+	</script>
 </head>
 <body>
 <!-- Header -->
@@ -61,7 +66,7 @@
 
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH JENIS KASUS</span></a><br>
+					<a href="tambahjk.php" class="add-button"><span>TAMBAH JENIS KASUS</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<th>NO.</th>
@@ -69,12 +74,20 @@
 								<th>KATEGORI</th>
 								<th>AKSI</th>
 							</tr>
+							<?php
+							include "../../koneksi.php";
+							$no=0;
+							$query = mysql_query("SELECT * FROM jenis_kasus a left join kategori_jk b on a.id_kat_jk = b.id_kat_jk");
+							while($data= mysql_fetch_array($query)){
+							$no++;
+							?>
 							<tr>
-								<td>1</td>
-								<td>BEDAH</td>
-								<td>PEMERIKSAAN</td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><?php echo $no;?></td>
+								<td><?php echo $data['nama_jk'];?></td>
+								<td><?php echo $data['nama_kategori_jk'];?></td>
+								<td><a href="hapusjk.php?id_jenis_kasus=<?=$data['id_jenis_kasus']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_jk'];?>')">Delete</a>><a href="editjk.php?id_jenis_kasus=<?=$data['id_jenis_kasus']?>" class="ico edit">Edit</a></td>
 							</tr>
+							<?php }?>
 						</table>				
 					</div>
 					<!-- Table -->
@@ -87,7 +100,6 @@
 		</div>
 		<!-- Main -->
 	</div>
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
 <!-- End Container -->
 
 <!-- Footer -->

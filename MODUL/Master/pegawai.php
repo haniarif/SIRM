@@ -4,6 +4,11 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript">
+		function konfirmasi(nama){
+			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+		}
+	</script>
 </head>
 <body>
 <!-- Header -->
@@ -50,7 +55,7 @@
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left">MASTER DATA PEGAWAI</h2>
+						<h2 class="left"> <a href="pegawai.php">MASTER DATA PEGAWAI</a></h2>
 						<div class="right">
 							<label>search PEGAWAI</label>
 							<input type="text" class="field small-field" />
@@ -61,9 +66,10 @@
 
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH PEGAWAI</span></a><br>
+					<a href="tambahpg.php" class="add-button"><span>TAMBAH PEGAWAI</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
+								<th>NO.</th>
 								<th>NIP</th>
 								<th>NAMA</th>
 								<th>LEVEL</th>
@@ -71,22 +77,27 @@
 								<th>JABATAN</th>
 								<th>AKSI</th>
 							</tr>
+							<?php
+							include "../../koneksi.php";
+							$no=0;
+							$query = mysql_query("SELECT * FROM pegawai z
+												left join kelurahan a on z.id_kelurahan = a.id_kelurahan 
+												left outer join kecamatan b on a.id_kecamatan = b.id_kecamatan
+												left outer join kabupaten c on b.id_kabupaten = c.id_kabupaten
+												left outer join provinsi d on c.id_provinsi = d.id_provinsi");
+							while($data= mysql_fetch_array($query)){
+							$no++;
+							?>
 							<tr>
-								<td>1234</td>
-								<td>HANI </td>
-								<td>BEDAH</td>
-								<td>JL. BIMOKURDO GK1/576 SAPEN GONDOKUSUMAN YOGYAKARTA</td>
-								<td>PEREMPUAN </td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><?php echo $no;?></td>
+								<td><?php echo $data['nip'];?></td>
+								<td><?php echo $data['nama_pegawai'];?></td>
+								<td><?php echo $data['level'];?></td>
+								<td><?php echo $data['alamat_pgwai']. 'Kec.' .$data['nama_kelurahan'].' Kab. '.$data['nama_kabupaten'].' Prop. '.$data['nama_provinsi'];?></td>
+								<td><?php echo $data['jabatan'];?></td>
+								<td><a href="hapuspg.php?id_pegawai=<?=$data['id_pegawai']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_pegawai'];?>')">Delete</a><a href="editpg.php?id_pegawai=<?=$data['id_pegawai']?>" class="ico edit">Edit</a></td>
 							</tr>
-							<tr>
-								<td>1234</td>
-								<td>HANI </td>
-								<td>BEDAH</td>
-								<td>JL. BIMOKURDO GK1/576 SAPEN GONDOKUSUMAN YOGYAKARTA</td>
-								<td>PEREMPUAN </td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
-							</tr>
+							<?php }?>
 						</table>				
 					</div>
 					<!-- Table -->
@@ -99,7 +110,6 @@
 		</div>
 		<!-- Main -->
 	</div>
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
 <!-- End Container -->
 
 <!-- Footer -->
