@@ -97,6 +97,17 @@ if(isset($_GET['aksi'])){
 		}
 		echo json_encode($return_arr);
 	}
+	else if($_GET['aksi'] =='cari_no_rm'){
+		$return_arr = array();
+		$fetch = mysql_query("SELECT no_rm, nama_pasien FROM pasien where name LIKE '%$_GET[q]%' limit 10 "); 
+		while ($row = mysql_fetch_array($fetch, MYSQL_ASSOC)) {
+			$row_array['name'] = $row['no_rm'].' '.$row['nama_pasien'];
+			$row_array['id'] = $row['id_pasien'];
+
+			array_push($return_arr,$row_array);
+		}
+		echo json_encode($return_arr);
+	}
 	
 }
 ?>

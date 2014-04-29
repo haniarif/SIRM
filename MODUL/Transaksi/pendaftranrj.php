@@ -57,27 +57,40 @@
 						<table style="float:left" width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td>NO. RM</td>
-								<td><input type="text" name="Id_pasien" id="input_data" placeholder="require">
-									
+								<?php
+										include "../../koneksi.php";
+										include "../fungsi/fungsi.php";
+										$sql = "SELECT MAX(ID_PASIEN)+1 AS ID FROM pendft_rj z left join pasien e on z.id_pasien = a.id_pasien";
+										$query = mysql_query($sql);
+										$data = mysql_fetch_array($query);
+										$nil = 1;
+										if($data['ID'] !== NULL){
+											$nil = $data['ID'];
+										}
+										$value = auto_rm($nil);
+									?>
+								<td><input type="text" name="Id_pasien" id="input_data" value="<?php echo $value;?>">
 									<script type='text/javascript'>
 									$(document).ready(function() {
-										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_pasien", {
+										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_no_rm", {
 											preventDuplicates: true,
 											theme: "facebook"				
 										});
 									});
-									</script></td>
+									</script>
+								</td>
 								<td>Rujukan</td>
 								<td><select width=80px><option value=pilihrujukan>Pilih Rujukan</option>
-									</select></td>
+									</select>
+								</td>
 							</tr>
 							<tr>
 								<td>NAMA</td>
-								<td><input type="text" name="id_pasien" id="input_data" placeholder="require">
+								<td><input type="text" name="id_pasien" id="input_data2" placeholder="require">
 									
 									<script type='text/javascript'>
 									$(document).ready(function() {
-										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_pasien", {
+										$("#input_data2").tokenInput("../../config/file_json.php?aksi=cari_pasien", {
 											preventDuplicates: true,
 											theme: "facebook"				
 										});
@@ -85,11 +98,11 @@
 									</script>
 								</td>
 								<td>Layanan</td>
-								<td><input type="text" name="id_layanan" id="input_data" placeholder="require">
+								<td><input type="text" name="id_layanan" id="input_data3" placeholder="require">
 									
 									<script type='text/javascript'>
 									$(document).ready(function() {
-										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_layanan", {
+										$("#input_data3").tokenInput("../../config/file_json.php?aksi=cari_layanan", {
 											preventDuplicates: true,
 											theme: "facebook"				
 										});
@@ -104,11 +117,11 @@
 							</tr>
 							<tr>
 								<td>KELURAHAN</td>
-								<td><input type="text" name="id_kelurahan" id="input_data" placeholder="require">
+								<td><input type="text" name="id_kelurahan" id="input_data4" placeholder="require">
 									
 									<script type='text/javascript'>
 									$(document).ready(function() {
-										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_kelurahan", {
+										$("#input_data4").tokenInput("../../config/file_json.php?aksi=cari_kelurahan", {
 											preventDuplicates: true,
 											theme: "facebook"				
 										});
@@ -116,11 +129,11 @@
 									</script>
 								</td>
 								<td>KLINIK</td>
-								<td><input type="text" name="id_klinik" id="input_data" placeholder="require">
+								<td><input type="text" name="id_klinik" id="input_data5" placeholder="require">
 									
 									<script type='text/javascript'>
 									$(document).ready(function() {
-										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_klinik", {
+										$("#input_data5").tokenInput("../../config/file_json.php?aksi=cari_klinik", {
 											preventDuplicates: true,
 											theme: "facebook"				
 										});
@@ -232,3 +245,16 @@
 <!-- End Footer -->
 </body>
 </html>
+
+<?php
+	$query = mysql_query("SELECT * FROM pendf_rj z
+	left join kelurahan a on z.id_kelurahan = a.id_kelurahan 
+	left outer join kecamatan b on a.id_kecamatan = b.id_kecamatan
+	left outer join kabupaten c on b.id_kabupaten = c.id_kabupaten
+	left outer join provinsi d on c.id_provinsi = d.id_provinsi
+	left join pasien e on z.id_pasien = e.id_pasien
+	left join layanan f on z.id_layanan = f.id_layanan
+	left join klinik g on z.id_klinik = g.id_klinik");
+	while($data= mysql_fetch_array($query)){
+		}					
+							?>
