@@ -81,7 +81,7 @@ $data = mysql_fetch_array($sql);
 								</tr>
 								<tr>
 									<td>Nama </td>
-									<td colspan="3">: <input type='text' name='nama_rm' value='<?php echo $data['nama_rm'];?>'></td>
+									<td colspan="3">: <input type='text' name='nama_rm' class="isi" value='<?php echo $data['nama_rm'];?>'></td>
 								</tr>
 								<tr>
 									<td>Kategori Rekam Medik </td>

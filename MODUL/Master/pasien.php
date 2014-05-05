@@ -66,10 +66,9 @@
 
 					<!-- Table -->
 					<div class="table">
-					<a href="tambahpasien.php" class="add-button"><span>TAMBAH PASIEN</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								
+								<th>NO.</th>
 								<th>NO. RM</th>
 								<th>NO. IDENTITAS</th>
 								<th>NAMA</th>
@@ -78,30 +77,36 @@
 								<th>TGL. LAHIR</th>
 								<th>GOL. DARAH</th>
 								<th>NO. TELP</th>
+								<th>AGAMA</th>
 								<th>PEKERJAAN</th>
 								<th>PERKAWINAN</th>
 								<th>AKSI</th>
 							</tr>
 							<?php
 							include "../../koneksi.php";
-							
-							$query = mysql_query("SELECT * FROM pasien");
+							$no=0;
+							$query = mysql_query("SELECT * FROM pasien z
+												left join kelurahan a on z.id_kelurahan = a.id_kelurahan 
+												left outer join kecamatan b on a.id_kecamatan = b.id_kecamatan
+												left outer join kabupaten c on b.id_kabupaten = c.id_kabupaten
+												left outer join provinsi d on c.id_provinsi = d.id_provinsi");
 							while($data= mysql_fetch_array($query)){
-							
+							$no++;
 							?>
 							<tr>
-								
+								<td><?php echo $no;?></td>
 								<td><?php echo $data['no_rm'];?></td>
 								<td><?php echo $data['no_id_pasien'];?></td>
 								<td><?php echo $data['nama_pasien'];?></td>
-								<td><?php echo $data['alamat_pasien'];?></td>
+								<td><?php echo $data['alamat_pasien']. ' Kec.' .$data['nama_kelurahan'].' Kab. '.$data['nama_kabupaten'].' Prop. '.$data['nama_provinsi'];?></td>
 								<td><?php echo $data['jk_pasien'];?></td>
 								<td><?php echo $data['tgl_lhr'];?></td>
 								<td><?php echo $data['gol_darah'];?></td>
-								<td><?php echo $data['no_telp'];?></td>								
+								<td><?php echo $data['no_telp'];?></td>
+								<td><?php echo $data['agama_pasien'];?></td>
 								<td><?php echo $data['pekerjaan'];?></td>
 								<td><?php echo $data['perkawinan'];?></td>
-								<td><a href="hapuspasien.php?id_pasien=<?=$data['id_pasien']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['no_rm'].' - '.$data['nama_pasien'];?>')"></a><a href="editpasien.php?id_pasien=<?=$data['id_pasien']?>" class="ico edit"></a></td>
+								<td><a href="hapuspasien.php?id_pasien=<?=$data['id_pasien']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['no_rm'].' - '.$data['nama_pasien'];?>')">Delete</a><a href="editpasien.php?id_pasien=<?=$data['id_pasien']?>" class="ico edit">Edit</a></td>
 							</tr>
 							<?php }?>
 						</table>				

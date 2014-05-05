@@ -76,11 +76,11 @@ $data = mysql_fetch_array($sql);
 								</tr>
 								<tr>
 									<td width="150">Nama</td>
-									<td colspan="3">: <input type="text" name="nama_icd10" size="8" value="<?php echo $data['nama_icd10'];?>"></td>
+									<td colspan="3">: <input type="text" name="nama_icd10" class="isi" size="8" value="<?php echo $data['nama_icd10'];?>"></td>
 								</tr>
 								<tr>
 									<td>Kode</td>
-									<td colspan="3">: <input type="text" name="kode_icd10" size="50" value="<?php echo $data['kode_icd10'];?>"></td>
+									<td colspan="3">: <input type="text" name="kode_icd10" size="50" class="isi" value="<?php echo $data['kode_icd10'];?>"></td>
 								</tr>
 								<tr>
 									<td></td>

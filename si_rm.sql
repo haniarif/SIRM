@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Waktu pembuatan: 28. April 2014 jam 10:42
--- Versi Server: 5.5.16
--- Versi PHP: 5.3.8
+-- Inang: localhost
+-- Waktu pembuatan: 05 Mei 2014 pada 07.19
+-- Versi Server: 5.5.25a
+-- Versi PHP: 5.4.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `si_rm`
+-- Basis data: `si_rm`
 --
 
 -- --------------------------------------------------------
@@ -54,7 +54,16 @@ CREATE TABLE IF NOT EXISTS `dokter` (
   `no_sip` varchar(15) NOT NULL,
   `id_spesialisasi` int(3) NOT NULL,
   PRIMARY KEY (`id_dokter`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data untuk tabel `dokter`
+--
+
+INSERT INTO `dokter` (`id_dokter`, `id_pegawai`, `no_sip`, `id_spesialisasi`) VALUES
+(1, 6, '1212121212', 0),
+(6, 3, '6789', 8),
+(7, 5, '34567', 9);
 
 -- --------------------------------------------------------
 
@@ -343,7 +352,7 @@ CREATE TABLE IF NOT EXISTS `layanan` (
   `id_spesialisasi` int(3) NOT NULL,
   `jenis` varchar(7) NOT NULL,
   PRIMARY KEY (`id_layanan`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data untuk tabel `layanan`
@@ -355,7 +364,8 @@ INSERT INTO `layanan` (`id_layanan`, `nama_layanan`, `id_spesialisasi`, `jenis`)
 (8, 'Exterpasi Kista Vagi', 12, ''),
 (9, 'Ket (Kehamilan Ektop', 12, ''),
 (10, 'Cystektomi II (K)', 13, ''),
-(11, 'Sectio Caesarea III (NK)', 12, '');
+(11, 'Sectio Caesarea III (NK)', 12, ''),
+(12, 'Madang', 7, '');
 
 -- --------------------------------------------------------
 
@@ -390,7 +400,7 @@ CREATE TABLE IF NOT EXISTS `pasien` (
   `no_id_pasien` varchar(20) NOT NULL,
   `nama_pasien` varchar(20) NOT NULL,
   `alamat_pasien` varchar(30) NOT NULL,
-  `id_kel` int(3) NOT NULL,
+  `id_kelurahan` int(3) NOT NULL,
   `jk_pasien` varchar(10) NOT NULL,
   `tgl_lhr` date NOT NULL,
   `umur` int(2) NOT NULL,
@@ -403,19 +413,28 @@ CREATE TABLE IF NOT EXISTS `pasien` (
   `pekerjaan` varchar(15) NOT NULL,
   `perkawinan` varchar(10) NOT NULL,
   PRIMARY KEY (`id_pasien`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data untuk tabel `pasien`
 --
 
-INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_id_pasien`, `nama_pasien`, `alamat_pasien`, `id_kel`, `jk_pasien`, `tgl_lhr`, `umur`, `gol_darah`, `no_kk`, `posisi`, `no_telp`, `penddkn`, `agama_pasien`, `pekerjaan`, `perkawinan`) VALUES
+INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_id_pasien`, `nama_pasien`, `alamat_pasien`, `id_kelurahan`, `jk_pasien`, `tgl_lhr`, `umur`, `gol_darah`, `no_kk`, `posisi`, `no_telp`, `penddkn`, `agama_pasien`, `pekerjaan`, `perkawinan`) VALUES
 (2, '', '2', '10651065', '08998970098800', 0, 'Batang', '0000-00-00', 0, '', 0, 'posisi', '120900800', 'smp', '', 'wiraswasta', 'islam'),
 (3, '', '00000003', '748347377', '21938293828', 0, 'jln demang', '0000-00-00', 0, '03/', 0, 'ayah', '93829382', 'smp', '', 'wiraswasta', 'islam'),
 (4, '00000004', '930239489', 'sri', 'jl. sukun', 0, 'perempuan', '0000-00-00', 0, 'ab', 3239203, 'ibu', '2147483647', 's1', 'islam', 'wiraswasta', 'islam'),
 (5, '00000005', '09876523', 'nuna', 'jl. sukun', 0, 'perempuan', '1990-05-10', 0, 'o', 1234567, 'ayah', '89765478', 'smp', 'islam', 'wiraswasta', 'kristen'),
 (6, '00000006', '898463627', 'hahaha', 'jln demangan', 0, 'perempuan', '1990-12-30', 0, 'o', 897846382, 'ayah', '021873462', 'sd', 'islam', 'wiraswasta', 'kristen'),
-(7, '', '', '', '', 0, '', '0000-00-00', 0, '', 0, '', '', 'agama', 'agama', 'pekerjaan', 'perkawinan');
+(7, '', '', '', '', 0, '', '0000-00-00', 0, '', 0, '', '', 'agama', 'agama', 'pekerjaan', 'perkawinan'),
+(8, '00000008', '648394839', 'Galih', 'Jl. Kenanga', 0, 'laki-laki', '1990-12-21', 0, 'a', 67893, 'ayah', '0876543289', 's1', 'islam', 'pns', 'islam'),
+(9, '00000009', '74832493', 'jaja', 'Jl. Sapen', 2, 'laki-laki', '1990-12-21', 0, 'ab', 4394834, 'ayah', '098762121', 'smp', 'kristen', 'wiraswasta', 'kristen'),
+(10, '098888', '', '', '', 2, '', '0000-00-00', 0, '', 0, '', '', '', '', '', ''),
+(11, '098888', '', '', '', 2, '', '0000-00-00', 0, '', 0, '', '', '', '', '', ''),
+(12, '0000', '', 'ydsjdkesw', 'jksejw', 5, '', '0000-00-00', 0, 'ab', 0, '', '', 'sd', 'katolik', 'pns', 'kristen'),
+(13, '0000', '', 'ydsjdkesw', 'jksejw', 5, '', '0000-00-00', 0, 'ab', 0, '', '', 'sd', 'katolik', 'pns', 'kristen'),
+(14, '0987673', '', 'kjfldsf', 'hfjsjdfs', 7, 'perempuan', '2014-05-02', 0, 'a', 0, '', '', 'sd', 'katolik', 'tidakbekerja', 'kristen'),
+(15, '0987673', '', 'kjfldsf', 'hfjsjdfs', 7, 'perempuan', '2014-05-02', 0, 'a', 0, '', '', 'sd', 'katolik', 'tidakbekerja', 'kristen'),
+(16, '00000010', '', 'Sri', 'Jl. Kenduri', 4, 'perempuan', '1981-03-04', 0, 'ab', 0, '', '', 'smp', 'katolik', 'pns', 'kristen');
 
 -- --------------------------------------------------------
 
@@ -447,23 +466,17 @@ CREATE TABLE IF NOT EXISTS `pegawai` (
   `agama` varchar(10) NOT NULL,
   `kawin` varchar(10) NOT NULL,
   PRIMARY KEY (`id_pegawai`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data untuk tabel `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nip`, `nama_pegawai`, `level`, `no_id_pegawai`, `alamat_pgwai`, `id_kelurahan`, `jk_pegawai`, `tgl_lhr_pgwai`, `kk_pegawai`, `posisi_pgawai`, `no_telp_pegawai`, `golongan`, `jabatan`, `pangkat`, `no_sk`, `tgl_sk`, `tgl_masuk_unit`, `pnddkn`, `pekerjaan`, `agama`, `kawin`) VALUES
-(1, 1234, '', '0', '0', '', 0, '', '0000-00-00', '0', 'posisi', '', 'golon', 'jabatan', 'pangkat', 0, '0000-00-00', '0000-00-00', 'penddkn', 'pekerjaan', 'agama', ''),
 (3, 12345, 'hamidah', 'II', '123456789', 'Denggung RT. 02 RT.03', 7, 'perempuan', '0000-00-00', '2147483647', 'ab', '087787268', 'Ib', 's1', 'wiraswasta', 4321, '2012-12-12', '2012-12-21', 's1', 'pns', 'islam', 'kristen'),
 (4, 980, 'Azizi', 'II', '2147483647', 'Wisma New Shapira GK1/576', 7, 'perempuan', '1990-12-12', '2147483647', 'ab', '0844334343', 'Ia', 'smp', 'wiraswasta', 23, '2012-12-12', '2012-12-21', 's1', 'wiraswasta', 'islam', 'islam'),
 (5, 678, 'Afifah', 'III', '98976543526123', 'jln. kusumanegara', 8, 'perempuan', '1990-12-12', '83782973873273', 'o', '0844334343', 'Ia', 'sd', 'wiraswasta', 4321, '2012-12-12', '2012-12-21', 'sd', 'wiraswasta', 'islam', 'islam'),
-(6, 12345, 'Sabbana Azmi', 'IV', '6789012345690876', 'Pengok Gondokusuman', 8, 'laki-laki', '1990-12-12', '12908987879897979', 'o', '0844334343', 'Ia', 'sd', 'wiraswasta', 4321, '2012-12-12', '2012-12-21', 'sd', 'pns', 'islam', 'islam'),
-(7, 12345, 'Sabbana Azmi', 'I', '6789012345690876', 'Pengok Gondokusuman', 2, 'laki-laki', '1990-12-12', '1234567890123', 'o', '0844334343', 'Ia', 'sd', 'wiraswasta', 23, '2012-12-12', '2012-12-21', 'sd', 'wiraswasta', 'kristen', 'islam'),
-(8, 0, '', '', '', '', 0, '', '0000-00-00', '', 'posisi', '', 'Ib', 'Manager', 'pangkata', 0, '0000-00-00', '0000-00-00', 'penddkn', 'pekerjaan', 'agama', 'kawinan'),
-(9, 0, '', '', '', '', 0, '', '0000-00-00', '', 'posisi', '', 'Ib', 'Direktur', 'pangkat', 0, '0000-00-00', '0000-00-00', 'penddkn', 'pekerjaan', 'islam', 'kristen'),
-(10, 0, '', '', '', '', 0, '', '0000-00-00', '', 'posisi', '', 'golon', 'Staff', 'pangkata', 0, '0000-00-00', '0000-00-00', 'penddkn', 'wiraswasta', 'islam', 'islam'),
-(11, 0, '', '', '', '', 0, '', '0000-00-00', '', 'posisi', '', 'Ia', 'Direktur', 'pangkat', 0, '0000-00-00', '0000-00-00', 'penddkn', 'pekerjaan', 'islam', 'islam');
+(6, 12345, 'Sabbana Azmi', 'IV', '6789012345690876', 'Pengok Gondokusuman', 8, 'laki-laki', '1990-12-12', '12908987879897979', 'o', '0844334343', 'Ia', 'sd', 'wiraswasta', 4321, '2012-12-12', '2012-12-21', 'sd', 'pns', 'islam', 'islam');
 
 -- --------------------------------------------------------
 
@@ -475,7 +488,14 @@ CREATE TABLE IF NOT EXISTS `pembatalan` (
   `id_batal` int(2) NOT NULL AUTO_INCREMENT,
   `id_pendftrn` int(3) NOT NULL,
   PRIMARY KEY (`id_batal`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data untuk tabel `pembatalan`
+--
+
+INSERT INTO `pembatalan` (`id_batal`, `id_pendftrn`) VALUES
+(1, 0);
 
 -- --------------------------------------------------------
 
@@ -496,8 +516,30 @@ CREATE TABLE IF NOT EXISTS `pendf_rj` (
   `umur_pj` int(2) NOT NULL,
   `pkrjaan_pj` varchar(15) NOT NULL,
   `no_telp_pj` int(15) NOT NULL,
+  `id_kelurahan` int(3) NOT NULL,
   PRIMARY KEY (`id_pendftrn`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+--
+-- Dumping data untuk tabel `pendf_rj`
+--
+
+INSERT INTO `pendf_rj` (`id_pendftrn`, `id_pasien`, `id_layanan`, `rujukan`, `id_klinik`, `id_dokter`, `nama_pj`, `posisi_pj`, `tgl_lhr_pj`, `umur_pj`, `pkrjaan_pj`, `no_telp_pj`, `id_kelurahan`) VALUES
+(1, 0, 0, '$_POST[rujukan]', 0, 0, '$_POST[nama_pj]', '$_POST[pos', '0000-00-00', 0, '$_POST[pkrjaan_', 0, 0),
+(2, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(3, 0, 0, 'rumahsakit', 4, 1, 'Agus 2', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(4, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(5, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(6, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(7, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(8, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(9, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(10, 15, 0, 'pilihrujukan', 5, 6, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(11, 0, 0, 'spkandungan', 9, 1, 'Arif', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(12, 9, 0, 'rumahsakit', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(13, 9, 0, 'rumahsakit', 9, 1, 'Miharja', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(14, 9, 0, 'rumahsakit', 5, 1, 'miranda', 'ibu', '2011-03-15', 0, '', 9876555, 0),
+(15, 16, 0, 'pilihrujukan', 12, 6, 'Asih', 'ibu', '1979-02-07', 0, '', 2147483647, 0);
 
 -- --------------------------------------------------------
 

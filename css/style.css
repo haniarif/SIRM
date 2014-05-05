@@ -6,20 +6,33 @@ body {
 	line-height:14px;
 	color:#5e5e5e;
 }
-input, textarea, select { font-family: Verdana, sans-serif; font-size:13px; }
-textarea { overflow:hidden;}
-
-input.isi{
-		height:25px;
+textarea, select { height:25px;
 		overflow: hidden; 
-		width: 360px;
+		width: 270px;
 		border: 1px solid #8496ba;
 		cursor: text;
 		font-size: 12px;
 		font-family: Verdana;
 		min-height: 1px;
 		z-index: 999;
-		margin-left: 10px;
+		margin-left: 1px;
+		padding: 0;
+		background-color: #fff;
+		list-style-type: none;
+		clear: left;}
+textarea { overflow:hidden;}
+
+input.isi{
+		height:25px;
+		overflow: hidden; 
+		width: 270px;
+		border: 1px solid #8496ba;
+		cursor: text;
+		font-size: 12px;
+		font-family: Verdana;
+		min-height: 1px;
+		z-index: 999;
+		margin-left: 1px;
 		padding: 0;
 		background-color: #fff;
 		list-style-type: none;

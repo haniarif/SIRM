@@ -9,6 +9,11 @@
 			return confirm('Apakah anda yakin menghapus data '+nama+'?');
 		}
 	</script>
+	<script type="text/javascript" src="../../config/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="../../config/auto.js"></script>
+    <script type="text/javascript" src="../../config/jquery.tokeninput.js"></script>
+	<link rel="stylesheet" href="../../css/token-input.css" type="text/css" />
+
 </head>
 <body>
 
@@ -101,6 +106,21 @@
 								<tr>
 									<td>Alamat</td>
 									<td colspan="3">: <input type="text" name="alamat_pasien" size="50" placeholder="require"></td>
+								</tr>
+								<tr>
+									<td>Kelurahan</td>
+									<td colspan="3">
+									<input type="text" name="id_kelurahan" id="input_data" size="50" placeholder="require">
+									
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_kelurahan", {
+											preventDuplicates: true,
+											theme: "facebook"				
+										});
+									});
+									</script>
+									</td>
 								</tr>
 								<tr>
 										<td>Jenis Kelamin</td>
@@ -196,7 +216,11 @@
 							<?php
 							include "../../koneksi.php";
 							$no=0;
-							$query = mysql_query("SELECT * FROM pasien");
+							$query = mysql_query("SELECT * FROM pasien z
+												left join kelurahan a on z.id_kelurahan = a.id_kelurahan 
+												left outer join kecamatan b on a.id_kecamatan = b.id_kecamatan
+												left outer join kabupaten c on b.id_kabupaten = c.id_kabupaten
+												left outer join provinsi d on c.id_provinsi = d.id_provinsi");
 							while($data= mysql_fetch_array($query)){
 							$no++;
 							?>
@@ -205,7 +229,7 @@
 								<td><?php echo $data['no_rm'];?></td>
 								<td><?php echo $data['no_id_pasien'];?></td>
 								<td><?php echo $data['nama_pasien'];?></td>
-								<td><?php echo $data['alamat_pasien'];?></td>
+								<td><?php echo $data['alamat_pasien']. ' Kec.' .$data['nama_kelurahan'].' Kab. '.$data['nama_kabupaten'].' Prop. '.$data['nama_provinsi'];?></td>
 								<td><?php echo $data['jk_pasien'];?></td>
 								<td><?php echo $data['tgl_lhr'];?></td>
 								<td><?php echo $data['gol_darah'];?></td>
@@ -247,9 +271,9 @@
 // simpan pasien
 if (isset($_POST['submit'])){
 	$sql = "insert into pasien 
-		(no_rm, no_id_pasien, nama_pasien, no_kk, alamat_pasien, jk_pasien, tgl_lhr, gol_darah, no_telp, agama_pasien, penddkn, pekerjaan, perkawinan, posisi) 
+		(no_rm, no_id_pasien, nama_pasien, no_kk, alamat_pasien, id_kelurahan, jk_pasien, tgl_lhr, gol_darah, no_telp, agama_pasien, penddkn, pekerjaan, perkawinan, posisi) 
 	
-	values ('$_POST[no_rm]','$_POST[no_id_pasien]','$_POST[nama_pasien]','$_POST[no_kk]','$_POST[alamat_pasien]','$_POST[jk_pasien]','$_POST[tgl_lhr]',
+	values ('$_POST[no_rm]','$_POST[no_id_pasien]','$_POST[nama_pasien]','$_POST[no_kk]','$_POST[alamat_pasien]','$_POST[id_kelurahan]','$_POST[jk_pasien]','$_POST[tgl_lhr]',
 	'$_POST[gol_darah]','$_POST[no_telp]','$_POST[agama_pasien]','$_POST[penddkn]','$_POST[pekerjaan]','$_POST[perkawinan]','$_POST[posisi]')";
 	
 	$simpan = mysql_query($sql);

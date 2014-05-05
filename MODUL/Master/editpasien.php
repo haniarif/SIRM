@@ -81,23 +81,23 @@ $data = mysql_fetch_array($sql);
 								</tr>
 								<tr>
 									<td>NO. RM </td>
-									<td colspan="3">: <input type='text' name='no_rm' size='50' value='<?php echo $data['no_rm'];?>'></td>
+									<td colspan="3">: <input type='text' name='no_rm' class="isi" size='50' value='<?php echo $data['no_rm'];?>'></td>
 								</tr>
 								<tr>
 									<td>Nama</td>
-									<td colspan="3">: <input type='text' name='nama_pasien' size='50' value='<?php echo $data['nama_pasien'];?>'></td>
+									<td colspan="3">: <input type='text' name='nama_pasien' size='50' class="isi" value='<?php echo $data['nama_pasien'];?>'></td>
 								</tr>
 								<tr>
 									<td>No. Identitas</td>
-									<td colspan="3">: <input type='text' name='no_id_pasien' size='50' value='<?php echo $data['no_id_pasien'];?>'></td>
+									<td colspan="3">: <input type='text' name='no_id_pasien' size='50' class="isi" value='<?php echo $data['no_id_pasien'];?>'></td>
 								</tr>
 								<tr>
 									<td>No. KK</td>
-									<td colspan='3'>: <input type='text' name='no_kk' size='50'value='<?php echo $data['no_kk'];?>'>></td>
+									<td colspan='3'>: <input type='text' name='no_kk' class="isi" size='50'value='<?php echo $data['no_kk'];?>'>></td>
 								</tr>
 								<tr>
 									<td>Alamat</td>
-									<td colspan='3'>: <input type='text' name='alamat_pasien' size='50' value='<?php echo $data['alamat_pasien'];?>'>></td>
+									<td colspan='3'>: <input type='text' name='alamat_pasien' size='50' class="isi" value='<?php echo $data['alamat_pasien'];?>'></td>
 								</tr>
 								<tr>
 										<td>Jenis Kelamin</td>
@@ -106,7 +106,7 @@ $data = mysql_fetch_array($sql);
 								</tr>
 								<tr>
 									<td>Tanggal Lahir</td>
-									<td colspan='3'>: <input type='text' name='tgl_lhr' size='50' placeholder='tahun-bulan-hari' value='<?php echo $data['tgl_lhr'];?>'></td>
+									<td colspan='3'>: <input type='text' name='tgl_lhr' class="isi" size='50' placeholder='tahun-bulan-hari' value='<?php echo $data['tgl_lhr'];?>'></td>
 								</tr>
 								<tr>
 									<td>Gol. Darah</td>
@@ -119,7 +119,7 @@ $data = mysql_fetch_array($sql);
 								</tr>
 								<tr>
 									<td>No. Telp</td>
-									<td colspan='3'>: <input type='text' name='no_telp' size='50' value='<?php echo $data['no_telp'];?>'>></td>
+									<td colspan='3'>: <input type='text' name='no_telp' class="isi" size='50' value='<?php echo $data['no_telp'];?>'>></td>
 								</tr>
 								<tr>
 									<td>Agama</td>

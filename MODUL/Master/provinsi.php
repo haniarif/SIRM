@@ -29,9 +29,9 @@
 		<div id="navigation">
 			<ul>
 			    <li><a href="master.php" class="active"><span>MASTER DATA</span></a></li>
-				<li><a href="../../transaksi.php"><span>TRANSAKSI</span></a></li>
-			    <li><a href="../../administrasi.php"><span>ADMINISTRASI</span></a></li>
-			    <li><a href="../../informasi.php"><span>INFORMASI</span></a></li>
+				<li><a href="../transaksi/transaksi.php"><span>TRANSAKSI</span></a></li>
+			    <li><a href="../administrasi/administrasi.php"><span>ADMINISTRASI</span></a></li>
+			    <li><a href="../informasi/informasi.php"><span>INFORMASI</span></a></li>
 			</ul>
 		</div>
 		<!-- End Main Nav -->

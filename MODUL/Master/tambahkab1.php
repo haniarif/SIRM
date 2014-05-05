@@ -12,8 +12,7 @@
 			return confirm('Apakah anda yakin menghapus data '+nama+'?');
 		}
 		$(document).ready(function(){
-			$("#provinsi").autocomplete("proses_provinsi",
-			width:150)
+			$("#provinsi").autocomplete("proses_provinsi")
 		});
 		
 	</script>

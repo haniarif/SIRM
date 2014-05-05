@@ -4,6 +4,10 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript" src="../../config/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="../../config/auto.js"></script>
+    <script type="text/javascript" src="../../config/jquery.tokeninput.js"></script>
+	<link rel="stylesheet" href="../../css/token-input.css" type="text/css" />
 </head>
 <body>
 <!-- Header -->
@@ -64,19 +68,49 @@
 						<table>
 							<tr>
 								<td> No. RM </td>
-								<td><input type='text' name='' value=''/></td>
+								<td> <input type="text" name="id_pendftrn" id="input_data">
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_no_rm", {
+											preventDuplicates: true,
+											theme: "facebook",
+											onAdd: function (item) {
+												get_pasien(item.name)
+											}
+											
+										});
+									});
+									
+									function get_pasien(no_rm){
+										$.ajax({
+											type: 'GET',
+											url: '../../config/file_json.php?aksi=get_pasien&no_rm='+no_rm,
+											dataType: 'json',
+											success: function(data){
+												var pasien = data[0];
+												
+												console.log(pasien);
+												$('#nama_pasien').val(pasien.name);
+											}
+										});
+									}
+									</script></td>
 							</tr>
 							<tr>
 								<td> NAMA </td>
-								<td><input type='text' name='tanggal_jual' /></td>
+								<td><input type='text' name='tanggal_jual' class="isi" id="nama_pasien" /></td>
 							</tr>
 							<tr>
 								<td> TANGGAL MASUK </td>
-								<td><input type='text' name='' value=''/></td>
+								<td><input type='date' name='' value='' class="isi"/></td>
 							</tr>
 							<tr>
 								<td> TANGGAL </td>
-								<td><input type='text' name='' value=''/></td>
+								<td><?php
+									$tgl=date('d-m-Y');
+									echo $tgl;
+								?>
+								</td>
 							</tr>
 							<tr>
 								<td> &nbsp; </td>
