@@ -61,6 +61,12 @@
 									<input type="radio" name="jenis_pasien" value="lama" id="pasien_lama" checked="checked"/> Lama
 									<input type="radio" name="jenis_pasien" value="baru" id="pasien_baru"/> Baru
 								</td>
+								<td> TANGGAL </td>
+								<td><?php
+									$tgl=date('d-m-Y');
+									echo $tgl;
+								?><input type="hidden" name="tanggal" value="<?php echo date('Y-m-d');?>">
+								</td>
 							</tr>
 							<tr style="display:none" id="tr_baru">
 								<td>NO. RM</td>
@@ -180,7 +186,7 @@
 							</td>
 							<tr>
 								<td>TANGGAL LAHIR</td>
-								<td><input type="date" name="tgl_lhr" class="isi" id="tgl_lhr">
+								<td><input type="date" name="tgl_lhr" class="isi" id="tgl_lhr"></td>
 							<tr>
 								<td>GOL. DARAH</td>
 								<td><select width=50px name="gol_darah" id="gol_darah" ><option value=pilihgol >Pilih Gol. Darah</option>
@@ -319,17 +325,17 @@ include "../../koneksi.php";
 	
 	$id_pasien=mysql_insert_id();
 	
-	$sql = "insert into pendf_rj (id_pasien, id_layanan, rujukan, id_klinik, id_dokter, nama_pj, posisi_pj, tgl_lhr_pj, umur_pj, 	
+	$sql = "insert into pendf_rj (id_pasien, id_layanan, tanggal, rujukan, id_klinik, id_dokter, nama_pj, posisi_pj, tgl_lhr_pj, umur_pj, 	
 			pkrjaan_pj, no_telp_pj) 
-			values ('$id_pasien', '$_POST[id_layanan]', '$_POST[rujukan]', '$_POST[id_klinik]', '$_POST[id_dokter]', '$_POST[nama_pj]', '$_POST[posisi_pj]', '$_POST[tgl_lhr_pj]', '$_POST[umur_pj]', '$_POST[pkrjaan_pj]', '$_POST[no_telp_pj]')";
+			values ('$id_pasien', '$_POST[id_layanan]',  '$_POST[tanggal]','$_POST[rujukan]', '$_POST[id_klinik]', '$_POST[id_dokter]', '$_POST[nama_pj]', '$_POST[posisi_pj]', '$_POST[tgl_lhr_pj]', '$_POST[umur_pj]', '$_POST[pkrjaan_pj]', '$_POST[no_telp_pj]')";
 			echo $sql;
 	mysql_query($sql);
 	
 	}
 	else{
-		$sql = "insert into pendf_rj (id_pasien, id_layanan, rujukan, id_klinik, id_dokter, nama_pj, posisi_pj, tgl_lhr_pj, umur_pj, 	
+		$sql = "insert into pendf_rj (id_pasien, id_layanan, tanggal, rujukan, id_klinik, id_dokter, nama_pj, posisi_pj, tgl_lhr_pj, umur_pj, 	
 			pkrjaan_pj, no_telp_pj) 
-			values ('$_POST[id_pasien]', '$_POST[id_layanan]', '$_POST[rujukan]', '$_POST[id_klinik]', '$_POST[id_dokter]', '$_POST[nama_pj]', '$_POST[posisi_pj]', '$_POST[tgl_lhr_pj]', '$_POST[umur_pj]', '$_POST[pkrjaan_pj]', '$_POST[no_telp_pj]')";
+			values ('$_POST[id_pasien]', '$_POST[id_layanan]', '$_POST[tanggal]','$_POST[rujukan]', '$_POST[id_klinik]', '$_POST[id_dokter]', '$_POST[nama_pj]', '$_POST[posisi_pj]', '$_POST[tgl_lhr_pj]', '$_POST[umur_pj]', '$_POST[pkrjaan_pj]', '$_POST[no_telp_pj]')";
 			echo $sql;
 	mysql_query($sql);
 	}

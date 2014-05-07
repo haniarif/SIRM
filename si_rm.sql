@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2
+-- version 4.0.9
 -- http://www.phpmyadmin.net
 --
--- Inang: localhost
--- Waktu pembuatan: 05 Mei 2014 pada 07.19
--- Versi Server: 5.5.25a
--- Versi PHP: 5.4.4
+-- Host: 127.0.0.1
+-- Generation Time: May 06, 2014 at 04:52 PM
+-- Server version: 5.6.14
+-- PHP Version: 5.5.6
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Basis data: `si_rm`
+-- Database: `rekam_medis`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `data_rm`
+-- Table structure for table `data_rm`
 --
 
 CREATE TABLE IF NOT EXISTS `data_rm` (
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `data_rm` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data untuk tabel `data_rm`
+-- Dumping data for table `data_rm`
 --
 
 INSERT INTO `data_rm` (`id_rekam_medik`, `nama_rm`, `id_kategori`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `data_rm` (`id_rekam_medik`, `nama_rm`, `id_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dokter`
+-- Table structure for table `dokter`
 --
 
 CREATE TABLE IF NOT EXISTS `dokter` (
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `dokter` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data untuk tabel `dokter`
+-- Dumping data for table `dokter`
 --
 
 INSERT INTO `dokter` (`id_dokter`, `id_pegawai`, `no_sip`, `id_spesialisasi`) VALUES
@@ -68,7 +68,7 @@ INSERT INTO `dokter` (`id_dokter`, `id_pegawai`, `no_sip`, `id_spesialisasi`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `icd9`
+-- Table structure for table `icd9`
 --
 
 CREATE TABLE IF NOT EXISTS `icd9` (
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `icd9` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
--- Dumping data untuk tabel `icd9`
+-- Dumping data for table `icd9`
 --
 
 INSERT INTO `icd9` (`id_icd9`, `nama_icd9`, `kode_icd9`) VALUES
@@ -99,7 +99,7 @@ INSERT INTO `icd9` (`id_icd9`, `nama_icd9`, `kode_icd9`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `icd10`
+-- Table structure for table `icd10`
 --
 
 CREATE TABLE IF NOT EXISTS `icd10` (
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `icd10` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
--- Dumping data untuk tabel `icd10`
+-- Dumping data for table `icd10`
 --
 
 INSERT INTO `icd10` (`id_icd10`, `nama_icd10`, `kode_icd10`) VALUES
@@ -131,7 +131,7 @@ INSERT INTO `icd10` (`id_icd10`, `nama_icd10`, `kode_icd10`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis_kasus`
+-- Table structure for table `jenis_kasus`
 --
 
 CREATE TABLE IF NOT EXISTS `jenis_kasus` (
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `jenis_kasus` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data untuk tabel `jenis_kasus`
+-- Dumping data for table `jenis_kasus`
 --
 
 INSERT INTO `jenis_kasus` (`id_jenis_kasus`, `nama_jk`, `id_kat_jk`) VALUES
@@ -152,7 +152,7 @@ INSERT INTO `jenis_kasus` (`id_jenis_kasus`, `nama_jk`, `id_kat_jk`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kabupaten`
+-- Table structure for table `kabupaten`
 --
 
 CREATE TABLE IF NOT EXISTS `kabupaten` (
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `kabupaten` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data untuk tabel `kabupaten`
+-- Dumping data for table `kabupaten`
 --
 
 INSERT INTO `kabupaten` (`id_kabupaten`, `id_provinsi`, `nama_kabupaten`, `kode_kab`) VALUES
@@ -181,7 +181,7 @@ INSERT INTO `kabupaten` (`id_kabupaten`, `id_provinsi`, `nama_kabupaten`, `kode_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kamar`
+-- Table structure for table `kamar`
 --
 
 CREATE TABLE IF NOT EXISTS `kamar` (
@@ -195,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `kamar` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data untuk tabel `kamar`
+-- Dumping data for table `kamar`
 --
 
 INSERT INTO `kamar` (`id_kamar`, `nama_kamar`, `id_klinik`, `kelas`, `id_kat_jk`, `status`) VALUES
@@ -206,7 +206,7 @@ INSERT INTO `kamar` (`id_kamar`, `nama_kamar`, `id_klinik`, `kelas`, `id_kat_jk`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori_jk`
+-- Table structure for table `kategori_jk`
 --
 
 CREATE TABLE IF NOT EXISTS `kategori_jk` (
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `kategori_jk` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data untuk tabel `kategori_jk`
+-- Dumping data for table `kategori_jk`
 --
 
 INSERT INTO `kategori_jk` (`id_kat_jk`, `nama_kategori_jk`) VALUES
@@ -227,7 +227,7 @@ INSERT INTO `kategori_jk` (`id_kat_jk`, `nama_kategori_jk`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori_rm`
+-- Table structure for table `kategori_rm`
 --
 
 CREATE TABLE IF NOT EXISTS `kategori_rm` (
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `kategori_rm` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data untuk tabel `kategori_rm`
+-- Dumping data for table `kategori_rm`
 --
 
 INSERT INTO `kategori_rm` (`id_kategori`, `nama_kategori`) VALUES
@@ -254,7 +254,7 @@ INSERT INTO `kategori_rm` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kecamatan`
+-- Table structure for table `kecamatan`
 --
 
 CREATE TABLE IF NOT EXISTS `kecamatan` (
@@ -266,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `kecamatan` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
--- Dumping data untuk tabel `kecamatan`
+-- Dumping data for table `kecamatan`
 --
 
 INSERT INTO `kecamatan` (`id_kecamatan`, `id_kabupaten`, `nama_kecamatan`, `kode_kecamatan`) VALUES
@@ -285,7 +285,7 @@ INSERT INTO `kecamatan` (`id_kecamatan`, `id_kabupaten`, `nama_kecamatan`, `kode
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelurahan`
+-- Table structure for table `kelurahan`
 --
 
 CREATE TABLE IF NOT EXISTS `kelurahan` (
@@ -297,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `kelurahan` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data untuk tabel `kelurahan`
+-- Dumping data for table `kelurahan`
 --
 
 INSERT INTO `kelurahan` (`id_kelurahan`, `id_kecamatan`, `nama_kelurahan`, `kode_kel`) VALUES
@@ -312,7 +312,7 @@ INSERT INTO `kelurahan` (`id_kelurahan`, `id_kecamatan`, `nama_kelurahan`, `kode
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `klinik`
+-- Table structure for table `klinik`
 --
 
 CREATE TABLE IF NOT EXISTS `klinik` (
@@ -322,7 +322,7 @@ CREATE TABLE IF NOT EXISTS `klinik` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
--- Dumping data untuk tabel `klinik`
+-- Dumping data for table `klinik`
 --
 
 INSERT INTO `klinik` (`id_klinik`, `nama_klinik`) VALUES
@@ -343,7 +343,7 @@ INSERT INTO `klinik` (`id_klinik`, `nama_klinik`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `layanan`
+-- Table structure for table `layanan`
 --
 
 CREATE TABLE IF NOT EXISTS `layanan` (
@@ -355,7 +355,7 @@ CREATE TABLE IF NOT EXISTS `layanan` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data untuk tabel `layanan`
+-- Dumping data for table `layanan`
 --
 
 INSERT INTO `layanan` (`id_layanan`, `nama_layanan`, `id_spesialisasi`, `jenis`) VALUES
@@ -370,7 +370,7 @@ INSERT INTO `layanan` (`id_layanan`, `nama_layanan`, `id_spesialisasi`, `jenis`)
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mutasi`
+-- Table structure for table `mutasi`
 --
 
 CREATE TABLE IF NOT EXISTS `mutasi` (
@@ -391,7 +391,7 @@ CREATE TABLE IF NOT EXISTS `mutasi` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pasien`
+-- Table structure for table `pasien`
 --
 
 CREATE TABLE IF NOT EXISTS `pasien` (
@@ -413,10 +413,10 @@ CREATE TABLE IF NOT EXISTS `pasien` (
   `pekerjaan` varchar(15) NOT NULL,
   `perkawinan` varchar(10) NOT NULL,
   PRIMARY KEY (`id_pasien`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
--- Dumping data untuk tabel `pasien`
+-- Dumping data for table `pasien`
 --
 
 INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_id_pasien`, `nama_pasien`, `alamat_pasien`, `id_kelurahan`, `jk_pasien`, `tgl_lhr`, `umur`, `gol_darah`, `no_kk`, `posisi`, `no_telp`, `penddkn`, `agama_pasien`, `pekerjaan`, `perkawinan`) VALUES
@@ -434,12 +434,13 @@ INSERT INTO `pasien` (`id_pasien`, `no_rm`, `no_id_pasien`, `nama_pasien`, `alam
 (13, '0000', '', 'ydsjdkesw', 'jksejw', 5, '', '0000-00-00', 0, 'ab', 0, '', '', 'sd', 'katolik', 'pns', 'kristen'),
 (14, '0987673', '', 'kjfldsf', 'hfjsjdfs', 7, 'perempuan', '2014-05-02', 0, 'a', 0, '', '', 'sd', 'katolik', 'tidakbekerja', 'kristen'),
 (15, '0987673', '', 'kjfldsf', 'hfjsjdfs', 7, 'perempuan', '2014-05-02', 0, 'a', 0, '', '', 'sd', 'katolik', 'tidakbekerja', 'kristen'),
-(16, '00000010', '', 'Sri', 'Jl. Kenduri', 4, 'perempuan', '1981-03-04', 0, 'ab', 0, '', '', 'smp', 'katolik', 'pns', 'kristen');
+(16, '00000010', '', 'Sri', 'Jl. Kenduri', 4, 'perempuan', '1981-03-04', 0, 'ab', 0, '', '', 'smp', 'katolik', 'pns', 'kristen'),
+(17, '000089', '', 'Hafiz', 'Jl. Kenanga', 7, 'laki-laki', '1977-03-10', 0, 'ab', 0, '', '', 'smp', 'islam', 'pns', 'islam');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pegawai`
+-- Table structure for table `pegawai`
 --
 
 CREATE TABLE IF NOT EXISTS `pegawai` (
@@ -469,7 +470,7 @@ CREATE TABLE IF NOT EXISTS `pegawai` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data untuk tabel `pegawai`
+-- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nip`, `nama_pegawai`, `level`, `no_id_pegawai`, `alamat_pgwai`, `id_kelurahan`, `jk_pegawai`, `tgl_lhr_pgwai`, `kk_pegawai`, `posisi_pgawai`, `no_telp_pegawai`, `golongan`, `jabatan`, `pangkat`, `no_sk`, `tgl_sk`, `tgl_masuk_unit`, `pnddkn`, `pekerjaan`, `agama`, `kawin`) VALUES
@@ -481,7 +482,7 @@ INSERT INTO `pegawai` (`id_pegawai`, `nip`, `nama_pegawai`, `level`, `no_id_pega
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pembatalan`
+-- Table structure for table `pembatalan`
 --
 
 CREATE TABLE IF NOT EXISTS `pembatalan` (
@@ -491,7 +492,7 @@ CREATE TABLE IF NOT EXISTS `pembatalan` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data untuk tabel `pembatalan`
+-- Dumping data for table `pembatalan`
 --
 
 INSERT INTO `pembatalan` (`id_batal`, `id_pendftrn`) VALUES
@@ -500,13 +501,14 @@ INSERT INTO `pembatalan` (`id_batal`, `id_pendftrn`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pendf_rj`
+-- Table structure for table `pendf_rj`
 --
 
 CREATE TABLE IF NOT EXISTS `pendf_rj` (
   `id_pendftrn` int(3) NOT NULL AUTO_INCREMENT,
   `id_pasien` int(3) NOT NULL,
   `id_layanan` int(3) NOT NULL,
+  `tanggal` date NOT NULL,
   `rujukan` varchar(15) NOT NULL,
   `id_klinik` int(3) NOT NULL,
   `id_dokter` int(3) NOT NULL,
@@ -518,48 +520,79 @@ CREATE TABLE IF NOT EXISTS `pendf_rj` (
   `no_telp_pj` int(15) NOT NULL,
   `id_kelurahan` int(3) NOT NULL,
   PRIMARY KEY (`id_pendftrn`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
--- Dumping data untuk tabel `pendf_rj`
+-- Dumping data for table `pendf_rj`
 --
 
-INSERT INTO `pendf_rj` (`id_pendftrn`, `id_pasien`, `id_layanan`, `rujukan`, `id_klinik`, `id_dokter`, `nama_pj`, `posisi_pj`, `tgl_lhr_pj`, `umur_pj`, `pkrjaan_pj`, `no_telp_pj`, `id_kelurahan`) VALUES
-(1, 0, 0, '$_POST[rujukan]', 0, 0, '$_POST[nama_pj]', '$_POST[pos', '0000-00-00', 0, '$_POST[pkrjaan_', 0, 0),
-(2, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(3, 0, 0, 'rumahsakit', 4, 1, 'Agus 2', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(4, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(5, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(6, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(7, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(8, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(9, 0, 0, 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(10, 15, 0, 'pilihrujukan', 5, 6, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(11, 0, 0, 'spkandungan', 9, 1, 'Arif', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(12, 9, 0, 'rumahsakit', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(13, 9, 0, 'rumahsakit', 9, 1, 'Miharja', 'pilihposis', '0000-00-00', 0, '', 0, 0),
-(14, 9, 0, 'rumahsakit', 5, 1, 'miranda', 'ibu', '2011-03-15', 0, '', 9876555, 0),
-(15, 16, 0, 'pilihrujukan', 12, 6, 'Asih', 'ibu', '1979-02-07', 0, '', 2147483647, 0);
+INSERT INTO `pendf_rj` (`id_pendftrn`, `id_pasien`, `id_layanan`, `tanggal`, `rujukan`, `id_klinik`, `id_dokter`, `nama_pj`, `posisi_pj`, `tgl_lhr_pj`, `umur_pj`, `pkrjaan_pj`, `no_telp_pj`, `id_kelurahan`) VALUES
+(1, 0, 0, '0000-00-00', '$_POST[rujukan]', 0, 0, '$_POST[nama_pj]', '$_POST[pos', '0000-00-00', 0, '$_POST[pkrjaan_', 0, 0),
+(2, 0, 0, '0000-00-00', 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(3, 0, 0, '0000-00-00', 'rumahsakit', 4, 1, 'Agus 2', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(4, 0, 0, '0000-00-00', 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(5, 0, 0, '0000-00-00', 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(6, 0, 0, '0000-00-00', 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(7, 0, 0, '0000-00-00', 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(8, 0, 0, '0000-00-00', 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(9, 0, 0, '0000-00-00', 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(10, 15, 0, '0000-00-00', 'pilihrujukan', 5, 6, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(11, 0, 0, '0000-00-00', 'spkandungan', 9, 1, 'Arif', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(12, 9, 0, '0000-00-00', 'rumahsakit', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(13, 9, 0, '0000-00-00', 'rumahsakit', 9, 1, 'Miharja', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(14, 9, 0, '0000-00-00', 'rumahsakit', 5, 1, 'miranda', 'ibu', '2011-03-15', 0, '', 9876555, 0),
+(15, 16, 0, '0000-00-00', 'pilihrujukan', 12, 6, 'Asih', 'ibu', '1979-02-07', 0, '', 2147483647, 0),
+(16, 0, 0, '0000-00-00', 'pilihrujukan', 0, 0, '', 'pilihposis', '0000-00-00', 0, '', 0, 0),
+(17, 17, 8, '0000-00-00', 'pilihrujukan', 5, 6, 'Nanda', 'ayah', '1952-02-05', 0, '', 897654, 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengguna`
+-- Table structure for table `pengguna`
 --
 
 CREATE TABLE IF NOT EXISTS `pengguna` (
-  `id_pengguna` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pengguna` varchar(16) NOT NULL,
   `id_pegawai` int(3) NOT NULL,
   `user` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `id_role` int(3) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `status` int(2) DEFAULT NULL,
   PRIMARY KEY (`id_pengguna`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pengguna`
+--
+
+INSERT INTO `pengguna` (`id_pengguna`, `id_pegawai`, `user`, `password`, `status`) VALUES
+('1', 3, 'nikmah', '81dc9bdb52d04dc20036dbd8313ed055', 1),
+('165368e9eb8ad6f', 6, 'sabbana', '67d17792d1f7d41d1b29a8f42b50db37', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `provinsi`
+-- Table structure for table `pengguna_role`
+--
+
+CREATE TABLE IF NOT EXISTS `pengguna_role` (
+  `id_pengguna` varchar(16) NOT NULL,
+  `id_role` int(3) NOT NULL,
+  KEY `id_pengguna` (`id_pengguna`,`id_role`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pengguna_role`
+--
+
+INSERT INTO `pengguna_role` (`id_pengguna`, `id_role`) VALUES
+('1', 1),
+('165368e9eb8ad6f', 1),
+('165368e9eb8ad6f', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `provinsi`
 --
 
 CREATE TABLE IF NOT EXISTS `provinsi` (
@@ -570,7 +603,7 @@ CREATE TABLE IF NOT EXISTS `provinsi` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
--- Dumping data untuk tabel `provinsi`
+-- Dumping data for table `provinsi`
 --
 
 INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`, `kode_prov`) VALUES
@@ -591,7 +624,7 @@ INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`, `kode_prov`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `rmrj`
+-- Table structure for table `rmrj`
 --
 
 CREATE TABLE IF NOT EXISTS `rmrj` (
@@ -616,7 +649,7 @@ CREATE TABLE IF NOT EXISTS `rmrj` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `rm_ri`
+-- Table structure for table `rm_ri`
 --
 
 CREATE TABLE IF NOT EXISTS `rm_ri` (
@@ -641,20 +674,29 @@ CREATE TABLE IF NOT EXISTS `rm_ri` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE IF NOT EXISTS `role` (
   `id_role` int(3) NOT NULL AUTO_INCREMENT,
-  `nama_role` varchar(20) NOT NULL,
-  `unit` varchar(20) NOT NULL,
+  `nama_role` varchar(30) NOT NULL,
   PRIMARY KEY (`id_role`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id_role`, `nama_role`) VALUES
+(1, 'super_admin'),
+(2, 'administrasi_pendaft'),
+(3, 'Unit Rekam Medis'),
+(4, 'Dokter');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role_akses`
+-- Table structure for table `role_akses`
 --
 
 CREATE TABLE IF NOT EXISTS `role_akses` (
@@ -666,7 +708,7 @@ CREATE TABLE IF NOT EXISTS `role_akses` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `spesialisasi`
+-- Table structure for table `spesialisasi`
 --
 
 CREATE TABLE IF NOT EXISTS `spesialisasi` (
@@ -676,7 +718,7 @@ CREATE TABLE IF NOT EXISTS `spesialisasi` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
--- Dumping data untuk tabel `spesialisasi`
+-- Dumping data for table `spesialisasi`
 --
 
 INSERT INTO `spesialisasi` (`id_spesialisasi`, `nama_spesialisasi`) VALUES

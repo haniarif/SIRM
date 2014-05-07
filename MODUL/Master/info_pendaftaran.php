@@ -80,12 +80,6 @@ $offset=$_GET['offset'];
 					<!-- End Box Head -->	
 
 					<!-- Table -->
-					<?php if(isset($_GET['q']) && $_GET['q']){
-						$q = $_GET['q'];
-						$sql = "select * from icd9 where nama_icd9 like '%$q%' or 
-						kode_icd9 like '%$q%'";
-						$result = mysql_query($sql);
-						if(mysql_num_rows($result) > 0){					?>
 					<div class="table">
 					<a href="tambahicd9.php" class="add-button"><span>TAMBAH ICD9</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -95,9 +89,8 @@ $offset=$_GET['offset'];
 								<th>KODE</th>
 								<th>AKSI</th>
 							</tr>
-							
 							<?php
-							while($siswa = mysql_fetch_array($result)){
+							
 							$no=0;
 							$no=0+$offset;
 							$query = mysql_query("SELECT * FROM icd9 limit $offset,$limit");
@@ -111,14 +104,7 @@ $offset=$_GET['offset'];
 								<td><a href="hapusicd9.php?id_icd9=<?=$data['id_icd9']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['kode_icd9'].' - '.$data['nama_icd9'];?>')">Delete</a><a href="editicd9.php?id_icd9=<?=$data['id_icd9']?>" class="ico edit">Edit</a></td>
 							</tr>
 							<?php }?>
-							<?php }?>
 						</table>
-						<?php
-						}else{
-							echo 'Data not found!';
-						}
-						}
-							?>
 						<div class="pagging">
 						<div class="right"><?PHP
 	  if ($offset!=0) {

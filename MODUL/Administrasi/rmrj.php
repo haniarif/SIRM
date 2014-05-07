@@ -4,6 +4,11 @@
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript" src="../../config/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="../../config/auto.js"></script>
+    <script type="text/javascript" src="../../config/jquery.tokeninput.js"></script>
+	<link rel="stylesheet" href="../../css/token-input.css" type="text/css" />
 </head>
 <body>
 <!-- Header -->
@@ -48,9 +53,9 @@
 					<h2>REKAM MEDIS RAWAT JALAN</h2>
 				</div>
 				<!-- End Box Head-->
-						<div class="box" style="float:left;width: 49%;height:238px;margin-top:1%;margin-left:1%;">					
+						<div class="box" style="float:left;width: 49%;height:470px;margin-top:1%;margin-left:1%;">					
 							<!-- Box Head -->
-							<div class="box-head"  style="height:25px; width: 82%;">
+							<div class="box-head"  style="height:25px; width: 96%;">
 								<h2>DATA PASIEN</h2>
 							</div>
 							<!-- End Box Head-->
@@ -60,56 +65,111 @@
 								<table>
 									<tr>
 										<td>NO. RM</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="text" name="no_rm" id="input_data">
+										<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_no_rm", {
+											preventDuplicates: true,
+											theme: "facebook",
+											onAdd: function (item) {
+												get_pasien_rj(item.name)
+											}
+											
+										});
+									});
+									
+									function get_pasien_rj(no_rm){
+										$.ajax({
+											type: 'GET',
+											url: '../../config/file_json.php?aksi=get_pasien_rj&no_rm='+no_rm,
+											dataType: 'json',
+											success: function(data){
+												var pendf_rj = data[0];
+												
+												console.log(pendf_rj);	
+												$('#nama_pasien').val(pendf_rj.name);
+												$('#alamat').val(pendf_rj.alamat_pasien);
+												//$('#input_data4').val(pasien.id_kelurahan);
+												$('#input_data4').tokenInput("add", {id: pasien.id_kelurahan, name: pasien.nama_kelurahan});
+												$('#jk_pasien').val(pendf_rj.jk_pasien);
+												$('#tgl_lhr').val(pendf_rj.tgl_lhr);
+												$('#gol_darah').val(pendf_rj.gol_darah);
+												$('#perkawinan').val(pendf_rj.perkawinan);
+												$('#penddkn').val(pendf_rj.penddkn);
+												$('#pekerjaan').val(pendf_rj.pekerjaan);
+												$('#agama').val(pendf_rj.agama_pasien);
+												
+											}
+										});
+									}
+									</script></td>
 									</tr>
 									<tr>
 										<td>NAMA</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="text" name="nama_pasien" class="isi" id="nama_pasien"></td>
 									</tr>
 									<tr>
 										<td>Alamat</td>
-										<td><textarea name=alamatpenanggungjawab style="height: 50px;"> </textarea></td>
+										<td><input type="text" name="alamat_pasien" class="isi" id="alamat"></textarea></td>
 									</tr>
 									<tr>
+									<td>KELURAHAN</td>
+								<td><input type="text" name="id_kelurahan" id="input_data4">
+									
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data4").tokenInput("../../config/file_json.php?aksi=cari_kelurahan", {
+											preventDuplicates: true,
+											theme: "facebook"				
+										});
+									});
+									</script>
+								</td>
+								</tr>
+									<tr>
 										<td>JENIS KELAMIN</td>
-										<td><input type="radio" name="radioku" value=laki-laki> Laki-laki
-										<input type="radio" name="radioku" value=perempuan> Perempuan</td>
+										<td><input type="radio" id="jk_pasien" name="jk_pasien" value=laki-laki> Laki-laki
+										<input type="radio"  id="jk_pasien" name="jk_pasien" value=perempuan> Perempuan</td>
 									</tr>
 									<tr>
 										<td>GOL. DARAH</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="input" name="gol_darah" class="isi" id="gol_darah"></td>
 									</tr>
 									<tr>
 										<td>TANGGAL LAHIR</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="input" name="tgl_lhr" class="isi" id="tgl_lhr"></td>
 									</tr>
 									<tr>
 										<td>AGAMA</td>
-										<td><input type=text; name=namapenanggungjawab;></textarea></td>
+										<td><input type="input" name="agama_pasien" class="isi" id="agama_pasien"></td>
 									</tr>
 									<tr>
 										<td>TENSI</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="text" name="tensi" class="isi"></td>
 									</tr>
 									<tr>
 										<td>NADI</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="text" name="nadi" class="isi"></td>
 									</tr>
 									<tr>
 										<td>SUHU</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="text" name="suhu" class="isi"></td>
 									</tr>
 									<tr>
 										<td>NAFAS</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="text" name="nafas" class="isi"></td>
 									</tr>
 									<tr>
 										<td>TINGGI</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="text" name="tinggi" class="isi"></td>
 									</tr>
 									<tr>
 										<td>BERAT</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="text" name="berat" class="isi"></td>
+									</tr>
+									<tr>
+										<td>LILA</td>
+										<td><input type="text" name="lila" class="isi"></td>
 									</tr>
 								</table>				
 							</div>
@@ -127,20 +187,19 @@
 								<table>
 									<tr>
 										<td>WAKTU</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="text" name="nafas" class="isi"></td>
 									</tr>
 									<tr>
 										<td>KLINIK</td>
-										<td><input type=text; name=namapenanggungjawab;></td>
+										<td><input type="text" name="nafas" class="isi"></td>
 									</tr>
 									<tr>
 										<td>DOKTER</td>
-										<td><textarea name=alamatpenanggungjawab style="height: 50px;"> </textarea></td>
+										<td><input type="text" name="nafas" class="isi"></td>
 									</tr>
 									<tr>
 										<td>ANAMNESA</td>
-										<td><input type="radio" name="radioku" value=laki-laki> Laki-laki
-										<input type="radio" name="radioku" value=perempuan> Perempuan</td>
+										<td><textarea name="anamnesa"></textarea></td>
 									</tr>
 									<tr>
 										<td>JENIS KASUS</td>
@@ -157,7 +216,7 @@
 								</table>	
 							</div>
 						</div>
-					<div class="box" style="float:left;width: 49%;height:100px;margin-top:8%;margin-left:1%;">					
+					<div class="box" style="float:left;width: 49%;height:100px;margin-top:50%;margin-left:1%;">					
 							<!-- Box Head -->
 							<div class="box-head"  style="height:25px; width: 68%;">
 								<h2>DIAGNOSA </h2>

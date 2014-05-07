@@ -1,21 +1,9 @@
-<?php
-session_start();
-if(empty($_SESSION['id_pengguna'])){ ?>
-	<meta http-equiv="refresh" content="0;url=../../login.php" /><?php
-}
-include "../../koneksi.php";
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
-	<script type="text/javascript">
-		function konfirmasi(nama){
-			return confirm('Apakah anda yakin menghapus pengguna '+nama+'?');
-		}
-	</script>
 </head>
 <body>
 <!-- Header -->
@@ -63,54 +51,57 @@ include "../../koneksi.php";
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left">MASTER DATA PENGGUNA</h2>
+						<h2 class="left">ADMINISTRASI ROLE</h2>
 						<div class="right">
-							<label>search PENGGUNA</label>
+							<label>search ROLE</label>
 							<input type="text" class="field small-field" />
 							<input type="submit" class="button" value="search" />
 						</div>
 					</div>
 					<!-- End Box Head -->	
-
+					
 					<!-- Table -->
 					<div class="table">
-					<a href="add_pengguna.php" class="add-button"><span>TAMBAH PENGGUNA</span></a><br>
+					<form method="post" action="tambahicd9.php" class="form">
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td>Nama </td>
+									<td colspan="3">: <input type="text" name="nama_role" size="50" placeholder="require"></td>
+								</tr>
+								<tr>
+									<td>HAK AKSES</td>
+									<td colspan="3">: <input type="text" name="kode_icd9" size="50" placeholder="require"></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td><input type="submit" name="submit" value="Simpan"> 
+									<input type="reset" name="reset" value="Set ulang"></td>
+									<td colspan="2"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="table">
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<th>NO</th>
-								<th>NIP</th>
+								<th>NO.</th>
 								<th>NAMA</th>
-								<th>STATUS</th>
+								<th>KODE</th>
 								<th>AKSI</th>
 							</tr>
 							<?php
-							$sql = mysql_query("SELECT A.*, B.* FROM pengguna A, pegawai B WHERE B.id_pegawai=A.id_pegawai");
-							$n = 1;
-							while($data = mysql_fetch_array($sql)){ ?>
-								<tr>
-									<td><?php echo $n;?></td>
-									<td><?php echo $data['nip'];?></td>
-									<td><?php echo $data['nama_pegawai'];?></td>
-									<td><?php if($data['status'] == 1){ echo "Aktif";}else{ echo "Tidak aktrif";}?></td>
-									<td><a href="hapus_pengguna.php?id_pengguna=<?=$data['id_pengguna']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_pegawai'];?>')">Delete</a><a href="editpengguna.php?id=<?php echo $data['id_pengguna'];?>" class="ico edit">Edit</a><a href="#" class="ico">Detail</a></td>
-								</tr><?php
-								$n++;
-							}
+							include "../../koneksi.php";
+							$no=0;
+							$query = mysql_query("SELECT * FROM role_akses");
+							while($data= mysql_fetch_array($query)){
+							$no++;
 							?>
-							<!--<tr>
-								<td>1</td>
-								<td>1234567790</td>
-								<td>HANI </td>
-								<td>ADMINISTRASI</td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
-							</tr>
 							<tr>
-								<td>1</td>
-								<td>1234567790</td>
-								<td>HANI </td>
-								<td>ADMINISTRASI</td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
-							</tr>-->
+								<td><?php echo $no;?></td>
+								<td><?php echo $data['nama_role_akses'];?></td>
+								<td><?php echo $data['kode_icd9'];?></td>
+								<td><a href="hapusdatarm.php?id_rekam_medik=<?=$data['id_rekam_medik']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_rm'];?>')">Delete</a><a href="#" class="ico edit">Edit</a></td>
+							</tr>
+							<?php }?>
 						</table>				
 					</div>
 					<!-- Table -->
@@ -123,7 +114,7 @@ include "../../koneksi.php";
 		</div>
 		<!-- Main -->
 	</div>
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
+
 <!-- End Container -->
 
 <!-- Footer -->
@@ -136,3 +127,15 @@ include "../../koneksi.php";
 	
 </body>
 </html>
+
+
+<?php
+
+// simpan role_akses
+if (isset($_POST['submit'])){
+include "../../koneksi.php";
+	mysql_query("insert into role_akses (id_role_akses, nama_menu) 
+			values ('','$_POST[nama_menu]')");
+	echo "<meta http-equiv='refresh' content='0; url=role.php'>";
+}
+?>

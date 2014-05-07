@@ -3,9 +3,7 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
-	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />	
-	<script type="text/javascript" src="jquery.js"></script>
-	<script type="text/javascript" src="jquery_append.js"></script> 
+	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
 	<script type="text/javascript" src="../../config/jquery.min.js"></script>
 	<script language="JavaScript" type="text/javascript" src="../../config/auto.js"></script>
     <script type="text/javascript" src="../../config/jquery.tokeninput.js"></script>
@@ -66,7 +64,7 @@
 					<div class="box-content">
 						<!-- Table -->
 					<div class="table">
-						<form action="simpan_mutasi.php" method="POST">
+						<form action="mutasi.php" method="POST">
 						<table>
 							<tr>
 								<td> No. RM </td>
@@ -118,12 +116,10 @@
 								<td> &nbsp; </td>
 								<td> &nbsp; </td>
 							</tr>
-						</form>			
 						</table>
-						<input type="button" name="add_btn" id="add_btn" value=TAMBAHLAYANAN>
-						
-						<table>
-						<tr>
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<input type="submit" name="submit" value=TAMBAHLAYANAN>
+							<tr>
 								<td> NO </td>
 								<td> LAYANAN</td>
 								<td> KAMAR </td>
@@ -133,12 +129,74 @@
 								<td> DOKTER1 </td>
 								<td> DOKTER2 </td>
 							</tr>
+							<?php
+							include "../../koneksi.php";
+							$no=0;
+							$query = mysql_query("SELECT * FROM mutasi");
+							while($data= mysql_fetch_array($query)){
+							$no++;
+							?>
 							<tr>
-							<td><input type="submit" name="submit" value=SIMPAN></td>
-							<td><input type="reset" name="batal" value=BATAL ></td>
+								<td>1</td>
+								<td><input type='text' name='' value=''/></td>
+								<td><input type='text' name='' value='' size='7px'/></td>
+								<td><input type='text' name='' value='' size='2px'/></td>
+								<td><input type='text' name='' value='' size='5px'/></td>
+								<td>DR. Hadi Setiadi</td>
+								<td><input type='text' name='' value=''/></td>
+								<td><input type='text' name='' value=''/></td>
+								<td><input type="submit" name="submit" value=SIMPAN></td>
+								<td><input type="reset" name="batal" value=BATAL ></td>
 							</tr>
+							<?php } ?>
 						</table>
+						</form>			
 					</div>
+					<div class="table">
+						<form action="mutasi.php" method="POST">
+					
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							
+							<?php
+							include "../../koneksi.php";
+							$no=0;
+							$query = mysql_query("SELECT * FROM mutasi");
+							while($data= mysql_fetch_array($query)){
+							$no++;
+							?>
+							<tr>
+								<td>1</td>
+								<td><input type="text" name="id_layanan" id="input_data2" >
+									
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data2").tokenInput("../../config/file_json.php?aksi=cari_layanan", {
+											preventDuplicates: true,
+											theme: "facebook"				
+										});
+									});
+									</script></td>
+								<td><input type="text" name="id_kamar" id="input_data3" >
+									
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data3").tokenInput("../../config/file_json.php?aksi=cari_kamar", {
+											preventDuplicates: true,
+											theme: "facebook"				
+										});
+									});
+									</script></td>
+								<td><input type='text' name='' value='' size='2px'/></td>
+								<td><input type='text' name='' value='' size='5px'/></td>
+								<td>DR. Hadi Setiadi</td>
+								<td><input type='text' name='' value=''/></td>
+								<td><input type='text' name='' value=''/></td>
+								<td><input type="submit" name="submit" value=SIMPAN></td>
+								<td><input type="reset" name="batal" value=BATAL ></td>
+							</tr>
+							<?php } ?>
+						</table>
+						</form>			
 					</div>
 					</div>
 				</div>
@@ -150,10 +208,11 @@
 				<!-- End Box -->			
 		</div>
 		<!-- Main -->
+<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
 <!-- End Container -->
 
 <!-- Footer -->
-<div id="footer" style="clear:both">
+<div id="footer">
 	<div class="shell">
 		<span class="left">&copy; 2014 - SIRM</span>
 	</div>

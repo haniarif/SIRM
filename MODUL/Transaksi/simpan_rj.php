@@ -69,26 +69,30 @@ include "../../koneksi.php";
 					<div class="table">
 						<table style="float:left" width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
-								<td colspan="5">NO. RM</td>
-								<td>:<?php echo $data['no_rm'];?></td>
-								<td>Rujukan</td>
+								<td>Tanggal</td>
+								<td>:<?php echo $data['tanggal'];?></td>
+							</tr>
+							<tr>
+								<td>NO. RM</td>
+								<td colspan="4">:<?php echo $data['no_rm'];?></td>
+								<td >Rujukan</td>
 								<td>:<?php echo $data['rujukan'];?></td>
 							</tr>
 							<tr>
-								<td colspan="5">NAMA</td>
-								<td>:<?php echo $data['nama_pasien'];?></td>
+								<td>NAMA</td>
+								<td colspan="4">:<?php echo $data['nama_pasien'];?></td>
 								<td>Layanan</td>
 								<td>:<?php echo $data['nama_layanan'];?></td>
 							</tr>
 							<tr>
-								<td colspan="5">ALAMAT</td>
-								<td>:<?php echo $data['alamat_pasien'];?></td>
+								<td>ALAMAT</td>
+								<td colspan="4">:<?php echo $data['alamat_pasien'];?></td>
 								<td>DOKTER</td>
 								<td>:<?php echo $data['nama_pegawai'];?></td>
 							</tr>
 							<tr>
-								<td colspan="5">KELURAHAN</td>
-								<td>:<?php echo ' Kel.' .$data['nama_kelurahan'].' Kab. '.$data['nama_kabupaten'].' Prop. '.$data['nama_provinsi'];?></td>
+								<td>KELURAHAN</td>
+								<td colspan="4">:<?php echo ' Kel.' .$data['nama_kelurahan'].' Kab. '.$data['nama_kabupaten'].' Prop. '.$data['nama_provinsi'];?></td>
 								<td>KLINIK</td>
 								<td>:<?php echo $data['nama_klinik'];?></td>
 							</tr>
