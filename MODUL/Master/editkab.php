@@ -1,4 +1,12 @@
 <?php
+session_start();
+if(empty($_SESSION['id_pengguna'])){ ?>
+	<meta http-equiv="refresh" content="0;url=../../login.php" /><?php
+}
+include "../../koneksi.php";
+?>
+
+<?php
 include "../../koneksi.php";
 if(isset($_GET['id_kabupaten'])){
 	$id = $_GET['id_kabupaten'];
@@ -8,7 +16,18 @@ if(isset($_GET['id_kabupaten'])){
 	$provinsi = $data['nama_provinsi'];
 	$nama = $data['nama_kabupaten'];
 	$kode = $data['kode_kab'];
-}else{
+}elseif(!empty($update_provinsi)){
+	$delete = mysql_query("DELETE FROM provinsi WHERE id_provinsi='$id_provinsi' ");
+		if(!empty($provinsi)){
+		foreach($provinsi as $val){
+		$insert_provinsi	= mysql_query("INSERT INTO provinsi values('$id_provinsi', '$val')");
+		if($insert_provinsi == FALSE){
+		$error = TRUE;
+			}
+		}
+	}
+}
+else{
 	$id = ''; $provinsi = ''; $nama = ''; $kode = ''; 
 }
 ?>
@@ -39,7 +58,7 @@ if(isset($_GET['id_kabupaten'])){
 			<div id="top-navigation">
 				<a href="#">Ubah Password</a>
 				<span>|</span>
-				<a href="#">Log out</a>
+				<a href="../../logout.php">Log out</a>
 			</div>
 		</div>
 		<!-- End Logo + Top Nav -->
@@ -82,7 +101,24 @@ if(isset($_GET['id_kabupaten'])){
 						</div>
 					</div>
 					<!-- End Box Head -->	 
-					
+					<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#id_provinsi").tokenInput("../../config/file_json.php?aksi=cari_provinsi", {
+											preventDuplicates: true,
+											theme: "facebook", 
+												prePopulate: [
+					<?php
+					$query = mysql_query("SELECT * FROM kabupaten a
+													left join provinsi b on a.id_provinsi = b.id_provinsi
+													");
+					while($data = mysql_fetch_array($sql)){
+						echo '{id: "'.$data['id_provinsi'].'", name: "'.$data['nama_provinsi'].'"},';
+					}
+					?>
+						]											
+										});
+									});
+									</script>
 					<!-- Table -->
 					<div class="table">
 					<form method="post" action="editkab.php" class="form">
@@ -93,19 +129,7 @@ if(isset($_GET['id_kabupaten'])){
 								</tr>
 								<tr>
 									<td width="150">Nama Provinsi</td>
-									<td colspan="3">
-									<b>Pilih ulang Provinsi</b><br/>
-									<input type="text" name="id_provinsi" id="input_data" size="50" value='<?php echo $data['id_provinsi'];?>'/>
-									<script type='text/javascript'>
-									$(document).ready(function() {
-										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_provinsi", {
-											preventDuplicates: true,
-											theme: "facebook",
-											multiple : false,
-										});
-									});
-									</script>
-									</td>
+									<td colspan="3"> <input type="text" name="id_provinsi" id="id_provinsi"></td>
 								</tr>
 								<tr>
 									<td>Nama Kabupaten</td>

@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
 	<script type="text/javascript">
 		function konfirmasi(nama){
-			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+			return confirm('Apakah anda yakin menghapus dokter '+nama+'?');
 		}
 	</script>
 	<script type="text/javascript" src="../../config/jquery.min.js"></script>
@@ -36,7 +36,7 @@
 			    <li><a href="master.php" class="active"><span>MASTER DATA</span></a></li>
 				<li><a href="../transaksi/transaksi.php"><span>TRANSAKSI</span></a></li>
 			    <li><a href="../administrasi/administrasi.php"><span>ADMINISTRASI</span></a></li>
-			    <li><a href="../../informasi.php"><span>INFORMASI</span></a></li>
+			    <li><a href="../informasi/informasi.php"><span>INFORMASI</span></a></li>
 			</ul>
 		</div>
 		<!-- End Main Nav -->
@@ -60,9 +60,9 @@
 				<div class="box">
 					<!-- Box Head -->
 					<div class="box-head">
-						<h2 class="left" ><a href="pegawai.php">MASTER DATA PEGAWAI</a></h2>
+						<h2 class="left" ><a href="pegawai.php">MASTER DATA DOKTER</a></h2>
 						<div class="right">
-							<label>search Pegawai</label>
+							<label>search DOKTER</label>
 							<input type="text" class="field small-field" />
 							<input type="submit" class="button" value="search" />
 						</div>
@@ -74,9 +74,8 @@
 					<form method="post" action="tambahdokter.php" class="form">
 							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<tr>
-									<td>No. Identitas</td>
-									<td colspan="3">: <input type="text" name="id_pegawai" id="input_data" size="50" placeholder="require">
-									
+									<td>NAMA</td>
+									<td colspan="3"> <input type="text" name="id_pegawai" id="input_data" size="50" placeholder="require">
 									<script type='text/javascript'>
 									$(document).ready(function() {
 										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_pegawai", {
@@ -88,41 +87,17 @@
 									</td>
 								</tr>
 								<tr>
-									<td>Nama</td>
-									<td colspan="3">: <input type="text" name="nama_pegawai" size="50" placeholder="require"></td>
-								</tr>
-								<tr>
-									<td>Alamat</td>
-									<td colspan="3">: <input type="text" name="alamat_pgwai" size="50" placeholder="require"></td>
-								</tr>
-								<tr>
-									<td>Jenis Kelamin</td>
-									<td><input type="radio" name="jk_pegawai" value=laki-laki> Laki-laki
-										<input type="radio" name="jk_pegawai" value=perempuan> Perempuan</td>
-								</tr>
-								<tr>
-									<td>Agama</td>
-									<td>:<select width=50px name="agama"><option value=agama>Pilih Agama </option>
-														   <option value=islam>Islam</option>
-														   <option value=kristen>Kristen</option>
-														   <option value=katolik>Katolik</option>
-														   <option value=hindu>Hindu</option>
-														   <option value=budha>Budha</option>
-									</select>
-									</td>
-								</tr>
-								<tr>
 									<td>NO. SIP</td>
-									<td colspan="3">: <input type="text" name="no_sip" size="50" placeholder="require">
+									<td colspan="3"> <input type="text" name="no_sip" class="isi" placeholder="require">
 									</td>
 								</tr>
 								<tr>
 									<td>Spesialisasi</td>
-									<td colspan="3">: <input type="text" name="id_spesialisasi" id="input_data" size="50" placeholder="require">
+									<td colspan="3"> <input type="text" name="id_spesialisasi" id="input_data2" size="50" placeholder="require">
 									
 									<script type='text/javascript'>
 									$(document).ready(function() {
-										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_spesialisasi", {
+										$("#input_data2").tokenInput("../../config/file_json.php?aksi=cari_spesialisasi", {
 											preventDuplicates: true,
 											theme: "facebook"				
 										});
@@ -144,9 +119,6 @@
 							<tr>
 								<th>NO.</th>
 								<th>NAMA</th>
-								<th>ALAMAT</th>
-								<th>JENIS KELAMIN</th>
-								<th>AGAMA</th>
 								<th>NO. SIP</th>
 								<th>SPESIALISASI</th>
 								<th>AKSI</th>
@@ -154,18 +126,17 @@
 							<?php
 							include "../../koneksi.php";
 							$no=0;
-							$query = mysql_query("SELECT * FROM dokter");
+							$query = mysql_query("SELECT * FROM dokter a left join spesialisasi b on a.id_spesialisasi = b.id_spesialisasi
+												left join pegawai c on a.id_pegawai = c.id_pegawai");
 							while($data= mysql_fetch_array($query)){
 							$no++;
 							?>
 							<tr>
 								<td><?php echo $no;?></td>
-								<td><?php echo $data['nip'];?></td>
 								<td><?php echo $data['nama_pegawai'];?></td>
-								<td><?php echo $data['level'];?></td>
-								<td><?php echo $data['alamat_pgwai']. ' Kec.' .$data['nama_kelurahan'].' Kab. '.$data['nama_kabupaten'].' Prop. '.$data['nama_provinsi'];?></td>
-								<td><?php echo $data['jabatan'];?></td>
-								<td><a href="hapuspg.php?id_pegawai=<?=$data['id_pegawai']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_pegawai'];?>')">Delete</a><a href="editpg.php?id_pegawai=<?=$data['id_pegawai']?>" class="ico edit">Edit</a></td>
+								<td><?php echo $data['no_sip'];?></td>
+								<td><?php echo $data['nama_spesialisasi'];?></td>
+								<td><a href="hapusdokter.php?id_dokter=<?=$data['id_dokter']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_dokter'];?>')">Delete</a><a href="editdokter.php?id_dokter=<?=$data['id_dokter']?>" class="ico edit">Edit</a></td>
 							</tr>
 							<?php }?>
 						</table>				
@@ -192,22 +163,13 @@
 	
 </body>
 </html>
-<script>
-$(document).ready(function(){
-	$("#input-data").on('change',function(){
-		$.ajax('');
-	});
-});
-</script>
+
 <?php
 // simpan dokter
 if (isset($_POST['submit'])){
 include "../../koneksi.php";
-	$sql = "insert into dokter (nip, nama_pegawai, level, no_id_pegawai, alamat_pgwai, id_kelurahan, jk_pegawai, tgl_lhr_pgwai, kk_pegawai, 	
-			posisi_pgawai, no_telp_pegawai, golongan, jabatan, pangkat, no_sk, tgl_sk, tgl_masuk_unit, pnddkn, pekerjaan, agama, kawin ) 
-			values ('$_POST[nip]', '$_POST[nama_pegawai]', '$_POST[level]', '$_POST[no_id_pegawai]', '$_POST[alamat_pgwai]', '$_POST[id_kelurahan]',  '$_POST[jk_pegawai]', '$_POST[tgl_lhr_pgwai]', '$_POST[kk_pegawai]', '$_POST[posisi_pgawai]', '$_POST[no_telp_pegawai]', '$_POST[golongan]', '$_POST[jabatan]', '$_POST[pangkat]', '$_POST[no_sk]', '$_POST[tgl_sk]', '$_POST[tgl_masuk_unit]', '$_POST[pnddkn]', '$_POST[pekerjaan]','$_POST[agama]', '$_POST[kawin]')";
-			echo $sql;
+	$sql = "insert into dokter (id_pegawai, no_sip, id_spesialisasi) values ('$_POST[id_pegawai]', '$_POST[no_sip]','$_POST[id_spesialisasi]')";
 	mysql_query($sql);
-	echo "<meta http-equiv='refresh' content='0; url=pegawai.php'>";
+	echo "<meta http-equiv='refresh' content='0; url=dokter.php'>";
 }
 ?>

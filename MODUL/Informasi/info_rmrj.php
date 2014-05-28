@@ -5,7 +5,7 @@
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
 </head>
-<body>
+<body onLoad="document.postform.elements['rmrj'].focus();">
 <!-- Header -->
 <div id="header">
 	<div class="shell">
@@ -35,8 +35,7 @@
 <!-- End Header -->
 
 <!-- Container -->
-<div id="container">
-	<div class="shell">	
+<div id="container">	
 		
 		<br />
 		<!-- Main -->
@@ -53,48 +52,97 @@
 						<h2 class="left">INFORMASI REKAM MEDIS RAWAT JALAN</h2>
 					</div>
 					<!-- End Box Head -->	
-
+					<?php
+					//untuk koneksi database
+					include "../../koneksi.php";
+						
+					//untuk menantukan tanggal awal dan tanggal akhir data di database
+					$min_tanggal=mysql_fetch_array(mysql_query("select min(tanggal) as min_tanggal from rmrj"));
+					$max_tanggal=mysql_fetch_array(mysql_query("select max(tanggal) as max_tanggal from rmrj"));
+					?>
 					<!-- Table -->
 					<div class="table">
-					<form action=# method=POST>
+					<form action="info_rmrj.php" method="POST" name="postform">
 						<table>
 							<tr>
 								<td> PERIODE </td>
-								<td><input type='text' name='' value=''/></td>
+								<td colspan="2"><input type="text" name="tanggal_awal" size="15" value="<?php echo $min_tanggal['min_tanggal'];?>"/><a href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.postform.tanggal_awal);return false;" ><img src="calender/calender.jpeg" alt="" name="popcal" width="34" height="29" border="0" align="absmiddle" id="popcal" /></a>				
+									</td>
 								<td> &nbsp; S/D</td>
-								<td><input type='text' name='' value=''/></td>
+								<td colspan="2"><input type="text" name="tanggal_akhir" size="15" value="<?php echo $max_tanggal['max_tanggal'];?>"/>
+									<a href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.postform.tanggal_akhir);return false;" ><img src="calender/calender.jpeg" alt="" name="popcal" width="34" height="29" border="0" align="absmiddle" id="popcal" /></a>				
+									</td>
 							</tr>
 							<tr>
-								<td> <input type="submit" name="submit" value=CARI></td>
+								<td> <input type="submit" name="cari" value=CARI></td>
 								<td><input type="reset" name="batal" value=BATAL ></td>
 							</tr>
 							<BR>
 						</table>
 					</FORM>
 					<BR><BR><BR>
+					<?php
+					//di proses jika sudah klik tombol cari
+					if(isset($_POST['cari'])){
+						
+						//menangkap nilai form
+						$rmrj=$_POST['rmrj'];
+						$tanggal_awal=$_POST['tanggal_awal'];
+						$tanggal_akhir=$_POST['tanggal_akhir'];
+						
+						if(empty($nasabah) and empty($tanggal_awal) and empty($tanggal_akhir)){
+							//jika tidak menginput apa2
+							$query=mysql_query("select * from rmrj");
+							
+						}
+						?>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<th>NO.</th>
 								<th>NO. RM</th>
 								<th>NAMA</th>
 								<th>WAKTU</th>
+								<th>DOKTER</th>
 								<th>KLINIK</th>
 								<th>JENIS KASUS</th>
 								<th>NAMA PETUGAS</th>
 								<th>DIAGNOSA</th>
 								<th>AKSI</th>
 							</tr>
+							<?php
+							$no=0;
+							$query = mysql_query("SELECT * FROM  rmrj z
+									left join pendf_rj a on z.id_pendftrn = a.id_pendftrn
+									left outer join pasien b on a.id_pasien = b.id_pasien
+									left outer join kelurahan c on b.id_kelurahan = c.id_kelurahan 
+									left outer join kecamatan d on c.id_kecamatan = d.id_kecamatan
+									left outer join kabupaten e on c.id_kabupaten = e.id_kabupaten
+									left outer join provinsi f on c.id_provinsi = f.id_provinsi
+									left outer join klinik h on a.id_klinik = h.id_klinik
+									left outer join dokter i on a.id_dokter = i.id_dokter
+									left outer join pegawai j on i.id_pegawai = j.id_pegawai
+									left join icd9 k on z.id_icd9 = k.id_icd9
+									left join icd10 l on z.id-icd10 = l.id_icd10
+									left join data_rm m on z.id_rekam_medik = m.id_rekam_medik
+									left join jenis_kasus n on z.id_jenis_kasus = n.id_jenis_kasus");
+								echo "ada yang error:".mysql_error();
+							while($data= mysql_fetch_array($query)){
+							
+							$no++;
+							?>
 							<tr>
-								<td>1</td>
-								<td> 123456</td>
-								<td> PASIEN SIAPA SAJA</td>
-								<td>12-12-2014</td>
-								<td>POLIKLINIK UMUM </td>
-								<td>NON-BEDAH</td>
-								<td>HASAN ANAS ANSHOR</td>
-								<td>DIAGNOSA APA SAJA YANG KAU SUKA DECH</td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><?php echo $no;?></td>
+								<td> <?php echo $data['no_rm'];?></td>
+								<td><?php echo $data['nama_pasien'];?> </td>
+								<td><?php echo $data['waktu'];?> </td>
+								<td><?php echo $data['nama_pegawai'];?> </td>
+								<td><?php echo $data['nama_jk'];?></td>
+								<td><?php echo $data['nama_pegawai'];?></td>
+								<td><?php echo $data['nama_icd10'];?> </td>
+								<td><a href=#></a></td>
 							</tr>
+							<?php }  ?>
+							<?php }  ?>
 						</table>				
 					</div>
 					<!-- Table -->
@@ -107,8 +155,8 @@
 		</div>
 		<!-- Main -->
 	</div>
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
-<!-- End Container -->
+<iframe width=174 height=189 name="gToday:normal:calender/normal.js" id="gToday:normal:calender/normal.js" src="calender/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
+</iframe><!-- End Container -->
 
 <!-- Footer -->
 <div id="footer">
@@ -117,6 +165,8 @@
 	</div>
 </div>
 <!-- End Footer -->
+
+
 	
 </body>
 </html>

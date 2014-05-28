@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(empty($_SESSION['id_pengguna'])){ ?>
+	<meta http-equiv="refresh" content="0;url=../../login.php" /><?php
+}
+include "../../koneksi.php";
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -17,7 +24,7 @@
 				<span>|</span>
 				<a href="#">Ubah Password</a>
 				<span>|</span>
-				<a href="#">Log out</a>
+				<a href="../../logout.php">Log out</a>
 			</div>
 		</div>
 		<!-- End Logo + Top Nav -->
@@ -56,10 +63,9 @@
 					<!-- End Box Head-->
 					
 					<div class="box-content">
-						<a href="rmrj.php" title="Rekam Medis Rawat Jalan"><span><img src="../../css/images/rmrj.jpg"></span></a>
-						<a href="rmri.php" title="Rekam Medis Rawat Inap"><span><img src="../../css/images/rmri.jpg"></span></a> 
-						<a href="pengguna.php" title="Pengguna"><span><img src="../../css/images/pengguna.jpg">  </span></a> 
-						<a href="role.php" title="Role"><span><img src="../../css/images/role.jpg"></span></a>
+					<a href="rmrj.php" title="Rekam Medis Rawat Jalan"><span><img src="../../css/images/rmrj.jpg"></span></a>
+					<a href="rmri.php" title="Rekam Medis Rawat Inap"><span><img src="../../css/images/rmri.jpg"></span></a> 
+					<a href="pengguna.php" title="Pengguna"><span><img src="../../css/images/pengguna.jpg">  </span></a> 
 					</div>
 				</div>
 				<!-- End Box -->

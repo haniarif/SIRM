@@ -5,7 +5,7 @@
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
 </head>
-<body>
+<body onLoad="document.postform.elements['pendaftaran'].focus();">
 <!-- Header -->
 <div id="header">
 	<div class="shell">
@@ -53,26 +53,52 @@
 						<h2 class="left">INFORMASI PENDAFTARAN RAWAT JALAN</h2>
 					</div>
 					<!-- End Box Head -->	
-
+					<?php
+					//untuk koneksi database
+					include "../../koneksi.php";
+						
+					//untuk menantukan tanggal awal dan tanggal akhir data di database
+					$min_tanggal=mysql_fetch_array(mysql_query("select min(tanggal) as min_tanggal from pendf_rj"));
+					$max_tanggal=mysql_fetch_array(mysql_query("select max(tanggal) as max_tanggal from pendf_rj"));
+					?>
 					<!-- Table -->
 					<div class="table">
-					<form action=# method=POST>
+					<form action="info_pndftrn.php" method="POST" name="postform">
 						<table>
 							<tr>
 								<td> PERIODE </td>
-								<td><input type='text' name='' value=''/></td>
+								<td colspan="2"><input type="text" name="tanggal_awal" size="15" /><a href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.postform.tanggal_awal);return false;" ><img src="calender/calender.jpeg" alt="" name="popcal" width="34" height="29" border="0" align="absmiddle" id="popcal" /></a>				
+									</td>
 								<td> &nbsp; S/D</td>
-								<td><input type='text' name='' value=''/></td>
+								<td colspan="2"><input type="text" name="tanggal_akhir" size="15"/>
+									<a href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.postform.tanggal_akhir);return false;" ><img src="calender/calender.jpeg" alt="" name="popcal" width="34" height="29" border="0" align="absmiddle" id="popcal" /></a>				
+									</td>
 							</tr>
 							<tr>
-								<td> <input type="submit" name="submit" value=CARI></td>
+								<td> <input type="submit" name="cari" value=CARI></td>
 								<td><input type="reset" name="batal" value=BATAL ></td>
 							</tr>
 							<BR>
 						</table>
 					</FORM>
 					<BR><BR><BR>
+					<?php
+					//di proses jika sudah klik tombol cari
+					if(isset($_POST['cari'])){
+						
+						//menangkap nilai form
+						$tanggal_awal=$_POST['tanggal_awal'];
+						$tanggal_akhir=$_POST['tanggal_akhir'];
+						
+						
+						?>
+					
+						
+						
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<?php
+							echo "Informasi Pendaftaran dari tanggal " .$tanggal_awal. " s/d " .$tanggal_akhir;
+						?>
 							<tr>
 								<th>NO.</th>
 								<th>TANGGAL</th>
@@ -81,22 +107,42 @@
 								<th>NAMA</th>
 								<th>ALAMAT</th>
 								<th>JENIS KELAMIN</th>
-								<th>PERNIKAHAN</th>
+								<th>LAYANAN</th>
 								<th>KLINIK</th>
-								<th>AKSI</th>
 							</tr>
+							<?php
+							$no=0;
+							$query = mysql_query("SELECT * FROM pendf_rj z
+								left join pasien e on z.id_pasien = e.id_pasien
+								left outer join kelurahan a on e.id_kelurahan = a.id_kelurahan 
+								left outer join kecamatan b on a.id_kecamatan = b.id_kecamatan
+								left outer join kabupaten c on b.id_kabupaten = c.id_kabupaten
+								left outer join provinsi d on c.id_provinsi = d.id_provinsi
+								
+								left join layanan f on z.id_layanan = f.id_layanan
+								left join klinik g on z.id_klinik = g.id_klinik
+								left join dokter h on z.id_dokter = h.id_dokter
+								left outer join pegawai i on h.id_pegawai = i.id_pegawai
+								where z.tanggal between '$tanggal_awal' and '$tanggal_akhir'
+								");
+							while($data= mysql_fetch_array($query)){
+							
+							$no++;
+							?>
 							<tr>
-								<td>1</td>
-								<td>12-12-2014</td>
-								<td>HASAN ANAS ANSHORI </td>
-								<td> 123456</td>
-								<td> PASIEN SIAPA SAJA</td>
-								<td>JL. GOWA MBANGSRI BALONG PANGGANG GRESIK </td>
-								<td><P ALIGN=CENTER>L</P></td>
-								<td>MENIKAH</td>
-								<td>POLIKLINIK UMUM </td>
-								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+								<td><?php echo $no;?></td>
+								<td><?php echo $data['tanggal'];?></td>
+								<td><?php echo $data['nama_pegawai'];?></td>
+								<td> <?php echo $data['no_rm'];?></td>
+								<td><?php echo $data['nama_pasien'];?> </td>
+								<td><?php echo $data['alamat_pasien']. ' Kec.' .$data['nama_kelurahan'].' Kab. '.$data['nama_kabupaten'].' Prop. '.$data['nama_provinsi'];?></td>
+								<td><P ALIGN=CENTER><?php echo $data['jk_pasien'];?></P></td>
+								<td><?php echo $data['nama_layanan'];?></td>
+								<td><?php echo $data['nama_klinik'];?> </td>
+								
 							</tr>
+							<?php }  ?>
+							<?php }  ?>
 						</table>				
 					</div>
 					<!-- Table -->
@@ -109,8 +155,8 @@
 		</div>
 		<!-- Main -->
 	</div>
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
-<!-- End Container -->
+<iframe width=174 height=189 name="gToday:normal:calender/normal.js" id="gToday:normal:calender/normal.js" src="calender/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
+</iframe><!-- End Container -->
 
 <!-- Footer -->
 <div id="footer">
@@ -119,6 +165,8 @@
 	</div>
 </div>
 <!-- End Footer -->
+
+
 	
 </body>
 </html>

@@ -28,7 +28,7 @@ $data = mysql_fetch_array($sql);
 			<div id="top-navigation">
 				<a href="#">Ubah Password</a>
 				<span>|</span>
-				<a href="#">Log out</a>
+				<a href="../../logout.php">Log out</a>
 			</div>
 		</div>
 		<!-- End Logo + Top Nav -->
@@ -81,11 +81,11 @@ $data = mysql_fetch_array($sql);
 								</tr>
 								<tr>
 									<td width="150">Nama</td>
-									<td colspan="3">: <input type="text" name="nama_icd9" size="8" value="<?php echo $data['nama_icd9'];?>"></td>
+									<td colspan="3">: <input type="text" name="nama_icd9" size="8" class="isi" value="<?php echo $data['nama_icd9'];?>"></td>
 								</tr>
 								<tr>
 									<td>Kode</td>
-									<td colspan="3">: <input type="text" name="kode_icd9" size="50" value="<?php echo $data['kode_icd9'];?>"></td>
+									<td colspan="3">: <input type="text" name="kode_icd9" size="50" class="isi" value="<?php echo $data['kode_icd9'];?>"></td>
 								</tr>
 								<tr>
 									<td></td>

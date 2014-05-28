@@ -1,9 +1,21 @@
+<?php
+session_start();
+if(empty($_SESSION['id_pengguna'])){ ?>
+	<meta http-equiv="refresh" content="0;url=../../login.php" /><?php
+}
+include "../../koneksi.php";
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+	<script type="text/javascript" src="../../config/jquery.min.js"></script>
+	<script language="JavaScript" type="text/javascript" src="../../config/auto.js"></script>
+    <script type="text/javascript" src="../../config/jquery.tokeninput.js"></script>
+	<link rel="stylesheet" href="../../css/token-input.css" type="text/css" />
 </head>
 <body>
 <!-- Header -->
@@ -15,7 +27,7 @@
 			<div id="top-navigation">
 				<a href="#">Ubah Password</a>
 				<span>|</span>
-				<a href="#">Log out</a>
+				<a href="../../logout.php">Log out</a>
 			</div>
 		</div>
 		<!-- End Logo + Top Nav -->
@@ -50,14 +62,42 @@
 				<div class="box-content" style="height:443px;">
 					<!-- Table -->
 					<div class="table">
+					<form method="post" action="pembatalan.php" class="form">
 						<table style="float:left" width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td>NO. RM</td>
-								<td><input type=text; name=nama;></td>
+								<td><input type="text" name="id_pendftrn" id="input_data">
+										<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_no_rm", {
+											preventDuplicates: true,
+											theme: "facebook",
+											onAdd: function (item) {
+												get_pasien_rj(item.name)
+											}
+											
+										});
+									});
+									
+									function get_pasien_rj(no_rm){
+										$.ajax({
+											type: 'GET',
+											url: '../../config/file_json.php?aksi=get_pasien_rj&no_rm='+no_rm,
+											dataType: 'json',
+											success: function(data){
+												var pendf_rj = data[0];
+												
+												console.log(pendf_rj);	
+												$('#nama_pasien').val(pendf_rj.name);
+												
+											}
+										});
+									}
+									</script></td>
 							</tr>
 							<tr>
 								<td>NAMA</td>
-								<td><input type=text; name=nama;></td>
+								<td><input type="text" name="id_pendftrn" id="nama_pasien" class="isi"></td>
 							</tr>
 							<tr>
 								<td> <input type="submit" name="submit" value=SIMPAN></td>
@@ -86,3 +126,14 @@
 <!-- End Footer -->
 </body>
 </html>
+<?php
+
+// simpan pembatalan
+if (isset($_POST['submit'])){
+include "../../koneksi.php";
+	mysql_query("insert into pembatalan (id_batal, id_pendftrn) 
+			values ('','$_POST[id_pendftrn]')");
+	echo "<meta http-equiv='refresh' content='0; url=pembatalan.php'>";
+}
+?>
+

@@ -18,6 +18,7 @@ var DEFAULT_SETTINGS = {
     searchDelay: 300,
     minChars: 1,
     propertyToSearch: "name",
+	propertyToSearchNorm: "id",
     jsonContainer: null,
 
 	// Display settings
@@ -43,7 +44,7 @@ var DEFAULT_SETTINGS = {
     idPrefix: "token-input-",
 
 	// Formatters
-    resultsFormatter: function(item){ return "<li>" + item[this.propertyToSearch]+ "</li>" },
+    resultsFormatter: function(item){ return "<li>"+item[this.propertyToSearchNorm] +" " + item[this.propertyToSearch]+ "</li>" },
     tokenFormatter: function(item) { return "<li><p>" + item[this.propertyToSearch] + "</p></li>" },
 
 	// Callbacks

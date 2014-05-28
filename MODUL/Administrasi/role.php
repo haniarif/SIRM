@@ -62,18 +62,26 @@
 
 					<!-- Table -->
 					<div class="table">
-					<a href="#" class="add-button"><span>TAMBAH ROLE</span></a><br>
+					<a href="tambahrole.php" class="add-button"><span>TAMBAH ROLE</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
+								<th>NO.</th>
 								<th>NAMA</th>
-								<th>PERMISSION</th>
 								<th>AKSI</th>
 							</tr>
+							<?php
+							include "../../koneksi.php";
+							$no=0;
+							$query = mysql_query("SELECT * FROM role");
+							while($data= mysql_fetch_array($query)){
+							$no++;
+							?>
 							<tr>
-								<td>DOKTER</td>
-								<td>A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U</td>
+								<td><?php echo $no;?></td>
+								<td><?php echo $data['nama_role'];?></td>
 								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
 							</tr>
+							<?php }?>
 						</table>				
 					</div>
 					<!-- Table -->

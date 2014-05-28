@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(empty($_SESSION['id_pengguna'])){ ?>
+	<meta http-equiv="refresh" content="0;url=../login.php" /><?php
+}
+include "../koneksi.php";
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -17,7 +24,7 @@
 			<div id="top-navigation">
 				<a href="#">Profile Settings</a>
 				<span>|</span>
-				<a href="#">Log out</a>
+				<a href="../logout.php">Log out</a>
 			</div>
 		</div>
 		<!-- End Logo + Top Nav -->

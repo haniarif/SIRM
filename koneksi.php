@@ -2,7 +2,7 @@
 	$host="localhost";
 	$username="root";
 	$password="";
-	$database="si_rm";
+	$database="si_rm4";
 	
 	$conn=mysql_connect("$host","$username","$password");
 	if(!$conn)die("Koneksi Gagal");

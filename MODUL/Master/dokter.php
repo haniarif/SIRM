@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(empty($_SESSION['id_pengguna'])){ ?>
+	<meta http-equiv="refresh" content="0;url=../../login.php" /><?php
+}
+include "../../koneksi.php";
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,7 +13,7 @@
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
 	<script type="text/javascript">
 		function konfirmasi(nama){
-			return confirm('Apakah anda yakin menghapus data '+nama+'?');
+			return confirm('Apakah anda yakin menghapus dokter '+nama+'?');
 		}
 	</script>
 </head>
@@ -20,7 +27,7 @@
 			<div id="top-navigation">
 				<a href="#">Ubah Password</a>
 				<span>|</span>
-				<a href="#">Log out</a>
+				<a href="../../logout.php">Log out</a>
 			</div>
 		</div>
 		<!-- End Logo + Top Nav -->
@@ -29,9 +36,9 @@
 		<div id="navigation">
 			<ul>
 			    <li><a href="master.php" class="active"><span>MASTER DATA</span></a></li>
-				<li><a href="../../transaksi.php"><span>TRANSAKSI</span></a></li>
-			    <li><a href="../../administrasi.php"><span>ADMINISTRASI</span></a></li>
-			    <li><a href="../../informasi.php"><span>INFORMASI</span></a></li>
+				<li><a href="../transaksi/transaksi.php"><span>TRANSAKSI</span></a></li>
+			    <li><a href="../administrasi/administrasi.php"><span>ADMINISTRASI</span></a></li>
+			    <li><a href="../informasi/informasi.php"><span>INFORMASI</span></a></li>
 			</ul>
 		</div>
 		<!-- End Main Nav -->
@@ -70,31 +77,25 @@
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<th>NO.</th>
-								<th>NO. SIP</th>
 								<th>NAMA</th>
+								<th>NO. SIP</th>
 								<th>SPESIALISASI</th>
-								<th>JENIS KELAMIN</th>
-								<th>ALAMAT</th>
 								<th>AKSI</th>
 							</tr>
 							<?php
 								include "../../koneksi.php";
 								$no=0;
-								$query = mysql_query("SELECT * FROM dokter");
+								$query = mysql_query("SELECT * FROM dokter a left join spesialisasi b on a.id_spesialisasi = b.id_spesialisasi
+												left join pegawai c on a.id_pegawai = c.id_pegawai");
 								while($data= mysql_fetch_array($query)){
 								$no++;
 							?>
 							<tr>
 								<td><?php echo $no;?></td>
-								<td><?php echo $data['id_pegawai'];?> </td>
-								<td><?php echo $data['nama'];?> </td>
-								<td><?php 
-								$q=mysql_query("SELECT nama_spesialisasi FROM spesialisasi WHERE id_spesialisasi='$data[id_spesialisasi]'");
-								$data2=mysql_fetch_array($q);
-								echo $data2['nama_spesialisasi'];?> </td>
-								<td><?php echo $data['jk_dokter'];?> </td>
-								<td><?php echo $data['alamat'];?> </td>
-								<td><a href="hapuslayanan.php?id_layanan=<?=$data['id_layanan']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_layanan'];?>')">Delete</a><a href="editlayanan.php?id_layanan=<?=$data['id_layanan']?>" class="ico edit">Edit</a></td>
+								<td><?php echo $data['nama_pegawai'];?> </td>
+								<td><?php echo $data['no_sip'];?> </td>
+								<td><?php echo $data['nama_spesialisasi'];?> </td>
+								<td><a href="hapusdokter.php?id_dokter=<?=$data['id_dokter']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_dokter'];?>')">Delete</a><a href="editdokter.php?id_dokter=<?=$data['id_dokter']?>" class="ico edit">Edit</a></td>
 							</tr>
 							<?php }?>
 						</table>				

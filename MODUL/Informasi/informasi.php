@@ -56,10 +56,8 @@
 					<div class="box-content">
 						<a href="info_pndftrn.php" title="Informasi Pendaftaran Rawat Jalan" ><span><img src="../../css/images/info_kunjungan.jpg"></span></a>
 						<a href="info_mutasi.php" title="Informasi Mutasi Rawat Inap"><span><img src="../../css/images/info_mutasi.jpg"></span></a>
-						<a href="info_rwyt.php" title="Informasi Riwayat Kunjungan"><span><img src="../../css/images/info_riwayat_kunjungan.jpg"></span></a>
-						<a href="#" title="Informasi Demografi Pasien"><span><img src="../../css/images/demografi.jpg"></span></a>
-						<a href="#" title="Informasi 10 Besar Penyakit"><span><img src="../../css/images/penyakit.jpg"></span></a>
-						<a href="#" title="Informasi 10 Besar Penyakit"><span><img src="../../css/images/rujukan.jpg"></span></a>
+						<a href="info_demografi.php" title="Informasi Demografi Pasien"><span><img src="../../css/images/demografi.jpg"></span></a>
+						<a href="info_besarpenyakit.php" title="Informasi 10 Besar Penyakit"><span><img src="../../css/images/penyakit.jpg"></span></a>
 						<a href="#" title="Informasi BOR"><span><img src="../../css/images/info_bor.jpg"></span></a>
 						<a href="info_rmrj.php" title="Informasi Rekam Medis Rawat Jalan"><span><img src="../../css/images/info_rmrj.jpg"></span></a>
 						<a href="info_rmri.php" title="Informasi Rekam Medis Rawat Inap"><span><img src="../../css/images/info_rmri.jpg"></span></a>

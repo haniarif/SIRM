@@ -1,4 +1,11 @@
 <?php
+session_start();
+if(empty($_SESSION['id_pengguna'])){ ?>
+	<meta http-equiv="refresh" content="0;url=../../login.php" /><?php
+}
+include "../../koneksi.php";
+?>
+<?php
 include "../../koneksi.php";
 if(isset($_GET['id_rekam_medik'])){
 $id = $_GET['id_rekam_medik'];
@@ -28,7 +35,7 @@ $data = mysql_fetch_array($sql);
 			<div id="top-navigation">
 				<a href="#">Ubah Password</a>
 				<span>|</span>
-				<a href="#">Log out</a>
+				<a href="../../logout.php">Log out</a>
 			</div>
 		</div>
 		<!-- End Logo + Top Nav -->
@@ -81,7 +88,7 @@ $data = mysql_fetch_array($sql);
 								</tr>
 								<tr>
 									<td>Nama </td>
-									<td colspan="3">: <input type='text' name='nama_rm' value='<?php echo $data['nama_rm'];?>'></td>
+									<td colspan="3">: <input type='text' name='nama_rm' class="isi" value='<?php echo $data['nama_rm'];?>'></td>
 								</tr>
 								<tr>
 									<td>Kategori Rekam Medik </td>

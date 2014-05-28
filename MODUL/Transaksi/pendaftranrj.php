@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(empty($_SESSION['id_pengguna'])){ ?>
+	<meta http-equiv="refresh" content="0;url=../../login.php" /><?php
+}
+include "../../koneksi.php";
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -19,7 +27,7 @@
 			<div id="top-navigation">
 				<a href="#">Ubah Password</a>
 				<span>|</span>
-				<a href="#">Log out</a>
+				<a href="../../logout.php">Log out</a>
 			</div>
 		</div>
 		<!-- End Logo + Top Nav -->
@@ -51,16 +59,28 @@
 				</div>
 				<!-- End Box Head-->
 				
-				<div class="box-content" style="height:620px; width:1200px" >
+				<div class="box-content" style="height:620px; width:900px" >
 					<!-- Table -->
 					<div class="table">
+					<form method="post" action="pendaftranrj.php" class="form">					
 						<table style="float:left" width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
+								<td>Jenis Pasien</td><td>
+									<input type="radio" name="jenis_pasien" value="lama" id="pasien_lama" checked="checked"/> Lama
+									<input type="radio" name="jenis_pasien" value="baru" id="pasien_baru"/> Baru
+								</td>
+								<td> TANGGAL </td>
+								<td><?php
+									$tgl=date('d-m-Y');
+									echo $tgl;
+								?><input type="hidden" name="tanggal" value="<?php echo date('Y-m-d');?>">
+								</td>
+							</tr>
+							<tr style="display:none" id="tr_baru">
 								<td>NO. RM</td>
-								<?php
-										include "../../koneksi.php";
+								<td> 	<?php include "../../koneksi.php";
 										include "../fungsi/fungsi.php";
-										$sql = "SELECT MAX(ID_PASIEN)+1 AS ID FROM pendft_rj z left join pasien e on z.id_pasien = a.id_pasien";
+										$sql = "SELECT MAX(ID_PASIEN)+1 AS ID FROM PASIEN";
 										$query = mysql_query($sql);
 										$data = mysql_fetch_array($query);
 										$nil = 1;
@@ -69,36 +89,69 @@
 										}
 										$value = auto_rm($nil);
 									?>
-								<td><input type="text" name="Id_pasien" id="input_data" value="<?php echo $value;?>">
+									<input type="text" name="no_rm_baru" id="input_data_baru" class="isi" value="<?php echo $value;?>">
+								</td>
+								<td>Rujukan</td>
+								<td><select width=80px name="rujukan"><option value=pilihrujukan>Pilih Rujukan</option>
+																	<option value=rumahsakit>Rumah Sakit</option>
+																	<option value=spkandungan>Spesialis Kandungan</option>
+									</select>
+								</td>
+							</tr>
+							<tr id="tr_lama">
+								<td>NO. RM</td>
+								<td> <input type="text" name="no_rm" id="input_data">
+									<input type="hidden" name="id_pasien" id="id_pasien_lama">
 									<script type='text/javascript'>
 									$(document).ready(function() {
 										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_no_rm", {
 											preventDuplicates: true,
-											theme: "facebook"				
+											theme: "facebook",
+											onAdd: function (item) {
+												get_pasien(item.name)
+											}
+											
 										});
 									});
-									</script>
-								</td>
+									
+									function get_pasien(no_rm){
+										$.ajax({
+											type: 'GET',
+											url: '../../config/file_json.php?aksi=get_pasien&no_rm='+no_rm,
+											dataType: 'json',
+											success: function(data){
+												var pasien = data[0];
+												
+												console.log(pasien);					
+												$("#id_pasien_lama").val(pasien.id_pasien);
+												$('#nama_pasien').val(pasien.name);
+												$('#alamat').val(pasien.alamat_pasien);
+												//$('#input_data4').val(pasien.id_kelurahan);
+												$('#input_data4').tokenInput("add", {id: pasien.id_kelurahan, name: pasien.nama_kelurahan});
+												$('#jk_pasien').val(pasien.jk_pasien);
+												$('#tgl_lhr').val(pasien.tgl_lhr);
+												$('#gol_darah').val(pasien.gol_darah);
+												$('#perkawinan').val(pasien.perkawinan);
+												$('#penddkn').val(pasien.penddkn);
+												$('#pekerjaan').val(pasien.pekerjaan);
+												$('#agama_pasien').val(pasien.agama_pasien);
+												
+											}
+										});
+									}
+									</script></td>
 								<td>Rujukan</td>
-								<td><select width=80px><option value=pilihrujukan>Pilih Rujukan</option>
+								<td><select width=80px name="rujukan"><option value=pilihrujukan>Pilih Rujukan</option>
+																	<option value=rumahsakit>Rumah Sakit</option>
+																	<option value=spkandungan>Spesialis Kandungan</option>
 									</select>
 								</td>
 							</tr>
 							<tr>
 								<td>NAMA</td>
-								<td><input type="text" name="id_pasien" id="input_data2" placeholder="require">
-									
-									<script type='text/javascript'>
-									$(document).ready(function() {
-										$("#input_data2").tokenInput("../../config/file_json.php?aksi=cari_pasien", {
-											preventDuplicates: true,
-											theme: "facebook"				
-										});
-									});
-									</script>
-								</td>
+								<td><input type="text" name="nama_pasien" class="isi" id="nama_pasien"></td>
 								<td>Layanan</td>
-								<td><input type="text" name="id_layanan" id="input_data3" placeholder="require">
+								<td><input type="text" name="id_layanan" id="input_data3" >
 									
 									<script type='text/javascript'>
 									$(document).ready(function() {
@@ -107,17 +160,26 @@
 											theme: "facebook"				
 										});
 									});
-									</script></td>
+									</script></td>								
 							</tr>
 							<tr>
 								<td>ALAMAT</td>
-								<td><input type=text; name=nama; class="isi"></td>
+								<td><input type="text" name="alamat_pasien" class="isi" id="alamat"></td>
 								<td>DOKTER</td>
-								<td><input type=text; name=nama; class="isi"></td>
+								<td><input type="text" name="id_dokter" id="input_data6" >
+									
+									<script type='text/javascript'>
+									$(document).ready(function() {
+										$("#input_data6").tokenInput("../../config/file_json.php?aksi=cari_dokter", {
+											preventDuplicates: true,
+											theme: "facebook"				
+										});
+									});
+									</script></td>
 							</tr>
 							<tr>
 								<td>KELURAHAN</td>
-								<td><input type="text" name="id_kelurahan" id="input_data4" placeholder="require">
+								<td><input type="text" name="id_kelurahan" id="input_data4">
 									
 									<script type='text/javascript'>
 									$(document).ready(function() {
@@ -141,42 +203,56 @@
 									</script></td>
 							</tr>
 						</table>
-						<table style="float:left">
+						<table style="float:left; margin-left:1px;" >
 							<tr>
 								<td>JENIS KELAMIN</td>
-									<td><input type="radio" name="radioku" value=laki-laki> Laki-laki
-										<input type="radio" name="radioku" value=perempuan> Perempuan</td>
+									<td><input type="radio" id="jk_pasien" name="jk_pasien" value=laki-laki> Laki-laki
+										<input type="radio"  id="jk_pasien" name="jk_pasien" value=perempuan> Perempuan</td>
 							</td>
 							<tr>
 								<td>TANGGAL LAHIR</td>
-								<td><input type=text; name=nama; size=13px > UMUR :
-								<input type=text; name=nama; size=1px>thn
-								<input type=text; name=nama; size=1px>bln
-								<input type=text; name=nama; size=1px>hr</td>
-							</tr>
+								<td><input type="date" name="tgl_lhr" class="isi" id="tgl_lhr"></td>
 							<tr>
 								<td>GOL. DARAH</td>
-								<td><select width=50px ><option value=pilihgol >Pilih Gol. Darah</option>
+								<td><select width=50px name="gol_darah" id="gol_darah" ><option value=pilihgol >Pilih Gol. Darah</option>
+																		<option value=o>O</option>
+																		<option value=ab>AB</option>
+																		<option value=a>A</option>
+																		<option value=b>B</option>
 									</select></td>
 							</tr>
 							<tr>
 								<td>STATUS PERKAWINAN</td>
-								<td><select width=50px><option value=pilihstatus>Pilih Status</option>
+								<td><select width=50px id="perkawinan" name="perkawinan"><option value=pilihstatus>Pilih Status</option>
+													   <option value=islam>Menikah</option>
+													   <option value=kristen>Belum Menikah</option>
 									</select></td>
 							</tr>
 							<tr>
 								<td>PENDIDIKAN TERAKHIR</td>
-								<td><select width=50px><option value=pilihpendidikan>Pilih Pendidikan</option>
+								<td><select width=50px id="penddkn" name="penddkn"><option value=pilihpendidikan>Pilih Pendidikan</option>
+														<option value=sd>SD</option>
+														<option value=smp>SMP</option>
+														<option value=sma>SMA</option>
+														<option value=s1>S1</option>
 									</select></td>
 							</tr>
 							<tr>
 								<td>PEKERJAAN</td>
-								<td><select width=50px><option value=pilihpekerjaan>Pilih Pekerjaan</option>
+								<td><select width=50px id="pekerjaan" name="pekerjaan"><option value=pilihpekerjaan>Pilih Pekerjaan</option>
+														<option value=wiraswasta>Wiraswasta</option>
+														<option value=pns>PNS</option>
+														<option value=tidakbekerja>Tidak Bekerja</option>
 									</select></td>
 							</tr>
 							<tr>
 								<td>AGAMA</td>
-								<td><select width=50px><option value=pilihagama>Pilih Agama</option>
+								<td><select width=50px id="agama_pasien" name="agama_pasien"><option value=pilihagama>Pilih Agama</option>
+													   <option value=islam>Islam</option>
+													   <option value=kristen>Kristen</option>
+													   <option value=katolik>Katolik</option>
+													   <option value=hindu>Hindu</option>
+													   <option value=budha>Budha</option>
 									</select></td>
 							</tr>
 							<tr>
@@ -184,10 +260,10 @@
 								<td><input type="reset" name="batal" value=BATAL ></td>
 							</tr>
 						</table>	
-						<div class="box" style="float:right;width: 44%;height:238px;margin-top:-31%;margin-left:60%;">					
+						<div class="box" style="float:left;width: 45%;height:238px;margin-top:-33%;margin-left:53%;">					
 							<!-- Box Head -->
-							<div class="box-head">
-								<h2>PENANGGUNG JAWAB</h2>
+							<div class="box-head" style="width: 95%;">
+								<h2  >PENANGGUNG JAWAB</h2>
 							</div>
 							<!-- End Box Head-->
 							
@@ -196,33 +272,36 @@
 								<table>
 									<tr>
 										<td>NAMA</td>
-										<td><input type=text; name=namapenanggungjawab; class="isi"></td>
+										<td><input type=text; name="nama_pj"; class="isi"></td>
 									</tr>
 									<tr>
 										<td>POSISI</td>
-										<td><select width=50px><option value=pilihposisi>Pilih Posisi</option>
+										<td><select width=50px name="posisi_pj"><option value=pilihposisi>Pilih Posisi</option>
+															<option value=ayah>Ayah</option>
+														   <option value=ibu>Ibu</option>
+														   <option value=anak>Anak</option>
+														   <option value=paman>Paman</option>
+														   <option value=bibi>Bibi</option>
 											</select></td>
 									</tr>
 									<tr>
 										<td>TANGGAL LAHIR</td>
-										<td><input type=text; name=nama; size=13px class="isi"> </td>
-									</tr>
-									<tr>
-										<td>UMUR :</td>
-										<td><input type=text; name=nama; size=1px>thn
-										<input type=text; name=nama; size=1px>bln
-										<input type=text; name=nama; size=1px>hr</td>
+										<td><input type="date" name="tgl_lhr_pj" class="isi"> </td>
 									</tr>
 									<tr>
 										<td>PEKERJAAN</td>
-										<td><select width=50px><option value=pilihpekerjaan>Pilih Pekerjaan</option>
+										<td><select  name="pkrjaan_pj"><option value=pilihpekerjaan>Pilih Pekerjaan</option>
+														<option value=wiraswasta>Wiraswasta</option>
+														<option value=pns>PNS</option>
+														<option value=tidakbekerja>Tidak Bekerja</option>
 											</select></td>
 									</tr>
 									<tr>
 										<td>No Telp.</td>
-										<td><input type=text; name=notelppenanggungjawab; class="isi"></td>
+										<td><input type="text" name="no_telp_pj" class="isi"></td>
 									</tr>
-								</table>				
+								</table>	
+							</form>
 							</div>
 						</div>
 					</div>
@@ -237,24 +316,56 @@
 <!-- End Container -->
 
 <!-- Footer -->
-<div id="footer">
+<div id="footer" style="clear:both">
 	<div class="shell">
 		<span class="left">&copy; 2014 - SIRM</span>
 	</div>
 </div>
 <!-- End Footer -->
+<script type="text/javascript">
+	$("#pasien_lama").click(function(){
+		$('#tr_baru').hide();
+		$('#tr_lama').show();
+	});
+	$("#pasien_baru").click(function(){
+		$('#tr_lama').hide();
+		$('#tr_baru').show();
+	});
+</script>
 </body>
 </html>
 
 <?php
-	$query = mysql_query("SELECT * FROM pendf_rj z
-	left join kelurahan a on z.id_kelurahan = a.id_kelurahan 
-	left outer join kecamatan b on a.id_kecamatan = b.id_kecamatan
-	left outer join kabupaten c on b.id_kabupaten = c.id_kabupaten
-	left outer join provinsi d on c.id_provinsi = d.id_provinsi
-	left join pasien e on z.id_pasien = e.id_pasien
-	left join layanan f on z.id_layanan = f.id_layanan
-	left join klinik g on z.id_klinik = g.id_klinik");
-	while($data= mysql_fetch_array($query)){
-		}					
-							?>
+
+// simpan pendaftaran
+if (isset($_POST['submit'])){
+
+include "../../koneksi.php";
+	if($_POST['jenis_pasien']=='baru'){
+		$sql = "insert into pasien 
+		(no_rm,  nama_pasien,  alamat_pasien, id_kelurahan, jk_pasien, tgl_lhr, gol_darah, agama_pasien, penddkn, pekerjaan, perkawinan)	values ('$_POST[no_rm_baru]','$_POST[nama_pasien]','$_POST[alamat_pasien]','$_POST[id_kelurahan]','$_POST[jk_pasien]','$_POST[tgl_lhr]',
+	'$_POST[gol_darah]','$_POST[agama_pasien]','$_POST[penddkn]','$_POST[pekerjaan]','$_POST[perkawinan]')";
+	
+	mysql_query($sql);
+	
+	$id_pasien=mysql_insert_id();
+	
+	$sql = "insert into pendf_rj (id_pasien, id_layanan, tanggal, rujukan, id_klinik, id_dokter, nama_pj, posisi_pj, tgl_lhr_pj, pkrjaan_pj, no_telp_pj) 
+			values ('$id_pasien', '$_POST[id_layanan]',  '$_POST[tanggal]','$_POST[rujukan]', '$_POST[id_klinik]', '$_POST[id_dokter]', '$_POST[nama_pj]', '$_POST[posisi_pj]', '$_POST[tgl_lhr_pj]', '$_POST[pkrjaan_pj]', '$_POST[no_telp_pj]')";
+			echo $sql;
+	mysql_query($sql);
+	
+	}
+	else{
+		$sql = "insert into pendf_rj (id_pasien, id_layanan, tanggal, rujukan, id_klinik, id_dokter, nama_pj, posisi_pj, tgl_lhr_pj, pkrjaan_pj, no_telp_pj) 
+			values ('$_POST[id_pasien]', '$_POST[id_layanan]', '$_POST[tanggal]','$_POST[rujukan]', '$_POST[id_klinik]', '$_POST[id_dokter]', '$_POST[nama_pj]', '$_POST[posisi_pj]', '$_POST[tgl_lhr_pj]', '$_POST[pkrjaan_pj]', '$_POST[no_telp_pj]')";
+			echo $sql;
+	mysql_query($sql);
+	}
+	
+	$id_pendaftaran_rj=mysql_insert_id();
+
+	
+	echo "<meta http-equiv='refresh' content='0; url=simpan_rj.php?id=$id_pendaftaran_rj'>";
+}
+?>

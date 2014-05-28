@@ -66,7 +66,7 @@
 							<table width="100%" border="0" cellspacing="0" cellpadding="0">
 								<tr>
 									<td>Nama </td>
-									<td colspan="3">: <input type="text" name="nama_klinik" size="50" placeholder="require"></td>
+									<td colspan="3">: <input type="text" name="nama_klinik" size="50" class="isi" placeholder="require"></td>
 								</tr>
 								<tr>
 									<td></td>

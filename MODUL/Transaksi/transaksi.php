@@ -62,15 +62,14 @@
 				<!-- End Box -->
 			</div>
 					
-				</div>
-				<!-- End Box -->			
 		</div>
+				<!-- End Box -->			
+	</div>
 		<!-- Main -->
-<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
 <!-- End Container -->
 
 <!-- Footer -->
-<div id="footer">
+<div id="footer" style="clear:both; width:1241px;">
 	<div class="shell">
 		<span class="left">&copy; 2014 - SIRM</span>
 	</div>
