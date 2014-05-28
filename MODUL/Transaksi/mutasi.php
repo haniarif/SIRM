@@ -88,6 +88,7 @@ if($id_mutasi!=null){
 					<div class="box-content" >
 						<!-- Table -->
 					<div class="table">
+<<<<<<< HEAD
 						<form action="mutasi.php" method="POST">
 						<input type="hidden" name="id_mutasi" value="<?php echo $id_mutasi;?>"/>
 						<input type="hidden" name="id_kamar_lama" value="<?php echo $id_kamar_lama;?>"/>
@@ -105,17 +106,30 @@ if($id_mutasi!=null){
 								?>
 								<input type="hidden" name="id_pendftrn" id="id_pendftrn" value="<?php echo $id_pendaftaran;?>">
 										<script type='text/javascript'>
+=======
+						<form action="simpan_mutasi.php" method="POST">
+						<table>
+							<tr>
+								<td> No. RM </td>
+								<td> <input type="text" name="id_pendftrn" id="input_data">
+									<script type='text/javascript'>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 									$(document).ready(function() {
 										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_no_rm", {
 											preventDuplicates: true,
 											theme: "facebook",
 											onAdd: function (item) {
+<<<<<<< HEAD
 												get_pasien_rj(item.name)
+=======
+												get_pasien(item.name)
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 											}
 											
 										});
 									});
 									
+<<<<<<< HEAD
 									function get_pasien_rj(no_rm){
 										$.ajax({
 											type: 'GET',
@@ -128,6 +142,18 @@ if($id_mutasi!=null){
 												$('#nama_pasien').val(pendf_rj.name);
 												$('#id_pendftrn').val(pendf_rj.id_pendftrn);
 												
+=======
+									function get_pasien(no_rm){
+										$.ajax({
+											type: 'GET',
+											url: '../../config/file_json.php?aksi=get_pasien&no_rm='+no_rm,
+											dataType: 'json',
+											success: function(data){
+												var pasien = data[0];
+												
+												console.log(pasien);
+												$('#nama_pasien').val(pasien.name);
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 											}
 										});
 									}
@@ -135,6 +161,7 @@ if($id_mutasi!=null){
 							</tr>
 							<tr>
 								<td> NAMA </td>
+<<<<<<< HEAD
 								<td>
 								<?php
 									if($nama_pasien==null){
@@ -215,6 +242,21 @@ if($id_mutasi!=null){
 							</tr>
 							<tr>
 								<td> <input type="hidden" name="status"> </td>
+=======
+								<td><input type='text' name='tanggal_jual' class="isi" id="nama_pasien" /></td>
+							</tr>
+							<tr>
+								<td> TANGGAL MASUK </td>
+								<td><input type='date' name='' value='' class="isi"/></td>
+							</tr>
+							<tr>
+								<td> TANGGAL </td>
+								<td><?php
+									$tgl=date('d-m-Y');
+									echo $tgl;
+								?>
+								</td>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 							</tr>
 							<tr>
 								<td> &nbsp; </td>
@@ -224,17 +266,33 @@ if($id_mutasi!=null){
 						</table>
 						<input type="button" name="add_btn" id="add_btn" value=TAMBAHLAYANAN>
 						
+<<<<<<< HEAD
 						<table id="tablemutasi">
+=======
+						<table>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 						<tr>
 								<td> NO </td>
 								<td> LAYANAN</td>
 								<td> FREKUENSI </td>
+<<<<<<< HEAD
 							</tr>
 						</table>
 						<tr>
 							<input type="submit" class="button" name="submit" value="SIMPAN" />
 							<input type="reset" class="button" value="BATAL" />
 						</tr>
+=======
+								<td> PETUGAS</td>
+								<td> DOKTER1 </td>
+								<td> DOKTER2 </td>
+							</tr>
+							<tr>
+							<td><input type="submit" name="submit" value=SIMPAN></td>
+							<td><input type="reset" name="batal" value=BATAL ></td>
+							</tr>
+						</table>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 					</div>
 					</div>
 					</div>
@@ -250,7 +308,11 @@ if($id_mutasi!=null){
 <!-- End Container -->
 
 <!-- Footer -->
+<<<<<<< HEAD
 <div id="footer" style="clear:both; width:1241px;">
+=======
+<div id="footer" style="clear:both">
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 	<div class="shell">
 		<span class="left">&copy; 2014 - SIRM</span>
 	</div>

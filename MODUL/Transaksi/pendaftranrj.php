@@ -77,6 +77,7 @@ include "../../koneksi.php";
 								</td>
 							</tr>
 							<tr style="display:none" id="tr_baru">
+<<<<<<< HEAD
 								<td>NO. RM</td>
 								<td> 	<?php include "../../koneksi.php";
 										include "../fungsi/fungsi.php";
@@ -100,6 +101,14 @@ include "../../koneksi.php";
 							</tr>
 							<tr id="tr_lama">
 								<td>NO. RM</td>
+=======
+								<td>NO. RM</td>
+								<td> <input type="text" name="no_rm_baru" id="input_data_baru" class="isi">
+								</td>
+							</tr>
+							<tr id="tr_lama">
+								<td>NO. RM</td>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 								<td> <input type="text" name="no_rm" id="input_data">
 									<input type="hidden" name="id_pasien" id="id_pasien_lama">
 									<script type='text/javascript'>
@@ -134,7 +143,11 @@ include "../../koneksi.php";
 												$('#perkawinan').val(pasien.perkawinan);
 												$('#penddkn').val(pasien.penddkn);
 												$('#pekerjaan').val(pasien.pekerjaan);
+<<<<<<< HEAD
 												$('#agama_pasien').val(pasien.agama_pasien);
+=======
+												$('#agama').val(pasien.agama_pasien);
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 												
 											}
 										});
@@ -260,9 +273,15 @@ include "../../koneksi.php";
 								<td><input type="reset" name="batal" value=BATAL ></td>
 							</tr>
 						</table>	
+<<<<<<< HEAD
 						<div class="box" style="float:left;width: 45%;height:238px;margin-top:-33%;margin-left:53%;">					
 							<!-- Box Head -->
 							<div class="box-head" style="width: 95%;">
+=======
+						<div class="box" style="float:left;width: 45%;height:238px;margin-top:-38%;margin-left:53%;">					
+							<!-- Box Head -->
+							<div class="box-head" style="width: 110%;">
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 								<h2  >PENANGGUNG JAWAB</h2>
 							</div>
 							<!-- End Box Head-->
@@ -290,7 +309,11 @@ include "../../koneksi.php";
 									</tr>
 									<tr>
 										<td>PEKERJAAN</td>
+<<<<<<< HEAD
 										<td><select  name="pkrjaan_pj"><option value=pilihpekerjaan>Pilih Pekerjaan</option>
+=======
+										<td><select  nama="pkrjaan_pj"><option value=pilihpekerjaan>Pilih Pekerjaan</option>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 														<option value=wiraswasta>Wiraswasta</option>
 														<option value=pns>PNS</option>
 														<option value=tidakbekerja>Tidak Bekerja</option>
@@ -350,15 +373,27 @@ include "../../koneksi.php";
 	
 	$id_pasien=mysql_insert_id();
 	
+<<<<<<< HEAD
 	$sql = "insert into pendf_rj (id_pasien, id_layanan, tanggal, rujukan, id_klinik, id_dokter, nama_pj, posisi_pj, tgl_lhr_pj, pkrjaan_pj, no_telp_pj) 
 			values ('$id_pasien', '$_POST[id_layanan]',  '$_POST[tanggal]','$_POST[rujukan]', '$_POST[id_klinik]', '$_POST[id_dokter]', '$_POST[nama_pj]', '$_POST[posisi_pj]', '$_POST[tgl_lhr_pj]', '$_POST[pkrjaan_pj]', '$_POST[no_telp_pj]')";
+=======
+	$sql = "insert into pendf_rj (id_pasien, id_layanan, tanggal, rujukan, id_klinik, id_dokter, nama_pj, posisi_pj, tgl_lhr_pj, umur_pj, 	
+			pkrjaan_pj, no_telp_pj) 
+			values ('$id_pasien', '$_POST[id_layanan]',  '$_POST[tanggal]','$_POST[rujukan]', '$_POST[id_klinik]', '$_POST[id_dokter]', '$_POST[nama_pj]', '$_POST[posisi_pj]', '$_POST[tgl_lhr_pj]', '$_POST[umur_pj]', '$_POST[pkrjaan_pj]', '$_POST[no_telp_pj]')";
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 			echo $sql;
 	mysql_query($sql);
 	
 	}
 	else{
+<<<<<<< HEAD
 		$sql = "insert into pendf_rj (id_pasien, id_layanan, tanggal, rujukan, id_klinik, id_dokter, nama_pj, posisi_pj, tgl_lhr_pj, pkrjaan_pj, no_telp_pj) 
 			values ('$_POST[id_pasien]', '$_POST[id_layanan]', '$_POST[tanggal]','$_POST[rujukan]', '$_POST[id_klinik]', '$_POST[id_dokter]', '$_POST[nama_pj]', '$_POST[posisi_pj]', '$_POST[tgl_lhr_pj]', '$_POST[pkrjaan_pj]', '$_POST[no_telp_pj]')";
+=======
+		$sql = "insert into pendf_rj (id_pasien, id_layanan, tanggal, rujukan, id_klinik, id_dokter, nama_pj, posisi_pj, tgl_lhr_pj, umur_pj, 	
+			pkrjaan_pj, no_telp_pj) 
+			values ('$_POST[id_pasien]', '$_POST[id_layanan]', '$_POST[tanggal]','$_POST[rujukan]', '$_POST[id_klinik]', '$_POST[id_dokter]', '$_POST[nama_pj]', '$_POST[posisi_pj]', '$_POST[tgl_lhr_pj]', '$_POST[umur_pj]', '$_POST[pkrjaan_pj]', '$_POST[no_telp_pj]')";
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 			echo $sql;
 	mysql_query($sql);
 	}

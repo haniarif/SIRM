@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 session_start();
 if(empty($_SESSION['id_pengguna'])){ ?>
 	<meta http-equiv="refresh" content="0;url=../../login.php" /><?php
@@ -6,6 +7,10 @@ if(empty($_SESSION['id_pengguna'])){ ?>
 include "../../koneksi.php";
 ?>
 
+=======
+include "../../koneksi.php";
+?>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,7 +32,11 @@ include "../../koneksi.php";
 			<div id="top-navigation">
 				<a href="#">Ubah Password</a>
 				<span>|</span>
+<<<<<<< HEAD
 				<a href="../../logout.php">Log out</a>
+=======
+				<a href="#">Log out</a>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 			</div>
 		</div>
 		<!-- End Logo + Top Nav -->
@@ -79,7 +88,10 @@ include "../../koneksi.php";
 								if(!empty($role)){
 									foreach($role as $val){
 										$insert_role	= mysql_query("INSERT INTO pengguna_role values('$id_pengguna', '$val')");
+<<<<<<< HEAD
 										echo "<meta http-equiv='refresh' content='0; url=pengguna.php'>";
+=======
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 										if($insert_role == FALSE){
 											$error = TRUE;
 										}
@@ -87,8 +99,11 @@ include "../../koneksi.php";
 									if(!empty($error)){
 										echo "Gagal menyimpan akses pengguna";
 									}else{
+<<<<<<< HEAD
 										
 										
+=======
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 										echo "Berhasil menambahkan pengguna";
 									}
 								}

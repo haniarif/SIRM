@@ -5,8 +5,11 @@
 	<title>SISTEM INFORMASI REKAM MEDIS</title>
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
 		<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
+<<<<<<< HEAD
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="jquery_append.js"></script> 
+=======
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 	<script type="text/javascript" src="../../config/jquery.min.js"></script>
 	<script language="JavaScript" type="text/javascript" src="../../config/auto.js"></script>
     <script type="text/javascript" src="../../config/jquery.tokeninput.js"></script>
@@ -56,7 +59,11 @@
 					<h2>REKAM MEDIS RAWAT JALAN</h2>
 				</div>
 				<!-- End Box Head-->
+<<<<<<< HEAD
 						<div class="box" style="float:left;width: 48%;height:470px;margin-top:1%;margin-left:1%;">					
+=======
+						<div class="box" style="float:left;width: 49%;height:470px;margin-top:1%;margin-left:1%;">					
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 							<!-- Box Head -->
 							<div class="box-head"  style="height:25px; width: 96%;">
 								<h2>DATA PASIEN</h2>
@@ -68,8 +75,12 @@
 								<table>
 									<tr>
 										<td>NO. RM</td>
+<<<<<<< HEAD
 										<td><input type="hidden" name="id_pendftrn" id="id_pendftrn">
 										<input type="text" id="input_data">
+=======
+										<td><input type="text" name="no_rm" id="input_data">
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 										<script type='text/javascript'>
 									$(document).ready(function() {
 										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_no_rm", {
@@ -89,11 +100,15 @@
 											dataType: 'json',
 											success: function(data){
 												var pendf_rj = data[0];
+<<<<<<< HEAD
 												var pegawai = data[0];
+=======
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 												
 												console.log(pendf_rj);	
 												$('#nama_pasien').val(pendf_rj.name);
 												$('#alamat').val(pendf_rj.alamat_pasien);
+<<<<<<< HEAD
 												$('#input_data4').tokenInput("add", {id: pendf_rj.id_kelurahan, name: pendf_rj.nama_kelurahan});
 												$('#jk_pasien').val(pendf_rj.jk_pasien);
 												$('#tgl_lhr').val(pendf_rj.tgl_lhr);
@@ -104,6 +119,18 @@
 												$('#id_pendftrn').val(pendf_rj.id_pendftrn);
 												
 											
+=======
+												//$('#input_data4').val(pasien.id_kelurahan);
+												$('#input_data4').tokenInput("add", {id: pasien.id_kelurahan, name: pasien.nama_kelurahan});
+												$('#jk_pasien').val(pendf_rj.jk_pasien);
+												$('#tgl_lhr').val(pendf_rj.tgl_lhr);
+												$('#gol_darah').val(pendf_rj.gol_darah);
+												$('#perkawinan').val(pendf_rj.perkawinan);
+												$('#penddkn').val(pendf_rj.penddkn);
+												$('#pekerjaan').val(pendf_rj.pekerjaan);
+												$('#agama').val(pendf_rj.agama_pasien);
+												
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 											}
 										});
 									}
@@ -115,7 +142,11 @@
 									</tr>
 									<tr>
 										<td>Alamat</td>
+<<<<<<< HEAD
 										<td><input type="text" name="alamat_pasien" class="isi" id="alamat"></input></td>
+=======
+										<td><input type="text" name="alamat_pasien" class="isi" id="alamat"></textarea></td>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 									</tr>
 									<tr>
 									<td>KELURAHAN</td>
@@ -192,6 +223,7 @@
 								<table>
 									<tr>
 										<td>WAKTU</td>
+<<<<<<< HEAD
 										<td><input type="date" name="tanggal" size="15"/><input type="time" name="waktu" size="5"/><input type="hidden" name="tanggal" size="15" value="<?php echo date('Y-m-d');?>"/></td>
 									</tr>
 									<tr>
@@ -201,6 +233,17 @@
 									<tr>
 										<td>DOKTER</td>
 										<td><input type="text" name="nama_pegawai" class="isi" id="nama_pegawai"></td>
+=======
+										<td><input type="text" name="nafas" class="isi"></td>
+									</tr>
+									<tr>
+										<td>KLINIK</td>
+										<td><input type="text" name="nafas" class="isi"></td>
+									</tr>
+									<tr>
+										<td>DOKTER</td>
+										<td><input type="text" name="nafas" class="isi"></td>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 									</tr>
 									<tr>
 										<td>ANAMNESA</td>
@@ -244,8 +287,13 @@
 									</tr>
 								</table>	
 							</div>
+<<<<<<< HEAD
 					</div>
 					<div class="box" style="float:left;width: 49%;height:400px;margin-top:23%;margin-left:-49%;">					
+=======
+						</div>
+					<div class="box" style="float:left;width: 49%;height:100px;margin-top:50%;margin-left:1%;">					
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 							<!-- Box Head -->
 							<div class="box-head"  style="height:25px; width: 96%;">
 								<h2>DIAGNOSA </h2>

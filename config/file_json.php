@@ -156,6 +156,7 @@ if(isset($_GET['aksi'])){
 		}
 		echo json_encode($return_arr);
 	}
+<<<<<<< HEAD
 	else if($_GET['aksi'] == 'cari_no_rm_rj'){
 		$return_arr = array();
 		$fetch = mysql_query("SELECT * FROM pendf_rj where no_rm LIKE '%$_GET[q]%' limit 10 "); 
@@ -167,11 +168,14 @@ if(isset($_GET['aksi'])){
 		}
 		echo json_encode($return_arr);
 	}
+=======
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 	else if($_GET['aksi'] == 'get_pasien_rj'){
 		$return_arr = array();
 		$no_rm = $_GET['no_rm'];
 		
 		$fetch = mysql_query("SELECT * FROM pendf_rj z
+<<<<<<< HEAD
 	left join pasien e on z.id_pasien = e.id_pasien
 	left outer join kelurahan a on e.id_kelurahan = a.id_kelurahan 
 	left outer join kecamatan b on a.id_kecamatan = b.id_kecamatan
@@ -181,6 +185,17 @@ if(isset($_GET['aksi'])){
 	left join klinik g on z.id_klinik = g.id_klinik
 	left join dokter h on z.id_dokter = h.id_dokter
 	left outer join pegawai i on h.id_pegawai = i.id_pegawai where no_rm LIKE '".$no_rm."'  "); 
+=======
+							left join kelurahan a on z.id_kelurahan = a.id_kelurahan 
+							left outer join kecamatan b on a.id_kecamatan = b.id_kecamatan
+							left outer join kabupaten c on b.id_kabupaten = c.id_kabupaten
+							left outer join provinsi d on c.id_provinsi = d.id_provinsi
+							left join pasien e on z.id_pasien = e.id_pasien
+							left join layanan f on z.id_layanan = f.id_layanan
+							left join klinik g on z.id_klinik = g.id_klinik
+							left join dokter h on z.id_dokter = h.id_dokter
+							left outer join pegawai i on h.id_pegawai = i.id_pegawai where no_rm LIKE '".$no_rm."'  "); 
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 		while ($row = mysql_fetch_array($fetch, MYSQL_ASSOC)) {
 			$row_array['name'] = $row['nama_pasien'];
 			$row_array['id'] = $row['no_rm'];
@@ -191,9 +206,16 @@ if(isset($_GET['aksi'])){
 			$row_array['jk_pasien'] = $row['jk_pasien'];
 			$row_array['tgl_lhr'] = $row['tgl_lhr'];
 			$row_array['gol_darah'] = $row['gol_darah'];
+<<<<<<< HEAD
 			$row_array['agama_pasien'] = $row['agama_pasien'];
 			$row_array['nama_pegawai'] = $row['nama_pegawai'];
 			$row_array['nama_klinik'] = $row['nama_klinik'];
+=======
+			$row_array['perkawinan'] = $row['perkawinan'];
+			$row_array['penddkn'] = $row['penddkn'];
+			$row_array['pekerjaan'] = $row['pekerjaan'];
+			$row_array['agama_pasien'] = $row['agama_pasien'];
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 			array_push($return_arr,$row_array);
 		}
 		echo json_encode($return_arr);
@@ -208,6 +230,7 @@ if(isset($_GET['aksi'])){
 		}
 		echo json_encode($return_arr);
 	}
+<<<<<<< HEAD
 	else if($_GET['aksi'] =='cari_icd10'){
 		$return_arr = array();
 		$fetch = mysql_query("SELECT * FROM icd10 where nama_icd10 LIKE '%$_GET[q]%' limit 10 "); 
@@ -332,5 +355,8 @@ else if($_GET['aksi'] =='cari_icd9'){
 		}
 		echo json_encode($return_arr);
 }
+=======
+	
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 }
 ?>

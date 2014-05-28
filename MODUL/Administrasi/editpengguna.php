@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 session_start();
 if(empty($_SESSION['id_pengguna'])){ ?>
 	<meta http-equiv="refresh" content="0;url=../../login.php" /><?php
@@ -6,6 +7,11 @@ if(empty($_SESSION['id_pengguna'])){ ?>
 include "../../koneksi.php";
 ?>
 
+=======
+
+include "../../koneksi.php";
+?>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,7 +33,11 @@ include "../../koneksi.php";
 			<div id="top-navigation">
 				<a href="#">Ubah Password</a>
 				<span>|</span>
+<<<<<<< HEAD
 				<a href="../../logout.php">Log out</a>
+=======
+				<a href="#">Log out</a>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 			</div>
 		</div>
 		<!-- End Logo + Top Nav -->
@@ -148,7 +158,12 @@ include "../../koneksi.php";
 								</tr>
 								<tr>
 									<td>AKSES</td>
+<<<<<<< HEAD
 									<td colspan="3"> <input type="text" name="id_role" id="id_role"></td>
+=======
+									<td colspan="3"> <input type="text" name="id_role" id="id_role" size="50" placeholder="require">
+									</td>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 								</tr>
 								<tr>
 									<td>USERNAME</td>
@@ -174,6 +189,7 @@ include "../../koneksi.php";
 					</div>
 					<!-- Table -->
 				</div>
+<<<<<<< HEAD
 				<div class="table">
 					<a href="add_pengguna.php" class="add-button"><span>TAMBAH PENGGUNA</span></a><br>
 						<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -201,6 +217,8 @@ include "../../koneksi.php";
 							
 						</table>				
 					</div>
+=======
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 				<!-- End Box -->
 			</div>
 			<!-- End Content -->

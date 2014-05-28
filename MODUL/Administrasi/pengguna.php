@@ -13,7 +13,11 @@ include "../../koneksi.php";
 	<link rel="stylesheet" href="../../css/style.css" type="text/css" media="all" />
 	<script type="text/javascript">
 		function konfirmasi(nama){
+<<<<<<< HEAD
 			return confirm('Apakah anda yakin menghapus  '+nama+'? sebagai pengguna');
+=======
+			return confirm('Apakah anda yakin menghapus pengguna '+nama+'?');
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 		}
 	</script>
 </head>
@@ -92,11 +96,32 @@ include "../../koneksi.php";
 									<td><?php echo $data['nip'];?></td>
 									<td><?php echo $data['nama_pegawai'];?></td>
 									<td><?php if($data['status'] == 1){ echo "Aktif";}else{ echo "Tidak aktrif";}?></td>
+<<<<<<< HEAD
 									<td><a href="hapus_pengguna.php?id_pengguna=<?=$data['id_pengguna']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_pegawai'];?>')">Delete</a><a href="editpengguna.php?id=<?php echo $data['id_pengguna'];?>" class="ico edit">Edit</a><a href="detail_pengguna.php" class="ico">Detail</a></td>
+=======
+									<td><a href="hapus_pengguna.php?id_pengguna=<?=$data['id_pengguna']?>" class="ico del" onclick="return konfirmasi('<?php echo $data['nama_pegawai'];?>')">Delete</a><a href="editpengguna.php?id=<?php echo $data['id_pengguna'];?>" class="ico edit">Edit</a><a href="#" class="ico">Detail</a></td>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 								</tr><?php
 								$n++;
 							}
 							?>
+<<<<<<< HEAD
+=======
+							<!--<tr>
+								<td>1</td>
+								<td>1234567790</td>
+								<td>HANI </td>
+								<td>ADMINISTRASI</td>
+								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>1234567790</td>
+								<td>HANI </td>
+								<td>ADMINISTRASI</td>
+								<td><a href="#" class="ico del">Delete</a><a href="#" class="ico edit">Edit</a></td>
+							</tr>-->
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 						</table>				
 					</div>
 					<!-- Table -->

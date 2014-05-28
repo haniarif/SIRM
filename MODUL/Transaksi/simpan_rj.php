@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 session_start();
 if(empty($_SESSION['id_pengguna'])){ ?>
@@ -6,6 +7,8 @@ if(empty($_SESSION['id_pengguna'])){ ?>
 include "../../koneksi.php";
 ?>
 
+=======
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -24,7 +27,11 @@ include "../../koneksi.php";
 			<div id="top-navigation">
 				<a href="#">Ubah Password</a>
 				<span>|</span>
+<<<<<<< HEAD
 				<a href="../../logout.php">Log out</a>
+=======
+				<a href="#">Log out</a>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 			</div>
 		</div>
 		<!-- End Logo + Top Nav -->
@@ -58,6 +65,7 @@ include "../../koneksi.php";
 
 
 <?php
+<<<<<<< HEAD
 		
 	$query = mysql_query("SELECT * FROM pendf_rj z
 	left join pasien e on z.id_pasien = e.id_pasien
@@ -65,12 +73,25 @@ include "../../koneksi.php";
 	left outer join kecamatan b on a.id_kecamatan = b.id_kecamatan
 	left outer join kabupaten c on b.id_kabupaten = c.id_kabupaten
 	left outer join provinsi d on c.id_provinsi = d.id_provinsi
+=======
+include "../../koneksi.php";
+		
+	$query = mysql_query("SELECT * FROM pendf_rj z
+	left join kelurahan a on z.id_kelurahan = a.id_kelurahan 
+	left outer join kecamatan b on a.id_kecamatan = b.id_kecamatan
+	left outer join kabupaten c on b.id_kabupaten = c.id_kabupaten
+	left outer join provinsi d on c.id_provinsi = d.id_provinsi
+	left join pasien e on z.id_pasien = e.id_pasien
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 	left join layanan f on z.id_layanan = f.id_layanan
 	left join klinik g on z.id_klinik = g.id_klinik
 	left join dokter h on z.id_dokter = h.id_dokter
 	left outer join pegawai i on h.id_pegawai = i.id_pegawai
 	where id_pendftrn=$_GET[id]");
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 	$data= mysql_fetch_array($query);?>
 <div class="box-content" style="height:620px; width:900px" >
 					<!-- Table -->
@@ -136,7 +157,11 @@ include "../../koneksi.php";
 								<td>:<?php echo $data['agama_pasien'];?></td>
 							</tr>
 						</table>	
+<<<<<<< HEAD
 						<div class="box" style="float:left;width: 50%;height:210px;margin-top:-20%;margin-left:50%;">					
+=======
+						<div class="box" style="float:left;width: 50%;height:210px;margin-top:-26%;margin-left:50%;">					
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 							<!-- Box Head -->
 							<div class="box-head" style="width: 95%;">
 								<h2  >PENANGGUNG JAWAB</h2>

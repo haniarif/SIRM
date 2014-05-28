@@ -66,19 +66,29 @@ include "../../koneksi.php";
 						<table style="float:left" width="100%" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td>NO. RM</td>
+<<<<<<< HEAD
 								<td><input type="text" name="id_pendftrn" id="input_data">
 										<script type='text/javascript'>
+=======
+								<td> <input type="text" name="id_pendftrn" id="input_data">
+									<script type='text/javascript'>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 									$(document).ready(function() {
 										$("#input_data").tokenInput("../../config/file_json.php?aksi=cari_no_rm", {
 											preventDuplicates: true,
 											theme: "facebook",
 											onAdd: function (item) {
+<<<<<<< HEAD
 												get_pasien_rj(item.name)
+=======
+												get_pasien(item.name)
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 											}
 											
 										});
 									});
 									
+<<<<<<< HEAD
 									function get_pasien_rj(no_rm){
 										$.ajax({
 											type: 'GET',
@@ -90,6 +100,18 @@ include "../../koneksi.php";
 												console.log(pendf_rj);	
 												$('#nama_pasien').val(pendf_rj.name);
 												
+=======
+									function get_pasien(no_rm){
+										$.ajax({
+											type: 'GET',
+											url: '../../config/file_json.php?aksi=get_pasien&no_rm='+no_rm,
+											dataType: 'json',
+											success: function(data){
+												var pasien = data[0];
+												
+												console.log(pasien);
+												$('#nama_pasien').val(pasien.name);
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 											}
 										});
 									}
@@ -97,7 +119,11 @@ include "../../koneksi.php";
 							</tr>
 							<tr>
 								<td>NAMA</td>
+<<<<<<< HEAD
 								<td><input type="text" name="id_pendftrn" id="nama_pasien" class="isi"></td>
+=======
+								<td><input type="text" name="nama_pasien" id="nama_pasien" class="isi"></td>
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
 							</tr>
 							<tr>
 								<td> <input type="submit" name="submit" value=SIMPAN></td>

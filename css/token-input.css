@@ -3,7 +3,11 @@ ul.token-input-list-facebook {
     overflow: hidden; 
     height: auto !important; 
     height: 1%;
+<<<<<<< HEAD
     width: 250px;
+=======
+    width: 270px;
+>>>>>>> 429e6a569239838b0f3d7fe6eb43c467f7846aec
     border: 1px solid #8496ba;
     cursor: text;
     font-size: 12px;
